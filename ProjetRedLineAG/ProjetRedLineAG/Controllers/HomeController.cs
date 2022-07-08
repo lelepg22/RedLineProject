@@ -12,7 +12,8 @@ namespace ProjetRedLineAG.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class HomeController : ControllerBase {
+    public class HomeController : ControllerBase
+    {
 
         private readonly ApplicationsContext _context;
         public HomeController(ApplicationsContext context)
@@ -29,36 +30,40 @@ namespace ProjetRedLineAG.Controllers
         }
 
         [HttpGet]
-        public  IEnumerable<List<Application>> Get()
+
+        /*public async IEnumerable<List<Application>> Get()
         {
-           public List<Application> applicationsList = new List<Application>();
-           applicationsList.Add
 
-             var a = _context.Applications.ToListAsync();
-           
-           await requeteBaseApplications() {
+            //apllisList.Select(r => apllisList.Select(x => x.EntrepriseId.ToString() == entreprisesList.Where(y => x.EntrepriseId == y.Id).ToString()));
 
-                    if (_context.Applications == null)
-                    {
-                       
-                        await Parallel.ForEachAsync(_context.Applications, async (item , CancellationToken) =>{
-                           
-                        })
+            if (_context.Applications == null)
+            {
+                var apllisList = await _context.Applications.ToListAsync();
 
-                    }
 
-            
-                }
+                List<Application> list = new List<Application>();
+                apllisList.ForEach(x => list.Add(new Application()
+                {
+                    Id = x.Id,
+                    TitleApplication = x.TitleApplication,
+                    EntrepriseApplication = x.EntrepriseName,
+                    StatusApplication = x.StatusApplication,
+                    TimeApplication = x.TimeApplication,
+                }));
+
+                return list.ToArray();
             }
-            await  applicationsList.ForEach(var item in applicationsList){
-                await requeteEntreprises() { res => var entreprise = res.Where(x => item.Entreprise == x.Id).ToArray();  item.entreprise.TitleEntreprise.toString();
-                
-                }
-            return applicationsList.ToArray();
-        }
-            
-            
+            return new[] { new Application() };
 
+
+        }
+        }*/
+
+        public async Task<IEnumerable<ApplicationModel>> Get()
+        {
+
+            return await _context.Applications.ToListAsync();
         }
     }
 }
+ 
