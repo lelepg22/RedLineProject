@@ -1,5 +1,5 @@
 <div>
-    
+
     <h1> Candidatures </h1>
     <button>Nouvelle Candidature</button>
     <div>
@@ -41,6 +41,8 @@
             <button>RECHERCHER </button>
         </div>
     </div>
+
+    <p *ngIf="!applications"><em>Loading...</em></p>
     <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
         <thead>
             <tr>
@@ -51,10 +53,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let forecast of forecasts">
-                <td>{{ forecast.id }}</td>
-                <td>{{ forecast.titleDocument }}</td>
-                <td>{{ forecast.applicationId }}</td>
+            <tr *ngFor="let application of applications">
+                <td>{{ application.TimeApplication }}</td>
+                <td>{{ application.TitleApplication }}</td>
+                <td>{{ application.EntrepriseApplication }}</td>
+                <td>{{ application.StatusApplication }}</td>
             </tr>
         </tbody>
     </table>
