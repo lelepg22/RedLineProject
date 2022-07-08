@@ -5,12 +5,18 @@ namespace ProjetRedLineAG.Data
 {
     public class ApplicationsContext : DbContext
     {
-        public DbContext(DbContextOptions options) : base(options)
-        {
-        }
+       public ApplicationsContext(DbContextOptions options) : base(options)
+       {
 
-        public DbSet<MovieViewModel> Movies { get; set; }
+       }
+       
 
-        public DbSet<MovieTypeViewModel> MovieTypes { get; set; }
+       public DbSet<ApplicationModel> Applications { get; set; }
+
+        public DbSet<DocumentModel> Documents { get; set; }
+
+        public DbSet<EntrepriseModel> Entreprises { get; set; }
+
+        public DbSet<PersonModel> Persons { get; set; }
     }
 }

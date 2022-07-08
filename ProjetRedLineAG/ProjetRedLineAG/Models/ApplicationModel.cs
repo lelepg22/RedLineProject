@@ -11,7 +11,9 @@ namespace ProjetRedLineAG.Models
         public string ExternalLinkApplication { get; set; }
         public int EntrepriseId { get; set; }
 
-        /*[DataType(DataType.DateTime2)] */
+        public string EntrepriseName { get; set; }
+
+        /* [DataType(DataType.DateTime2)] */
         public DateTime TimeApplication { get; set; }
 
 

@@ -9,15 +9,17 @@ export class FetchDataComponent {
   public forecasts: WeatherForecast[];
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + 'weatherforecast').subscribe(result => {
+      http.get<WeatherForecast[]>(baseUrl + 'home').subscribe(result => {
+          console.log(result);
+          alert(result);
+          debugger;
       this.forecasts = result;
     }, error => console.error(error));
   }
 }
 
 interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+  Id: number;
+  TitleDocument: string;
+  ApplicationId: number; 
 }

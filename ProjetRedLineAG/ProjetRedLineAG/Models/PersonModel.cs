@@ -11,6 +11,6 @@
         public string StatutPerson { get; set; }
         public string TelPerson { get; set; }
         public string EmailPerson { get; set; }
-        public string CommentslPerson { get; set; }
+        public string CommentsPerson { get; set; }
     }
 }

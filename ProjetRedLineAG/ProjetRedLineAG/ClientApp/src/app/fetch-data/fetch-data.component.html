@@ -15,10 +15,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+      <td>{{ forecast.id }}</td>       
+      <td>{{ forecast.titleDocument }}</td>
+      <td>{{ forecast.applicationId }}</td>     
     </tr>
   </tbody>
 </table>
