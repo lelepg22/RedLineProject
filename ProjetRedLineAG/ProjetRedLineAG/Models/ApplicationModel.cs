@@ -10,7 +10,6 @@ namespace ProjetRedLineAG.Models
         public string CommentsApplication { get; set; }
         public string ExternalLinkApplication { get; set; }
         public int EntrepriseId { get; set; }
-
         public string EntrepriseName { get; set; }
 
         /* [DataType(DataType.DateTime2)] */
