@@ -24,10 +24,10 @@ namespace ProjetRedLineAG.Controllers
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+       /* public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-        }
+        }*/
 
         [HttpGet]
 
@@ -61,8 +61,13 @@ namespace ProjetRedLineAG.Controllers
 
         public async Task<IEnumerable<ApplicationModel>> Get()
         {
-
-            return await _context.Applications.ToListAsync();
+            var res = _context.Applications.Where(s=> s.EntrepriseId==s.Entreprise.EntrepriseId)
+                .Include(s => s.Entreprise).ToListAsync() ;
+           
+                
+            
+            return await res;
+            
         }
     }
 }

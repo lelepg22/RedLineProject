@@ -1,64 +1,102 @@
-<div>
-
-    <h1> Candidatures </h1>
-    <button>Nouvelle Candidature</button>
+<main>
     <div>
-        <div class="panel-group" role="tablist">
+        <h1> Candidatures </h1>
 
-            <div class="panel panel-default">
+        <div class="row" id="handler">
+            <button class="button-30 buttonCandidature">Candidature<i class="fas fa-calendar-plus"></i> </button>
 
-                <div class="panel-heading" role="tab" id="collapseListGroupHeading1">
-
-                    <h4 class="panel-title">
-
-                        <a class="collapsed" data-toggle="collapse" href="#collapseListGroup1" aria-expanded="false" aria-controls="collapseListGroup1">
-
-                            Type <i class="fa-solid fa-caret-down"></i>
-
-                        </a>
-
-                    </h4>
-
-                </div>
-
-                <div id="collapseListGroup1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
-
-                    <ul class="list-group">
-
-                        <li class="list-group-item">Date</li>
-
-                        <li class="list-group-item">Title</li>
-
-                        <li class="list-group-item">Entreprise</li>
-
-                    </ul>
-
-                </div>
-
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Type
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Date</a></li>
+                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
+                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
+                    <li><a class="dropdown-item" href="#">Status</a></li>
+                </ul>
             </div>
 
             <input placeholder="search candidature" />
-            <button>RECHERCHER </button>
+
+            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
         </div>
     </div>
+    
+    <div id="mainPage" class="row">
 
-    <p *ngIf="!applications"><em>Loading...</em></p>
-    <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Titre de la candidature</th>
-                <th>Entreprise</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let application of applications">
-                <td>{{ application.TimeApplication }}</td>
-                <td>{{ application.TitleApplication }}</td>
-                <td>{{ application.EntrepriseApplication }}</td>
-                <td>{{ application.StatusApplication }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+        <p *ngIf="!applications"><em>Loading...</em></p>
+        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="applications">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Titre de la candidature</th>
+                    <th>Entreprise</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let application of applications">
+                    <td>{{ application.timeApplication }}</td>
+                    <td>{{ application.titleApplication }}</td>
+                    <td>{{ application.entreprise.titleEntreprise}}</td>
+                    <td>{{ application.statusApplication }}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        <aside class="col-xl-2">
+            <div id="lists">
+                <ul>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
+                    </li>
+                    <li>
+                        Documents
+                    </li>
+                </ul>
+            </div>
+            <div id="jobs">
+                <h5 id="jobboards">
+                    Jobboards</h5>
+                    <ul>
+                        <li>
+                            <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
+                        </li>
+                        <li>
+                            <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
+                        </li>
+                        <li>
+                            <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
+                        </li>
+
+                    </ul>
+            </div>
+        </aside>
+        </div>
+        <nav class="row">
+
+            <ul id="ulDown">
+                <li>
+                    À propos de moi
+                </li>
+                <li>
+                    Autres projets
+                </li>
+                <li>
+                    Contactez-moi
+                </li>
+
+            </ul>
+        </nav>
+        
+
+</main>
+
+  

@@ -1,6 +1,6 @@
 <main>
     <div>
-        <h1> Candidatures </h1>
+        <h1> Contacts </h1>
 
         <div class="row" id="handler">
             <button class="button-30 buttonCandidature">Candidature<i class="fas fa-calendar-plus"></i> </button>
@@ -25,22 +25,29 @@
 
     <div id="mainPage" class="row">
 
-        <p *ngIf="!entreprises"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="entreprises">
+        <p *ngIf="!contacts"><em>Loading...</em></p>
+        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Titre de la candidature</th>
+                    <th>Statut</th>
+                    <th>Nom</th>
+                    <th>Prenom</th>
                     <th>Entreprise</th>
-                    <th>Status</th>
+                    <th>Tel</th>
+                    <th>Email</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let entreprise of entreprises">
-                    <td>{{ entreprise.titleEntreprise }}</td>
-                    <td>{{ entreprise.idEntreprise }}</td>
-                    <td>{{ entreprise.commentsEntreprise }}</td>
-                    <td>{{ entreprise.telEntreprise }}</td>
+                <tr *ngFor="let contact of contacts">
+                    <td>{{ contact.statutPerson }}</td>
+                    <td>{{ contact.lastNamePerson }}</td>
+                    <td>{{ contact.firstNamePerson }}</td>
+                    <td>{{ contact.entreprise.titleEntreprise }}</td>
+                    <td>{{ contact.telPerson }}</td>
+                    <td>{{ contact.emailPerson }}</td>
+
+
+
                 </tr>
             </tbody>
         </table>
@@ -48,10 +55,10 @@
             <div id="lists">
                 <ul>
                     <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
+                        <a class="nav-link text-dark" [routerLink]="['/entreprises']">Entreprises</a>
                     </li>
                     <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
+                        <a class="nav-link text-dark" [routerLink]="['/contacts']">Contacts</a>
                     </li>
                     <li>
                         Documents

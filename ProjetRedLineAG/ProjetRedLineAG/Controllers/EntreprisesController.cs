@@ -24,10 +24,10 @@ namespace ProjetRedLineAG.Controllers
 
         private readonly ILogger<EntreprisesController> _logger;
 
-        public EntreprisesController(ILogger<EntreprisesController> logger)
+        /*public EntreprisesController(ILogger<EntreprisesController> logger)
         {
             _logger = logger;
-        }
+        }*/
 
         [HttpGet]
 
@@ -62,7 +62,8 @@ namespace ProjetRedLineAG.Controllers
         public async Task<IEnumerable<EntrepriseModel>> Get()
         {
 
-            return await _context.Entreprises.ToListAsync();
+            var res = _context.Entreprises.ToListAsync();
+            return await res;
         }
     }
 }

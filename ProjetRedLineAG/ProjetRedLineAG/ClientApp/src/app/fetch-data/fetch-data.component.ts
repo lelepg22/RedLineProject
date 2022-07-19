@@ -20,6 +20,6 @@ export class FetchDataComponent {
 
 interface WeatherForecast {
   Id: number;
-  TitleDocument: string;
+  TitleApplication: string;
   ApplicationId: number; 
 }

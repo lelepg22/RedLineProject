@@ -9,7 +9,8 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { EntreprisesComponent } from './entreprises/entreprises.component'
+import { EntreprisesComponent } from './entreprises/entreprises.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { EntreprisesComponent } from './entreprises/entreprises.component'
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    EntreprisesComponent
+    EntreprisesComponent,
+    ContactsComponent,
+    
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,9 +29,9 @@ import { EntreprisesComponent } from './entreprises/entreprises.component'
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: 'contact', component: ContactsComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'entreprises', component: EntreprisesComponent },
+      { path: 'entreprise', component: EntreprisesComponent },
     ])
   ],
   providers: [],

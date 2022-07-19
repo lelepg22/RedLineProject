@@ -1,13 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-entreprises-component',
-  templateUrl: './entreprises.component.html'
+    templateUrl: './entreprises.component.html',
+    styleUrls: ['../home/home.component.css']
+
 })
 export class EntreprisesComponent {
-  public currentCount = 0;
+    public entreprises: Entreprise[];
 
-  public incrementCounter() {
-    this.currentCount++;
-  }
+    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+        http.get<Entreprise[]>(baseUrl + 'entreprises').subscribe(result => {
+            console.log(result);           
+            this.entreprises = result;
+        }, error => console.error(error));
+    }
+}
+
+interface Entreprise {
+    Id: number;
+    TitleEntreprise: string;
+    CommentsEntreprise: string;
+    LinkEntreprise: string;
+    TelEntreprise: string;
+
 }

@@ -24,11 +24,11 @@ namespace ProjetRedLineAG.Controllers
 
         private readonly ILogger<ContactsController> _logger;
 
-        public ContactsController(ILogger<ContactsController> logger)
+        /*public ContactsController(ILogger<ContactsController> logger)
         {
             _logger = logger;
         }
-
+        */
         [HttpGet]
 
         /*public async IEnumerable<List<Application>> Get()
@@ -61,8 +61,9 @@ namespace ProjetRedLineAG.Controllers
 
         public async Task<IEnumerable<PersonModel>> Get()
         {
-
-            return await _context.Persons.ToListAsync();
+            var res = _context.Persons.Where(s=> s.EntrepriseId==s.Entreprise.EntrepriseId)
+                .Include(s=> s.Entreprise).ToListAsync();
+            return await res;
         }
     }
 }
