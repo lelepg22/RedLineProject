@@ -1,6 +1,6 @@
 <main>
     <div>
-        <h1> Contacts </h1>
+        <h1> Documents </h1>
 
         <div id="handler">
             <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
@@ -27,27 +27,20 @@
 
     <div id="mainPage" class="col-12">
 
-        <p *ngIf="!contacts"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
+        <p *ngIf="!documents"><em>Loading...</em></p>
+        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="documents">
             <thead>
                 <tr>
-                    <th>Statut</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Entreprise</th>
-                    <th>Tel</th>
-                    <th>Email</th>
+                    <th>id</th>
+                    <th>Document</th>
+                  
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let contact of contacts">
-                    <td>{{ contact.statutPerson }}</td>
-                    <td>{{ contact.lastNamePerson }}</td>
-                    <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">>{{ contact.entreprise.titleEntreprise }}</a></td>
-                    <td>{{ contact.telPerson }}</td>
-                    <td>{{ contact.emailPerson }}</td>
+                <tr *ngFor="let document of documents">
+                    <td>{{ document.id }}</td>
+                    <td>{{ document.titleDocument }}</td>
+                   
 
 
 

@@ -27,33 +27,40 @@
 
     <div id="mainPage" class="col-12">
 
-        <p *ngIf="!contacts"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
-            <thead>
-                <tr>
-                    <th>Statut</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Entreprise</th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let contact of contacts">
-                    <td>{{ contact.statutPerson }}</td>
-                    <td>{{ contact.lastNamePerson }}</td>
-                    <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">>{{ contact.entreprise.titleEntreprise }}</a></td>
-                    <td>{{ contact.telPerson }}</td>
-                    <td>{{ contact.emailPerson }}</td>
+        <div class="headerCandidature">
+            <h2><a href="#linkExtCand"> Candidature Title </a></h2>
+            <p>Id.120</p>
+        </div>
+
+        <h4>statut candidature</h4>
+        <div class="mainCandidature">
+            <div class="docEnvoye">
+
+                <ul>
+                    Envoyé:
+                    <li>CV</li>
+                    <li>Lettre Motivation</li>
+                </ul>
+            </div>
+            <div class="commentCandidature">
+                <h6>Commentaires</h6>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem accusamus obcaecati odit veniam cum placeat
+                    commodi deserunt, neque mollitia reprehenderit distinctio culpa consectetur repellendus voluptatum eaque iusto optio excepturi doloremque.
+                </p>
+            </div>
+
+            <div class="footerCandidature">
+                <h5 class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">
+                    Entreprise</a></h5>
+                    <button type="button" class="btn btn-success">Edit</button>
+            </div>
+        </div>
 
 
 
-                </tr>
-            </tbody>
-        </table>
+    </div>
         <aside class="col-xl-2">
             <div id="lists">
                 <ul>
@@ -89,7 +96,7 @@
                 </ul>
             </div>
         </aside>
-    </div>
+    
     <nav class="row">
 
         <ul id="ulDown">

@@ -1,9 +1,11 @@
 <main>
     <div>
         <h1> Candidatures </h1>
+        <button (click)="test()">TEST!!!</button>
 
-        <div class="row" id="handler">
-            <button class="button-30 buttonCandidature">Candidature<i class="fas fa-calendar-plus"></i> </button>
+        <div id="handler">
+            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a></button>
 
             <div class="btn-group">
                 <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,7 +25,7 @@
         </div>
     </div>
     
-    <div id="mainPage" class="row">
+    <div id="mainPage" class="col-12">
 
         <p *ngIf="!applications"><em>Loading...</em></p>
         <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="applications">
@@ -36,12 +38,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let application of applications">
+                <tr *ngFor="let application of applications" class="nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/cardApplication']">>
                     <td>{{ application.timeApplication }}</td>
                     <td>{{ application.titleApplication }}</td>
-                    <td>{{ application.entreprise.titleEntreprise}}</td>
+                    <td class=" nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">{{ application.entreprise.titleEntreprise}}</a></td>
                     <td>{{ application.statusApplication }}</td>
-                    
+                 </a>
                 </tr>
             </tbody>
         </table>
@@ -54,8 +58,8 @@
                     <li class="nav-item" [routerLinkActive]="['link-active']">
                         <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
                     </li>
-                    <li>
-                        Documents
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
                     </li>
                 </ul>
             </div>

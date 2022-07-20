@@ -27,33 +27,39 @@
 
     <div id="mainPage" class="col-12">
 
-        <p *ngIf="!contacts"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
-            <thead>
-                <tr>
-                    <th>Statut</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Entreprise</th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let contact of contacts">
-                    <td>{{ contact.statutPerson }}</td>
-                    <td>{{ contact.lastNamePerson }}</td>
-                    <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">>{{ contact.entreprise.titleEntreprise }}</a></td>
-                    <td>{{ contact.telPerson }}</td>
-                    <td>{{ contact.emailPerson }}</td>
+        <div class='cardEntreprise col-xl-9'>
+            <h2><a href="" target="_blank">ENTREPRISE</a></h2>
+            <div id="innerCardEntreprise">
+                <h3>Candidatures</h3>
+                <div id="listCandidatures"class="nav-item" [routerLinkActive]="['link-active']">
+               
+                    <a class="nav-link text-dark" [routerLink]="['/cardApplication']">Titre Candidature 1</a>
+                    <a class="nav-link text-dark" [routerLink]="['/cardApplication']">Titre Candidature 2</a>
+                </div>
+                <div id="commentaireEntreprise">
+                    <div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Commentaires</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="comment">
+                            <h3>Commentaires</h3>
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit culpa consequatur magni eum, odit placeat tempore quae vitae quas? Eveniet, iste similique? Officiis rerum veniam, eligendi consequatur non dolore. Ipsam?</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="contactEntreprise">
+                    <h3>Contacts</h3>
+                    <ul>
+                        <li><a href="" target="_blank">Marie Alviverde - RH</a></li>
+                        <li><a href="" target="_blank">Johnny Cabeleira - Amie</a></li>
+                        <li><a href="" target="_blank">Wallace Contandre - Projet Manager</a></li>
+                    </ul>
 
-
-
-                </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success">Edit</button>
+        </div>
         <aside class="col-xl-2">
             <div id="lists">
                 <ul>

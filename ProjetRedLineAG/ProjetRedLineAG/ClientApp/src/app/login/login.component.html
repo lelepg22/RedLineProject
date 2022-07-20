@@ -3,9 +3,7 @@
         <h1> Contacts </h1>
 
         <div id="handler">
-            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
-            </button>
+            <button class="button-30 buttonCandidature">Candidature<i class="fas fa-calendar-plus"></i> </button>
 
             <div class="btn-group">
                 <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -26,34 +24,29 @@
     </div>
 
     <div id="mainPage" class="col-12">
+        
+        <div class='cardLogin col-xl-9'>
+            <div class="wrapper">
+                <div class="logo">
+                    <img src="/assets/img/android-chrome-192x192.png" alt="Logo">
+                </div>
 
-        <p *ngIf="!contacts"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
-            <thead>
-                <tr>
-                    <th>Statut</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Entreprise</th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let contact of contacts">
-                    <td>{{ contact.statutPerson }}</td>
-                    <td>{{ contact.lastNamePerson }}</td>
-                    <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">>{{ contact.entreprise.titleEntreprise }}</a></td>
-                    <td>{{ contact.telPerson }}</td>
-                    <td>{{ contact.emailPerson }}</td>
-
-
-
-                </tr>
-            </tbody>
-        </table>
+                <form class="p-3 mt-3">
+                    <div class="form-field d-flex align-items-center">
+                        <i class="fas fa-user-tie"></i>
+                        <input type="text" name="userName" id="userName" placeholder="Utilisateur">
+                    </div>
+                    <div class="form-field d-flex align-items-center">
+                        <i class="fas fa-key"></i>
+                        <input type="password" name="password" id="pwd" placeholder="Mot de passe">
+                    </div>
+                    <button class="btn mt-3">Connexion</button>
+                </form>
+                <div class="text-center fs-6">
+                    <a href="#">Mot de passe oublié ?</a> ou <a href="#">S'inscrire</a>
+                </div>
+            </div>
+        </div>
         <aside class="col-xl-2">
             <div id="lists">
                 <ul>

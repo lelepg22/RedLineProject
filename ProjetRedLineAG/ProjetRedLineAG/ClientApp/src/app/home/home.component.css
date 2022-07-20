@@ -66,6 +66,7 @@ nav ul li {
 
 .table {
     margin-right: 15px;
+    width:93%;
 }
 
 #jobboards {
@@ -572,6 +573,7 @@ h1 {
     border: 1px solid;
     margin-right: 20px;
     padding: 20px;
+    width:92%;
 }
 
 .telEmailForm {
@@ -606,6 +608,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-height:50px;
 }
 
     .formCandidature .listAndAdd * {
@@ -715,6 +718,15 @@ h1 {
 
 .formCandidature .button-13 {
     min-width: 197px;
+}
+.checkBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+.checkBox input{
+    margin-right:10px;
 }
 
 .button-13 {

@@ -26,34 +26,56 @@
     </div>
 
     <div id="mainPage" class="col-12">
+        <div class='formCandidature cardShadow col-xl-9'>
+            <h2>Créer un nouveau contact</h2>
+            <div class="mainFormCandidature">
+                <form>
+                    <div class="contactFormContact">
 
-        <p *ngIf="!contacts"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
-            <thead>
-                <tr>
-                    <th>Statut</th>
-                    <th>Nom</th>
-                    <th>Prenom</th>
-                    <th>Entreprise</th>
-                    <th>Tel</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let contact of contacts">
-                    <td>{{ contact.statutPerson }}</td>
-                    <td>{{ contact.lastNamePerson }}</td>
-                    <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">>{{ contact.entreprise.titleEntreprise }}</a></td>
-                    <td>{{ contact.telPerson }}</td>
-                    <td>{{ contact.emailPerson }}</td>
+                        <div class="listAndAdd">
+                            <div class="buttonFormList">
+                                <div class="statutSelectFormCandidature">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Statuts
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">RH</a></li>
+                                            <li><a class="dropdown-item" href="#">Project Manager</a></li>
+                                        </ul>
+                                    </div>
+                                    <ul class="wrapper">
+                                        <li class="icon addDoc">
+                                            <span class="tooltip">Ajouter</span>
+                                            <span><i class="fas fa-plus"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="inputButton btn-group">
+                                <button type="button" class="btn btn-success">
+                                    <input placeholder="  nom, Prenom">
+                                </button>
 
+                            </div>
 
-
-                </tr>
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <h3>Commentaires</h3>
+                        <textarea name="comment"></textarea>
+                    </div>
+                    <div class="telEmailForm">
+                        <i class="cardShadow fas fa-envelope"></i><input type="  email" placeholder="email">
+                        <i class="cardShadow fas fa-phone"></i><input type="  tel" placeholder="tel">
+                    </div>
+                    <div class="buttonsForm">
+                        <button type="button" class="btn btn-success">Créer</button>
+                        <button type="button" class="btn btn-danger">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <aside class="col-xl-2">
             <div id="lists">
                 <ul>

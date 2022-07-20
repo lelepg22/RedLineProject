@@ -1,0 +1,144 @@
+<main>
+    <div>
+        <h1> Contacts </h1>
+
+        <div id="handler">
+            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
+            </button>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Type
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Date</a></li>
+                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
+                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
+                    <li><a class="dropdown-item" href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <input placeholder="search candidature" />
+
+            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
+        </div>
+    </div>
+
+    <div id="mainPage" class="col-12">
+        <div class='formCandidature cardShadow col-xl-9'>
+            <h2>Créer une nouvelle entreprise</h2>
+            <div class="mainFormCandidature">
+                <form>
+                    <input class="inputGde" type="url" placeholder="Nom Entreprise">
+                    <input class="inputGde" placeholder="Site Web Entreprise">
+
+                    <div class="contactFormCandidature">
+
+                        <div class="listAndAdd">
+                            <div class="buttonFormList">
+                                <div class="statutSelectFormCandidature">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Statuts
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="#">RH</a></li>
+                                            <li><a class="dropdown-item" href="#">Project Manager</a></li>
+                                        </ul>
+                                    </div>
+                                    <ul class="wrapper">
+                                        <li class="icon addDoc">
+                                            <span class="tooltip">Ajouter</span>
+                                            <span><i class="fas fa-plus"></i></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="inputButton btn-group">
+                                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <input placeholder="  nom, Prenom"> <span><i class="fas fa-plus"></i></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li></li>
+                                    <li><a class="dropdown-item" href="#">Marie Alviverde</a></li>
+                                </ul>
+                            </div>
+
+                            <button class="button-13" role="button">Ajouter un(e) contact</button>
+
+                        </div>
+                        <div class="checkBox col-12">
+                            <input type="checkbox" id="checkboxFormCandidature" name="checkbox">
+                            <label for="checkbox">Le contact travaille-t-il dans l'entreprise ?</label>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <h3>Commentaires</h3>
+                        <textarea name="comment"></textarea>
+                    </div>
+                    <div class="telEmailForm">
+                        <i class="cardShadow fas fa-envelope"></i><input type="email" placeholder="email">
+                        <i class="cardShadow fas fa-phone"></i><input type="tel" placeholder="tel">
+                    </div>
+                    <div class="buttonsForm">
+                        <button type="button" class="btn btn-success">Créer</button>
+                        <button type="button" class="btn btn-danger">Annuler</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <aside class="col-xl-2">
+            <div id="lists">
+                <ul>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="jobs">
+                <h5 id="jobboards">
+                    Jobboards
+                </h5>
+                <ul>
+                    <li>
+                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
+                    </li>
+                    <li>
+                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
+                    </li>
+                    <li>
+                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
+                    </li>
+
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <nav class="row">
+
+        <ul id="ulDown">
+            <li>
+                À propos de moi
+            </li>
+            <li>
+                Autres projets
+            </li>
+            <li>
+                Contactez-moi
+            </li>
+
+        </ul>
+    </nav>
+
+
+</main>
