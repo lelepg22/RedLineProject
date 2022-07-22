@@ -5,7 +5,8 @@
 
         <div id="handler">
             <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a></button>
+                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
+            </button>
 
             <div class="btn-group">
                 <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,7 +25,7 @@
             <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
         </div>
     </div>
-    
+
     <div id="mainPage" class="col-12">
 
         <p *ngIf="!applications"><em>Loading...</em></p>
@@ -42,9 +43,10 @@
                     <td>{{ application.timeApplication }}</td>
                     <td>{{ application.titleApplication }}</td>
                     <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">{{ application.entreprise.titleEntreprise}}</a></td>
+                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">{{ application.entreprise.titleEntreprise}}</a>
+                    </td>
                     <td>{{ application.statusApplication }}</td>
-                 
+
                 </tr>
             </tbody>
         </table>
@@ -64,42 +66,41 @@
             </div>
             <div id="jobs">
                 <h5 id="jobboards">
-                    Jobboards</h5>
-                    <ul>
-                        <li>
-                            <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
-                        </li>
-                        <li>
-                            <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
-                        </li>
-                        <li>
-                            <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
-                        </li>
+                    Jobboards
+                </h5>
+                <ul>
+                    <li>
+                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
+                    </li>
+                    <li>
+                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
+                    </li>
+                    <li>
+                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
+                    </li>
 
-                    </ul>
+                </ul>
             </div>
         </aside>
-        </div>
-        <nav class="row">
+    </div>
+    <nav class="row">
 
-            <ul id="ulDown">
-                <li>
-                    À propos de moi
-                </li>
-                <li>
-                    Autres projets
-                </li>
-                <li>
-                    Contactez-moi
-                </li>
+        <ul id="ulDown">
+            <li>
+                À propos de moi
+            </li>
+            <li>
+                Autres projets
+            </li>
+            <li>
+                Contactez-moi
+            </li>
 
-            </ul>
-        </nav>
-        
+        </ul>
+    </nav>
+
 
 </main>
-
-  
