@@ -105,7 +105,7 @@ aside {
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-.cardShadow:hover {
+    .cardShadow:hover {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
 
@@ -118,9 +118,9 @@ table {
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
-table:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
+    table:hover {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
 
 #lists {
     width: 100%;
@@ -131,7 +131,7 @@ table:hover {
     min-height: 150px;
 }
 
-#lists li {
+    #lists li {
         display: inline-block;
         outline: 0;
         cursor: pointer;
@@ -148,7 +148,7 @@ table:hover {
         margin-bottom: 15px;
         font-weight: 500;
         color: #0F1111;
-}
+    }
 
 
 #ulDown {
@@ -568,7 +568,7 @@ h1 {
         padding-right: 35px;
         padding-left: 35px;
     }
-/* formApplication */
+
 .formCandidature {
     border: 1px solid;
     margin-right: 20px;
@@ -840,11 +840,11 @@ h1 {
 .buttonFormList button {
     min-width: 130px;
 }
-/*Fin Form Application */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-/* cardLogin css*/
+/* Reseting */
 .cardLogin * {
     margin: 0;
     padding: 0;
@@ -866,6 +866,29 @@ h1 {
 .cardLogin .logo {
     width: 80px;
     margin: auto;
+}
+
+.cardProfile .wrapper {
+    min-height: 200px !important;
+}
+
+.cardProfile .text-center {
+    margin-top: 20px;
+    border: 1px solid #d6dadd;
+    padding: 10px 0px;
+    border-radius: 11px;
+}
+
+.cardProfile .logo {
+    margin-bottom: 20px;
+}
+
+.cardProfile .text-center a {
+    font-size: 1.1rem !important;
+}
+
+.cardProfile .form-field {
+    margin-top: 10px;
 }
 
 .cardLogin .logo img {
@@ -932,31 +955,6 @@ h1 {
     .cardLogin .wrapper a:hover {
         color: #039BE5;
     }
-    /*Fin cardLogin*/
-    /* cardProfile */
-.cardProfile .wrapper {
-    min-height: 200px !important;
-}
-
-.cardProfile .text-center {
-    margin-top: 20px;
-    border: 1px solid #d6dadd;
-    padding: 10px 0px;
-    border-radius: 11px;
-}
-
-.cardProfile .logo {
-    margin-bottom: 20px;
-}
-
-.cardProfile .text-center a {
-    font-size: 1.1rem !important;
-}
-
-.cardProfile .form-field {
-    margin-top: 10px;
-}
-/*fin cardProfile*/
 
 @media(max-width: 380px) {
     .wrapper {

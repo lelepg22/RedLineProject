@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetRedLineAG.Models
 {
@@ -8,7 +7,9 @@ namespace ProjetRedLineAG.Models
     {
         public ApplicationModel()
         {
-            TimeApplication = DateTime.Now;
+
+            TimeApplication = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy"));
+            EntrepriseId = 1;
         }
 
         [Key]
@@ -22,7 +23,10 @@ namespace ProjetRedLineAG.Models
         [DisplayFormat(DataFormatString = "0:dd-MM-yyyy")]
         public DateTime TimeApplication { get; set; }
 
-        public int? EntrepriseId { get; set; }
+        public int EntrepriseId { get; set; }
         public EntrepriseModel Entreprise { get; set; }
+        public PersonModel Person { get; set; }
+
+
     }
 }

@@ -1,10 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Text.Json.Serialization;
 
 namespace ProjetRedLineAG.Models
 {
     public class PersonModel
     {
-        [Key]
+
+        public PersonModel()
+        {
+            EntrepriseId = 1;
+        }
         public int Id { get; set; }
         public string LastNamePerson { get; set; }
         public string FirstNamePerson { get; set; }
@@ -12,7 +16,9 @@ namespace ProjetRedLineAG.Models
         public string TelPerson { get; set; }
         public string EmailPerson { get; set; }
         public string CommentsPerson { get; set; }
-        public int EntrepriseId { get; set; }
+        public int? EntrepriseId { get; set; }
+
+        [JsonIgnore]
         public EntrepriseModel Entreprise { get; set; }
     }
 }

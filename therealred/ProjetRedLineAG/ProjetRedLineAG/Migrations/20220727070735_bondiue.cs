@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProjetRedLineAG.Data.Migrations
+namespace ProjetRedLineAG.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class bondiue : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -61,6 +61,33 @@ namespace ProjetRedLineAG.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DeviceCodes", x => x.UserCode);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Documents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TitleDocument = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Documents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DocumentsSent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DocumentId = table.Column<int>(nullable: false),
+                    ApplicationId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentsSent", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -186,6 +213,100 @@ namespace ProjetRedLineAG.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Entreprises",
+                columns: table => new
+                {
+                    EntrepriseId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TitleEntreprise = table.Column<string>(nullable: true),
+                    CommentsEntreprise = table.Column<string>(nullable: true),
+                    LinkEntreprise = table.Column<string>(nullable: true),
+                    TelEntreprise = table.Column<string>(nullable: true),
+                    EmailEntreprise = table.Column<string>(nullable: true),
+                    ApplicationId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Entreprises", x => x.EntrepriseId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Persons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LastNamePerson = table.Column<string>(nullable: true),
+                    FirstNamePerson = table.Column<string>(nullable: true),
+                    StatutPerson = table.Column<string>(nullable: true),
+                    TelPerson = table.Column<string>(nullable: true),
+                    EmailPerson = table.Column<string>(nullable: true),
+                    CommentsPerson = table.Column<string>(nullable: true),
+                    EntrepriseId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persons", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Persons_Entreprises_EntrepriseId",
+                        column: x => x.EntrepriseId,
+                        principalTable: "Entreprises",
+                        principalColumn: "EntrepriseId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Applications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TitleApplication = table.Column<string>(nullable: true),
+                    StatusApplication = table.Column<string>(nullable: true),
+                    CommentsApplication = table.Column<string>(nullable: true),
+                    ExternalLinkApplication = table.Column<string>(nullable: true),
+                    TimeApplication = table.Column<DateTime>(nullable: false),
+                    EntrepriseId = table.Column<int>(nullable: false),
+                    PersonId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Applications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Applications_Entreprises_EntrepriseId",
+                        column: x => x.EntrepriseId,
+                        principalTable: "Entreprises",
+                        principalColumn: "EntrepriseId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Applications_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Entreprises",
+                columns: new[] { "EntrepriseId", "ApplicationId", "CommentsEntreprise", "EmailEntreprise", "LinkEntreprise", "TelEntreprise", "TitleEntreprise" },
+                values: new object[] { 1, null, null, null, null, null, "Non renseigné" });
+
+            migrationBuilder.InsertData(
+                table: "Persons",
+                columns: new[] { "Id", "CommentsPerson", "EmailPerson", "EntrepriseId", "FirstNamePerson", "LastNamePerson", "StatutPerson", "TelPerson" },
+                values: new object[] { 1, null, null, 1, null, "Non renseigné", null, null });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Applications_EntrepriseId",
+                table: "Applications",
+                column: "EntrepriseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Applications_PersonId",
+                table: "Applications",
+                column: "PersonId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -237,6 +358,11 @@ namespace ProjetRedLineAG.Data.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Entreprises_ApplicationId",
+                table: "Entreprises",
+                column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
                 table: "PersistedGrants",
                 column: "Expiration");
@@ -245,10 +371,33 @@ namespace ProjetRedLineAG.Data.Migrations
                 name: "IX_PersistedGrants_SubjectId_ClientId_Type",
                 table: "PersistedGrants",
                 columns: new[] { "SubjectId", "ClientId", "Type" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Persons_EntrepriseId",
+                table: "Persons",
+                column: "EntrepriseId",
+                unique: true,
+                filter: "[EntrepriseId] IS NOT NULL");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Entreprises_Applications_ApplicationId",
+                table: "Entreprises",
+                column: "ApplicationId",
+                principalTable: "Applications",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_Applications_Entreprises_EntrepriseId",
+                table: "Applications");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Persons_Entreprises_EntrepriseId",
+                table: "Persons");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -268,6 +417,12 @@ namespace ProjetRedLineAG.Data.Migrations
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
+                name: "Documents");
+
+            migrationBuilder.DropTable(
+                name: "DocumentsSent");
+
+            migrationBuilder.DropTable(
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
@@ -275,6 +430,15 @@ namespace ProjetRedLineAG.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Entreprises");
+
+            migrationBuilder.DropTable(
+                name: "Applications");
+
+            migrationBuilder.DropTable(
+                name: "Persons");
         }
     }
 }

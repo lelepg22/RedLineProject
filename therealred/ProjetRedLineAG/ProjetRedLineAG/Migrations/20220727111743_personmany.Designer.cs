@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetRedLineAG.Data;
 
-namespace ProjetRedLineAG.Data.Migrations
+namespace ProjetRedLineAG.Migrations
 {
     [DbContext(typeof(ApplicationsContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220727111743_personmany")]
+    partial class personmany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,11 +248,14 @@ namespace ProjetRedLineAG.Data.Migrations
                     b.Property<string>("CommentsApplication")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EntrepriseId")
+                    b.Property<int>("EntrepriseId")
                         .HasColumnType("int");
 
                     b.Property<string>("ExternalLinkApplication")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("int");
 
                     b.Property<string>("StatusApplication")
                         .HasColumnType("nvarchar(max)");
@@ -264,6 +269,8 @@ namespace ProjetRedLineAG.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EntrepriseId");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("Applications");
                 });
@@ -373,6 +380,9 @@ namespace ProjetRedLineAG.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ApplicationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CommentsEntreprise")
                         .HasColumnType("nvarchar(max)");
 
@@ -382,6 +392,9 @@ namespace ProjetRedLineAG.Data.Migrations
                     b.Property<string>("LinkEntreprise")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PersonId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TelEntreprise")
                         .HasColumnType("nvarchar(max)");
 
@@ -390,7 +403,18 @@ namespace ProjetRedLineAG.Data.Migrations
 
                     b.HasKey("EntrepriseId");
 
+                    b.HasIndex("ApplicationId");
+
+                    b.HasIndex("PersonId");
+
                     b.ToTable("Entreprises");
+
+                    b.HasData(
+                        new
+                        {
+                            EntrepriseId = 1,
+                            TitleEntreprise = "Non renseigné"
+                        });
                 });
 
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonModel", b =>
@@ -406,7 +430,7 @@ namespace ProjetRedLineAG.Data.Migrations
                     b.Property<string>("EmailPerson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EntrepriseId")
+                    b.Property<int?>("EntrepriseId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstNamePerson")
@@ -426,6 +450,14 @@ namespace ProjetRedLineAG.Data.Migrations
                     b.HasIndex("EntrepriseId");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EntrepriseId = 1,
+                            LastNamePerson = "Non renseigné"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -483,16 +515,31 @@ namespace ProjetRedLineAG.Data.Migrations
                 {
                     b.HasOne("ProjetRedLineAG.Models.EntrepriseModel", "Entreprise")
                         .WithMany()
-                        .HasForeignKey("EntrepriseId");
+                        .HasForeignKey("EntrepriseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ProjetRedLineAG.Models.PersonModel", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
+                });
+
+            modelBuilder.Entity("ProjetRedLineAG.Models.EntrepriseModel", b =>
+                {
+                    b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
+                        .WithMany()
+                        .HasForeignKey("ApplicationId");
+
+                    b.HasOne("ProjetRedLineAG.Models.PersonModel", "Person")
+                        .WithMany()
+                        .HasForeignKey("PersonId");
                 });
 
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonModel", b =>
                 {
                     b.HasOne("ProjetRedLineAG.Models.EntrepriseModel", "Entreprise")
                         .WithMany()
-                        .HasForeignKey("EntrepriseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EntrepriseId");
                 });
 #pragma warning restore 612, 618
         }

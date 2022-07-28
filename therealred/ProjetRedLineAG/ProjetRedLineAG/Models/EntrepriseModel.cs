@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ProjetRedLineAG.Models
 {
@@ -11,7 +12,11 @@ namespace ProjetRedLineAG.Models
         public string LinkEntreprise { get; set; }
         public string TelEntreprise { get; set; }
         public string EmailEntreprise { get; set; }
-               
+        [JsonIgnore]
+        public ApplicationModel Application { get; set; }
+
+        [JsonIgnore]
+        public PersonModel Person { get; set; }
 
     }
 }

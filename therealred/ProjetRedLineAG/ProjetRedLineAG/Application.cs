@@ -1,5 +1,4 @@
-﻿using ProjetRedLineAG.Models;
-using System;
+﻿using System;
 
 namespace ProjetRedLineAG
 {
@@ -11,8 +10,8 @@ namespace ProjetRedLineAG
         public string TitleApplication { get; set; }
 
         public string StatusApplication;
-       /* public string CommentsApplication;
-        public string ExternalLinkApplication; */
+        /* public string CommentsApplication;
+         public string ExternalLinkApplication; */
         public DateTime TimeApplication;
         public string EntrepriseApplication;
     }

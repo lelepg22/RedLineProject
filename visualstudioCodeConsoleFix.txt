@@ -1,0 +1,10 @@
+Visual Code ng etc problems
+
+on powershell running as admin
+
+Get-ExecutionPolicy
+
+Set-ExecutionPolicy Unrestricted
+
+Oui pour tout
+

@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using ProjetRedLineAG.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ProjetRedLineAG.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using ProjetRedLineAG.Data;
+using ProjetRedLineAG.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProjetRedLineAG.Controllers
 {
@@ -67,4 +65,3 @@ namespace ProjetRedLineAG.Controllers
         }
     }
 }
- 

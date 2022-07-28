@@ -6,7 +6,7 @@ namespace ProjetRedLineAG.Models
     {
         [Key]
         public int Id { get; set; }
-        public int DocumentId { get; set; }       
+        public int DocumentId { get; set; }
         public int ApplicationId { get; set; }
     }
 }

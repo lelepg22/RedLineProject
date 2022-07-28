@@ -6,6 +6,6 @@ namespace ProjetRedLineAG.Models
     {
         [Key]
         public int Id { get; set; }
-        public string TitleDocument { get; set; }        
+        public string TitleDocument { get; set; }
     }
 }
