@@ -31,9 +31,26 @@ namespace ProjetRedLineAG.Controllers
         public async Task<IEnumerable<EntrepriseModel>> Get()
         {
 
-            var res = _context.Entreprises.ToListAsync();
+            var res = _context.Entreprise.ToListAsync();
             return await res;
         }
+
+        [HttpPost]
+        public async Task<ActionResult<EntrepriseModel>> PostEntreprises(EntrepriseModel data)
+
+        {
+            _context.Entreprise.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.EntrepriseId }, data);
+            ;
+
+        }
+
+        //HttpPost
+        //Sauvegarder une entreprise
+
         /*[HttpGet("entreprise/{id}")]
         public async Task<IEnumerable<EntrepriseModel>> GetEntreprise(int id)
         {

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetRedLineAG.Data;
 
 namespace ProjetRedLineAG.Migrations
 {
     [DbContext(typeof(ApplicationsContext))]
-    partial class ApplicationsContextModelSnapshot : ModelSnapshot
+    [Migration("20220802170356_personsent1")]
+    partial class personsent1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace ProjetRedLineAG.Models
 {
-    public class DocumentSentModel
+    public class PersonSentModel
     {
         [Key]
         public int Id { get; set; }        
@@ -14,7 +14,7 @@ namespace ProjetRedLineAG.Models
         public ApplicationModel Application { get; set; }
 
 
-        public int DocumentId { get; set; }
-        public ICollection<DocumentModel> Document { get; set; }
+        public int PersonId { get; set; }
+        public ICollection<PersonModel> Person { get; set; }
     }
 }

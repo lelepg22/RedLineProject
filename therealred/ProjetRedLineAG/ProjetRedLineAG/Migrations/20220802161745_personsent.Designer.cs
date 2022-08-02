@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjetRedLineAG.Data;
 
 namespace ProjetRedLineAG.Migrations
 {
     [DbContext(typeof(ApplicationsContext))]
-    partial class ApplicationsContextModelSnapshot : ModelSnapshot
+    [Migration("20220802161745_personsent")]
+    partial class personsent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -590,7 +592,7 @@ namespace ProjetRedLineAG.Migrations
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonSentModel", b =>
                 {
                     b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
-                        .WithMany("PersonSent")
+                        .WithMany()
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

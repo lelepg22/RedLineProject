@@ -1,0 +1,115 @@
+<main>
+    <div>
+        <h1> Contacts </h1>
+
+        <div id="handler">
+            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
+            </button>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Type
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Date</a></li>
+                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
+                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
+                    <li><a class="dropdown-item" href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <input placeholder="search candidature" />
+
+            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
+        </div>
+    </div>
+
+    <div id="mainPage" class="col-12">
+
+        <div  class='cardEntreprise col-xl-9'>
+            <h2><a href="" target="_blank">{{entreprises[0].entreprise.titleEntreprise}}</a></h2>
+            <div id="innerCardEntreprise">
+                <h3>Candidatures</h3>
+                <div  id="listCandidatures"class="nav-item" [routerLinkActive]="['link-active']">
+               
+                    <a *ngFor="let entreprise of entreprises" class="nav-link text-dark" [routerLink]="['/cardApplication/' + entreprise.applicationId]">{{entreprise.titleApplication}}</a>
+
+</div>
+                <div id="commentaireEntreprise">
+                    <div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Commentaires</label>
+                           
+                        </div>
+                        <div class="comment">
+                            <h3>Commentaires</h3>
+                            <h4 *ngIf="!entreprises[0].entreprise.commentsEntreprise">No Comments</h4>
+                            <textarea *ngIf="entreprises[0].entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div id="contactEntreprise">
+                    <h3>Contacts</h3>
+                    <ul *ngFor="let entreprise of entreprises">
+                        <li *ngFor="let person of entreprise.person"><a [routerLinkActive]="['link-active']" [routerLink]="['/cardPerson/'+ person.id]" href="" target="_blank">{{person.firstNamePerson}} {{person.lastNamePerson}} - {{person.statutPerson}}</a></li>                        
+                    </ul>
+
+                </div>
+            </div>
+            <button type="button" class="btn btn-success">Edit</button>
+        </div>
+        <aside class="col-xl-2">
+            <div id="lists">
+                <ul>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="jobs">
+                <h5 id="jobboards">
+                    Jobboards
+                </h5>
+                <ul>
+                    <li>
+                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
+                    </li>
+                    <li>
+                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
+                    </li>
+                    <li>
+                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
+                    </li>
+
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <nav class="row">
+
+        <ul id="ulDown">
+            <li>
+                À propos de moi
+            </li>
+            <li>
+                Autres projets
+            </li>
+            <li>
+                Contactez-moi
+            </li>
+
+        </ul>
+    </nav>
+
+
+</main>

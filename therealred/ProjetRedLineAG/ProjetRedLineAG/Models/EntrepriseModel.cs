@@ -12,10 +12,9 @@ namespace ProjetRedLineAG.Models
         public string LinkEntreprise { get; set; }
         public string TelEntreprise { get; set; }
         public string EmailEntreprise { get; set; }
-        [JsonIgnore]
-        public ApplicationModel Application { get; set; }
 
-        [JsonIgnore]
+
+       [JsonIgnore]
         public PersonModel Person { get; set; }
 
     }

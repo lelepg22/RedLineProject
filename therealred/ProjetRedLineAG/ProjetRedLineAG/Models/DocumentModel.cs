@@ -5,7 +5,7 @@ namespace ProjetRedLineAG.Models
     public class DocumentModel
     {
         [Key]
-        public int Id { get; set; }
+        public int DocumentId { get; set; }
         public string TitleDocument { get; set; }
     }
 }

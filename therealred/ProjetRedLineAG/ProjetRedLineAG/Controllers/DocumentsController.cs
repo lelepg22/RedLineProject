@@ -60,7 +60,7 @@ namespace ProjetRedLineAG.Controllers
         public async Task<IEnumerable<DocumentModel>> Get()
         {
 
-            var res = _context.Documents.ToListAsync();
+            var res = _context.Document.ToListAsync();
             return await res;
         }
     }

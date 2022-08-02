@@ -23,18 +23,44 @@ namespace ProjetRedLineAG.Controllers
 
         private readonly ILogger<ContactsController> _logger;
 
+        [HttpPost]
+        public async Task<ActionResult<EntrepriseModel>> PostPerson(PersonModel data)
+
+        {
+            _context.Person.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.Id }, data);
+            ;
+
+        }
+        [HttpPost("/personSent")]
+        public async Task<ActionResult<EntrepriseModel>> PostPersonSent(PersonSentModel data)
+
+        {
+            _context.PersonSent.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.Id }, data);
+            ;
+
+        }
+
         /*public ContactsController(ILogger<ContactsController> logger)
         {
             _logger = logger;
         }
-        */
+        *//*
+        
         [HttpGet]
 
         public async Task<IEnumerable<PersonModel>> Get()
         {
-            var res = _context.Persons.Where(s => s.EntrepriseId == s.Entreprise.EntrepriseId)
-                .Include(s => s.Entreprise).ToListAsync();
+            var res = _context.Person.ToListAsync();
             return await res;
         }
+        */
     }
 }

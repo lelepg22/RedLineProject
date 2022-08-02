@@ -33,37 +33,49 @@ namespace ProjetRedLineAG.Data
                 .UseSqlServer(Configuration.GetConnectionString("ApplicationsContext"));
 
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationModel>().HasOne(e => e.Entreprise).WithMany();
-            modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany();
-            modelBuilder.Entity<EntrepriseModel>().HasData(
+    /*  protected override void OnModelCreating(ModelBuilder modelBuilder)
+      {
+         base.OnModelCreating(modelBuilder);
+            //    //modelBuilder.Entity<ApplicationModel>().HasOne(e => e.Entreprise).WithMany();
+            //    modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany();
+            //    modelBuilder.Entity<List<EntrepriseModel>>().HasNoKey();
+            modelBuilder.Entity<ApplicationModel>().HasData(
+                    new ApplicationModel()
+                    {
+                        ApplicationId = 1,
+                        TitleApplication = "Non renseigné"
+                    }
+                  );
+          modelBuilder.Entity<EntrepriseModel>().HasData(
                 new EntrepriseModel()
-                {
-                    EntrepriseId = 1,
-                    TitleEntreprise = "Non renseigné"
-                }
-                );
-            modelBuilder.Entity<PersonModel>().HasData(
+              {
+                   EntrepriseId = 1,
+                   TitleEntreprise = "Non renseigné"
+               }
+              );
+         /*   modelBuilder.Entity<PersonModel>().HasData(
               new PersonModel()
               {
                   EntrepriseId = 1,
                   Id = 1,
                   LastNamePerson = "Non renseigné",
+                  
 
               }
-              );
-        }
+              ) ;
+        }*/
 
-        public DbSet<ApplicationModel> Applications { get; set; }
+        public DbSet<ApplicationModel> Application { get; set; }
 
-        public DbSet<DocumentModel> Documents { get; set; }
+        public DbSet<DocumentModel> Document { get; set; }
 
         public DbSet<DocumentSentModel> DocumentsSent { get; set; }
 
-        public DbSet<EntrepriseModel> Entreprises { get; set; }
+        public DbSet<PersonSentModel> PersonSent { get; set; }
 
-        public DbSet<PersonModel> Persons { get; set; }
+        public DbSet<EntrepriseModel> Entreprise { get; set; }
+        public DbSet<StatutModel> Statut { get; set; }
+
+        public DbSet<PersonModel> Person { get; set; }
     }
 }
