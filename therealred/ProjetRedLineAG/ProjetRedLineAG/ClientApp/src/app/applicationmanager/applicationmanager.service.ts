@@ -27,6 +27,10 @@ export class ApplicationManagerService {
         this.url = '/entreprises' 
         return this.http.get<[any]>(this.url);
     }
+    goContact(): Observable<[any]> {
+        this.url = '/contacts'
+        return this.http.get<[any]>(this.url);
+    }
     getEntrepriseNoApplication(id: any): Observable<[any]> {
         this.url = '/entreprises/get?id=' + id;
         return this.http.get<[any]>(this.url);

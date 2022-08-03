@@ -37,6 +37,14 @@ namespace ProjetRedLineAG.Controllers
             ;
 
         }
+        [HttpGet]
+        public async Task<IEnumerable<PersonModel>> GetContacts()
+        {
+            var res = _context.Person.Include(e=> e.Entreprise).ToListAsync();
+
+            return await res;
+
+        }
         [HttpGet("get/")]
         public async Task<IEnumerable<PersonModel>> GetContact(int id)
         {

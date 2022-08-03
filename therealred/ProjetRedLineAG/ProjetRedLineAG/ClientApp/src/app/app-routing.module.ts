@@ -33,7 +33,7 @@ const routes: Routes = [
     { path: 'formEntreprise', component: FormEntrepriseComponent },
     { path: 'formPerson', component: FormPersonComponent },
     { path: 'profile', component: ProfileComponent },
-    //{ path: 'contact', component: ContactComponent },
+    { path: 'contact', component: ContactsComponent },
     { path: 'cardEntreprise/:id', component: CardEntrepriseComponent },    
     { path: 'cardApplication/:id', component: CardApplicationComponent },
     // manque cardPerson/:id

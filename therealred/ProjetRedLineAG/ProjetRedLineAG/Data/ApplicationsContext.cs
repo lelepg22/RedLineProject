@@ -33,13 +33,13 @@ namespace ProjetRedLineAG.Data
                 .UseSqlServer(Configuration.GetConnectionString("ApplicationsContext"));
 
         }
-    /*  protected override void OnModelCreating(ModelBuilder modelBuilder)
+      protected override void OnModelCreating(ModelBuilder modelBuilder)
       {
          base.OnModelCreating(modelBuilder);
-            //    //modelBuilder.Entity<ApplicationModel>().HasOne(e => e.Entreprise).WithMany();
+                  modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany().OnDelete(DeleteBehavior.NoAction);
             //    modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany();
             //    modelBuilder.Entity<List<EntrepriseModel>>().HasNoKey();
-            modelBuilder.Entity<ApplicationModel>().HasData(
+          /*  modelBuilder.Entity<ApplicationModel>().HasData(
                     new ApplicationModel()
                     {
                         ApplicationId = 1,
@@ -62,8 +62,8 @@ namespace ProjetRedLineAG.Data
                   
 
               }
-              ) ;
-        }*/
+              ) ;*/
+        }
 
         public DbSet<ApplicationModel> Application { get; set; }
 

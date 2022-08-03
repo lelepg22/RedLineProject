@@ -12,10 +12,10 @@
                     Type
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Date</a></li>
-                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
+                    <li><a class="dropdown-item" href="#">Statut</a></li>
+                    <li><a class="dropdown-item" href="#">Contact</a></li>
                     <li><a class="dropdown-item" href="#">Entreprise</a></li>
-                    <li><a class="dropdown-item" href="#">Status</a></li>
+                    
                 </ul>
             </div>
 
@@ -44,12 +44,10 @@
                     <td>{{ contact.statutPerson }}</td>
                     <td>{{ contact.lastNamePerson }}</td>
                     <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/cardEntreprise']">>{{ contact.entreprise.titleEntreprise }}</a></td>
+                    <td class=" nav-item" [routerLinkActive]="['link-active']" [routerLink]="['/cardEntreprise']">
+                        {{ contact.entreprise.titleEntreprise }}</td>
                     <td>{{ contact.telPerson }}</td>
                     <td>{{ contact.emailPerson }}</td>
-
-
 
                 </tr>
             </tbody>

@@ -1,5 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApplicationManagerService } from '../applicationmanager.service';
+import { Router } from '@angular/router';
+import { Persons } from '../models/Persons';
 
 @Component({
   selector: 'app-contacts-component',
@@ -7,25 +10,27 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['../home/home.component.css']
 
 })
-export class ContactsComponent {
-    public contacts: Contact[];
+export class ContactsComponent implements OnInit {
+    @Input() formInfo: [any];
+    @Input() person: Persons;
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        http.get<Contact[]>(baseUrl + 'contacts').subscribe(result => {
-            console.log(result);           
+    public contacts: [any];
+
+    constructor(private router: Router, private _amService: ApplicationManagerService) {
+      
+    }
+    ngOnInit(): void {
+       /* this._amService.getPersonDocEntreprise().subscribe(data => {
+            this.formInfo = data;
+            console.log('etaMenino');
+            console.log(this.formInfo);
+        })*/
+        this._amService.goContact().subscribe(result => {
+            console.log('BELEZA');
             this.contacts = result;
+            console.log(this.contacts);
         }, error => console.error(error));
     }
 }
 
-interface Contact {
-    Id: number;
-    EntrepriseId: string;
-    LastNamePerson: string;
-    FirstNamePerson: string;
-    TelPerson: string;
-    EmailPerson: string;
-    StatutPerson: string;
-    Entreprise: string;
 
-}

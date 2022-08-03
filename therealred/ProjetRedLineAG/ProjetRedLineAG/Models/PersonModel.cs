@@ -18,7 +18,9 @@ namespace ProjetRedLineAG.Models
         public string EmailPerson { get; set; }
         public string CommentsPerson { get; set; }
        
-        public int? EntrepriseId { get; set; }
+        public int EntrepriseId { get; set; }
+        
+        public EntrepriseModel Entreprise { get; set; }
 
         public int StatutId { get; set; }
         [JsonIgnore]
