@@ -1,8 +1,8 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ApplicationEntreprisePerson } from '../ApplicationEntreprisePerson';
-import { Entreprises } from '../Entreprises';
-import { Persons } from '../Persons';
+import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePerson';
+import { Entreprises } from '../models/Entreprises';
+import { Persons } from '../models/Persons';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,10 @@ export class FormPersonComponent implements OnInit {
     @Input() entreprise: Entreprises;
     @Input() person: Persons;
     @Input() formInfo: [any];
+
     inputPerson: string = "prenom, nom";
+    statutTitle: string = "Statuts";
+    entrepriseTitle: string = "Entreprises";
 
     ngOnInit() {
         this.application = new ApplicationEntreprisePerson();
@@ -42,6 +45,19 @@ export class FormPersonComponent implements OnInit {
             let link = ['/contact'];
             this.router.navigate(link);
         })
+    }
+    setStatut(x: any) { 
+        this.statutTitle = x.titleStatut;
+        this.person.StatutId = x.statutId;
+       /* this.person.Statut.shift();
+        this.person.Statut.push({ TitleStatut: x });*/
+        
+    }
+    setEntreprise(x: any, y: string) {
+        
+        this.person.EntrepriseId = x;
+        this.entrepriseTitle = y;
+        debugger;
 
     }
 }

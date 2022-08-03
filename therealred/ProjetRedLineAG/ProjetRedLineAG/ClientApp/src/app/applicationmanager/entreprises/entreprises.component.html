@@ -38,11 +38,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let entreprise of entreprises">
-                    <td>{{ entreprise.idEntreprise }}</td>
+                <tr *ngFor="let entreprise of entreprises" (click)="goCardEntreprise(entreprise.entrepriseId)">                    
+                    <td>{{ entreprise.entrepriseId }}</td>
                     <td>{{ entreprise.titleEntreprise }}</td>                    
                     <td>{{ entreprise.emailEntreprise }}</td>
-                    <td>{{ entreprise.telEntreprise }}</td>
+                    <td>{{ entreprise.telEntreprise }}</td>                    
                 </tr>
             </tbody>
         </table>

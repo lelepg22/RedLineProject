@@ -36,24 +36,7 @@
                     <div class="contactFormCandidature">
                       
                         <div class="listAndAdd">
-                            <div class="buttonFormList">
-                                <div class="statutSelectFormCandidature">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Statuts
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li *ngFor="let statut of formInfo[3]">{{statut.titleStatut}}</li>
-                                        </ul>
-                                    </div>
-                                    <ul class="wrapper">
-                                        <li class="icon addDoc">
-                                            <span class="tooltip">Ajouter</span>
-                                            <span><i class="fas fa-plus"></i></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                           
                             <div class="inputButton btn-group">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     <input [(ngModel)]="application.Persons" name="person" placeholder="{{inputPerson}}" > <span [routerLinkActive]="['link-active']" [routerLink]="['/formPerson']"><i class="fas fa-plus"></i></span>
@@ -66,11 +49,7 @@
 
                             <button class="button-13" role="button">Ajouter un(e) contact</button>
 
-                        </div>
-                        <div class="checkBox col-12">
-                            <input [(ngModel)]="application.ExternalLinkApplication" type="checkbox" id="checkboxFormCandidature" name="checkbox">
-                            <label for="checkbox">Le contact travaille-t-il dans l'entreprise ?</label>
-                        </div>
+                        </div>                      
                     </div>
                     <div class="comment">
                         <h3>Commentaires</h3>

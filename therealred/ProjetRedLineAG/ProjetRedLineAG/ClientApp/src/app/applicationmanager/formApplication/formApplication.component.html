@@ -38,20 +38,29 @@
                                 <div class="buttonFormList">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Documents
+                                            {{documentTitle}}
                                         </button>
-                                        <ul class="dropdown-menu">
-                                            <li *ngFor="let doc of formInfo[2]">{{doc.titleDocument}}</li>
-                                            
+                                        <ul *ngIf="formInfo" class="dropdown-menu">
+                                            <li *ngFor="let doc of formInfo[2]" (click)=setDocument(doc)>{{doc.titleDocument}}</li>
+
                                         </ul>
                                     </div>
                                     <ul class="wrapper">
-                                        <li class="icon addDoc">
+                                        <li (click)="addDocToList()" class="icon addDoc">
                                             <span class="tooltip">Ajouter</span>
                                             <span><i class="fas fa-plus"></i></span>
                                         </li>
                                     </ul>
+
                                 </div>
+                            </div>
+                            <div class="listAndAdd" *ngIf="documentsList[1]">
+                                <ul class="wrapper">
+                                    <li *ngFor="let docs of documentsList" class="icon clean addDoc">
+                                        <span class="tooltip">Retirer</span>
+                                        <span>{{docs.titleDocument}}</span>
+                                    </li>
+                                </ul>
                             </div>
                             <button class="button-13" role="button">Ajouter un type de document</button>
                         </div>
@@ -62,14 +71,13 @@
                                 <div class="buttonFormList">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Entreprises
+                                            {{entrepriseTitle}}
                                         </button>
-                                        <ul class="dropdown-menu">
-                                            <li *ngFor="let entreprise of formInfo[0]" [routerLinkActive]="['link-active']" [routerLink]="['/cardEntreprise/' + entreprise.entrepriseId]">{{entreprise.titleEntreprise}}</li>
+                                        <ul *ngIf="formInfo"  class="dropdown-menu">
+                                            <li *ngFor="let entreprise of formInfo[0]" (click)="setEntreprise(entreprise.entrepriseId, entreprise.titleEntreprise)" >{{entreprise.titleEntreprise}}</li>
                                             
                                         </ul>
                                     </div>
-
                                 </div>
                             </div>
                             <button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
@@ -80,30 +88,12 @@
                     <div class="contactFormCandidature">
 
                         <div class="listAndAdd">
-                            <div class="buttonFormList">
-                                <div class="statutSelectFormCandidature">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Statuts
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li *ngFor="let statut of formInfo[3]">{{statut.titleStatut}}</li>
-
-                                        </ul>
-                                    </div>
-                                    <ul class="wrapper">
-                                        <li class="icon addDoc">
-                                            <span class="tooltip">Ajouter</span>
-                                            <span><i class="fas fa-plus"></i></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                          
                             <div class="inputButton btn-group">
                                 <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                     <input [value]="inputPerson" name="persona" placeholder="prenom, nom"> <span (click)="addContactToList()"><i class="fas fa-plus"></i></span>
                                 </button>
-                                <ul class="dropdown-menu">
+                                <ul *ngIf="formInfo" class="dropdown-menu">
                                     <li *ngFor="let person of formInfo[1]" (click)="setPerson(person)">{{person.lastNamePerson}} {{person.firstNamePerson}} </li>
                                 </ul>
                             </div>
@@ -113,26 +103,27 @@
                             </button>
 
                         </div>
-                        <div class="checkBox col-12">
-                            <input type="checkbox" id="checkboxFormCandidature" name="checkbox">
-                            <label for="checkbox">Le contact travaille-t-il dans l'entreprise ?</label>
-                        </div>
+                        <!-- <div class="checkBox col-12">
+        <input type="checkbox" id="checkboxFormCandidature" name="checkbox">
+        <label for="checkbox">Le contact travaille-t-il dans l'entreprise ?</label>
+    </div>-->
 
-                        <div class="listAndAdd" *ngIf="application.Person[1]">
+                        <div class="listAndAdd" *ngIf="personList.person[1]">
                             <ul class="wrapper">
-                                <li *ngFor="let added of application.Person" class="icon icon2 addDoc">
+                                <li *ngFor="let added of personList.person" class="icon icon2 clean addDoc">
                                     <span class="tooltip">Retirer</span>
                                     <span>{{added.firstNamePerson}} {{ "  " }} {{added.lastNamePerson}} </span>
                                 </li>
                             </ul>
                         </div>
+                      
                     </div>
                     <div class="comment">
                         <h3>Commentaires</h3>
                         <textarea [(ngModel)]="application.CommentsApplication" name="comment"></textarea>
                     </div>
                     <div class="buttonsForm">
-                        <button (click)="onSubmit(application)" type="button" class="btn btn-success">Créer</button>
+                        <button (click)="onSubmit(application, personSent)" type="button" class="btn btn-success">Créer</button>
                         <button type="button" class="btn btn-danger">Annuler</button>
                     </div>
                 </form>

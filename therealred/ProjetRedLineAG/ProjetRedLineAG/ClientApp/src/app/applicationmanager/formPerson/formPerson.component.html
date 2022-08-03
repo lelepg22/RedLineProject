@@ -37,11 +37,11 @@
                                 <div class="statutSelectFormCandidature">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Statuts
+                                            {{statutTitle}}
                                         </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">RH</a></li>
-                                            <li><a class="dropdown-item" href="#">Project Manager</a></li>
+                                        <ul *ngIf="formInfo" class="dropdown-menu">
+                                            <li *ngFor="let statut of formInfo[3]" (click)="setStatut(statut)">{{statut.titleStatut}}</li>
+
                                         </ul>
                                     </div>
                                     <ul class="wrapper">
@@ -56,6 +56,26 @@
                             <input [(ngModel)]="person.LastNamePerson" name="lastName" placeholder="nom">
                             <input [(ngModel)]="person.FirstNamePerson" name="firstName" placeholder="Prenom">
 
+                        </div>
+                    </div>
+                    <div class="entreprisesFormCandidature">
+                        <div class="listAndAdd">
+                            <div class="docSelectFormCandidature">
+                                <div class="buttonFormList">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            {{entrepriseTitle}}
+                                        </button>
+                                        <ul *ngIf="formInfo" class="dropdown-menu">
+                                            <li *ngFor="let entreprise of formInfo[0]" (click)="setEntreprise(entreprise.entrepriseId, entreprise.titleEntreprise)">{{entreprise.titleEntreprise}}</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
+                                <a class="nav-link text-dark" [routerLink]="['/formEntreprise']">Ajouter une entreprise</a>
+                            </button>
                         </div>
                     </div>
                     <div class="comment">

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ProjetRedLineAG.Data;
 using ProjetRedLineAG.Models;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace ProjetRedLineAG.Controllers
 
         private readonly ILogger<ContactsController> _logger;
 
+
         [HttpPost]
         public async Task<ActionResult<EntrepriseModel>> PostPerson(PersonModel data)
 
@@ -35,10 +37,20 @@ namespace ProjetRedLineAG.Controllers
             ;
 
         }
-        [HttpPost("/personSent")]
+        [HttpGet("get/")]
+        public async Task<IEnumerable<PersonModel>> GetContact(int id)
+        {
+            var res = _context.Person.Where(e => e.EntrepriseId == id).ToListAsync();
+
+            return await res;
+
+        }
+
+        /*[HttpPost("personSent/")]
         public async Task<ActionResult<EntrepriseModel>> PostPersonSent(PersonSentModel data)
 
         {
+
             _context.PersonSent.Add(data);
 
             await _context.SaveChangesAsync();
@@ -47,7 +59,7 @@ namespace ProjetRedLineAG.Controllers
             ;
 
         }
-
+        */
         /*public ContactsController(ILogger<ContactsController> logger)
         {
             _logger = logger;

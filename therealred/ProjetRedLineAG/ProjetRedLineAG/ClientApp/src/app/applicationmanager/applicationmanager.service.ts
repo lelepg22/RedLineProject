@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { Application } from './Application';
-import { ApplicationEntreprisePerson } from './ApplicationEntreprisePerson';
-import { Entreprises } from './Entreprises';
-import { Persons } from './Persons';
-import { PersonSent } from './PersonSent';
+import { Application } from './models/Application';
+import { ApplicationEntreprisePerson } from './models/ApplicationEntreprisePerson';
+import { Entreprises } from './models/Entreprises';
+import { Persons } from './models/Persons';
+import { PersonSent } from './models/PersonSent';
+import { PersonsList } from './models/PersonsList';
 
 @Injectable({
   providedIn: 'root'
@@ -22,22 +23,36 @@ export class ApplicationManagerService {
         this.url = '/home'
         return this.http.get<[any]>(this.url);
     }
+    goEntreprise(): Observable<[any]> {
+        this.url = '/entreprises' 
+        return this.http.get<[any]>(this.url);
+    }
+    getEntrepriseNoApplication(id: any): Observable<[any]> {
+        this.url = '/entreprises/get?id=' + id;
+        return this.http.get<[any]>(this.url);
+    }
+    getEntreprisePerson(id: any): Observable<[any]> {        
+        this.url = '/contacts/get?id=' + id;
+        return this.http.get<[any]>(this.url);
+    }
     getPersonDocEntreprise(): Observable<[any]> {
         this.url = 'home/form';
         return this.http.get<[any]>(this.url);
     }
 
-    postApplication(data: ApplicationEntreprisePerson): Observable<ApplicationEntreprisePerson> {
+    postApplication(data: ApplicationEntreprisePerson) {
         this.url = 'home/';
-        this.url2 = 'contacts/personSent';
+       //this.url2 = 'contacts/personSent';
         console.log(data);
         console.log('dada submit');
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
-        this.http.post<PersonSent>(this.url2, data.personSent, httpOptions)
-        
         return this.http.post<ApplicationEntreprisePerson>(this.url, data, httpOptions);
+
+       // this.http.post<PersonSent>(this.url2, person, httpOptions);
+        
+       
     
     }
     postEntreprise(data: Entreprises): Observable<ApplicationEntreprisePerson> {

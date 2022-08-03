@@ -1,5 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { ApplicationManagerService } from '../applicationmanager.service';
 
 @Component({
   selector: 'app-entreprises-component',
@@ -7,22 +9,22 @@ import { HttpClient } from '@angular/common/http';
     styleUrls: ['../home/home.component.css']
 
 })
-export class EntreprisesComponent {
-    public entreprises: Entreprise[];
+export class EntreprisesComponent implements OnInit {
+    public entreprises: [any];
 
-    constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-        http.get<Entreprise[]>(baseUrl + 'entreprises').subscribe(result => {
-            console.log(result);           
+    constructor(private router: Router, private _amService: ApplicationManagerService) {
+      
+    }
+    ngOnInit(): void {
+        this._amService.goEntreprise().subscribe(result => {
+            console.log(result);
             this.entreprises = result;
         }, error => console.error(error));
     }
-}
-
-interface Entreprise {
-    Id: number;
-    TitleEntreprise: string;
-    CommentsEntreprise: string;
-    LinkEntreprise: string;
-    TelEntreprise: string;
+    goCardEntreprise(x: any) {
+        
+        this.router.navigateByUrl('/cardEntreprise/' + x)
+    }
 
 }
+

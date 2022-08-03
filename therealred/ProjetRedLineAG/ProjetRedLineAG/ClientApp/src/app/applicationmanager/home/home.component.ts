@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
-import { Application } from '../Application';
+import { Application } from '../models/Application';
 
 
 

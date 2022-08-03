@@ -89,20 +89,12 @@ namespace ProjetRedLineAG.Controllers
 
         {
 
-            
             _context.Application.Add(data);
            
-
             await _context.SaveChangesAsync();
-
-            
-
-            
-            
 
             return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
          
-
         }
 
     }

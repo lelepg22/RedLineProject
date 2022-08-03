@@ -2,9 +2,9 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { Router } from '@angular/router';
-import { ApplicationEntreprisePerson } from '../ApplicationEntreprisePerson';
-import { Entreprises } from '../Entreprises';
-import { Persons } from '../Persons';
+import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePerson';
+import { Entreprises } from '../models/Entreprises';
+import { Persons } from '../models/Persons';
 
 @Component({
     selector: 'app-formEntreprise-component',

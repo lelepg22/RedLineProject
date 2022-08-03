@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using ProjetRedLineAG.Data;
 using ProjetRedLineAG.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjetRedLineAG.Controllers
@@ -33,6 +34,15 @@ namespace ProjetRedLineAG.Controllers
 
             var res = _context.Entreprise.ToListAsync();
             return await res;
+        }
+
+        [HttpGet("get/")]
+        public async Task<IEnumerable<EntrepriseModel>> GetEntreprise(int id)
+        {
+            var res = _context.Entreprise.Where(e => e.EntrepriseId == id) .ToListAsync();
+
+            return await res;
+
         }
 
         [HttpPost]
