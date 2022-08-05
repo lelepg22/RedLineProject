@@ -412,7 +412,7 @@ namespace ProjetRedLineAG.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationId")
+                    b.Property<int?>("ApplicationId")
                         .HasColumnType("int");
 
                     b.Property<string>("CommentsPerson")
@@ -440,8 +440,6 @@ namespace ProjetRedLineAG.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationId");
 
                     b.HasIndex("EntrepriseId");
 
@@ -572,12 +570,6 @@ namespace ProjetRedLineAG.Migrations
 
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonModel", b =>
                 {
-                    b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
-                        .WithMany("Person")
-                        .HasForeignKey("ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ProjetRedLineAG.Models.EntrepriseModel", "Entreprise")
                         .WithMany()
                         .HasForeignKey("EntrepriseId")

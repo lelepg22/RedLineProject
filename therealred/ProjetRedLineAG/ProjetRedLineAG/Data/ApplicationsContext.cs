@@ -37,32 +37,34 @@ namespace ProjetRedLineAG.Data
       {
          base.OnModelCreating(modelBuilder);
                   modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany().OnDelete(DeleteBehavior.NoAction);
-            //    modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany();
-            //    modelBuilder.Entity<List<EntrepriseModel>>().HasNoKey();
-          /*  modelBuilder.Entity<ApplicationModel>().HasData(
-                    new ApplicationModel()
-                    {
-                        ApplicationId = 1,
-                        TitleApplication = "Non renseigné"
-                    }
-                  );
-          modelBuilder.Entity<EntrepriseModel>().HasData(
-                new EntrepriseModel()
-              {
-                   EntrepriseId = 1,
-                   TitleEntreprise = "Non renseigné"
-               }
-              );
-         /*   modelBuilder.Entity<PersonModel>().HasData(
-              new PersonModel()
-              {
-                  EntrepriseId = 1,
-                  Id = 1,
-                  LastNamePerson = "Non renseigné",
-                  
+                 // modelBuilder.Entity<PersonModel>().HasOne(e => e.Application).WithMany().OnDelete(DeleteBehavior.SetNull);                
 
-              }
-              ) ;*/
+
+            //    modelBuilder.Entity<List<EntrepriseModel>>().HasNoKey();
+            /*  modelBuilder.Entity<ApplicationModel>().HasData(
+                      new ApplicationModel()
+                      {
+                          ApplicationId = 1,
+                          TitleApplication = "Non renseigné"
+                      }
+                    );
+            modelBuilder.Entity<EntrepriseModel>().HasData(
+                  new EntrepriseModel()
+                {
+                     EntrepriseId = 1,
+                     TitleEntreprise = "Non renseigné"
+                 }
+                );
+           /*   modelBuilder.Entity<PersonModel>().HasData(
+                new PersonModel()
+                {
+                    EntrepriseId = 1,
+                    Id = 1,
+                    LastNamePerson = "Non renseigné",
+
+
+                }
+                ) ;*/
         }
 
         public DbSet<ApplicationModel> Application { get; set; }

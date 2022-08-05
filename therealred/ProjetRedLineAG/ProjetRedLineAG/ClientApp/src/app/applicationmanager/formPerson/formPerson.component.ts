@@ -57,7 +57,7 @@ export class FormPersonComponent implements OnInit {
         
         this.person.EntrepriseId = x;
         this.entrepriseTitle = y;
-        debugger;
+       
 
     }
 }

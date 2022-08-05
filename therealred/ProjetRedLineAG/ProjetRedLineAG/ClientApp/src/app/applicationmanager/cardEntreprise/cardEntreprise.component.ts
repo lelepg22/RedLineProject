@@ -25,6 +25,13 @@ export class CardEntrepriseComponent implements OnInit {
     }
     ngOnInit(): void {
         let id = +this.route.snapshot.params['id'];
+        this._amService.getEntreprisePerson(id).subscribe(result => {
+            
+            console.log('batato');
+            console.log(result);
+            this.persons = result;
+            console.log(this.persons);
+        })
         this._amService.getEntreprise(id).subscribe(result => {
           
 
@@ -37,12 +44,7 @@ export class CardEntrepriseComponent implements OnInit {
                     this.entreprise = result;
                     console.log(this.entreprise);
                  });
-                return this._amService.getEntreprisePerson(id).subscribe(result => {
-                    console.log('batato');
-                    console.log(result);
-                    this.persons = result;
-                    console.log(this.persons);
-                })
+                return 
 
             }
             console.log("oxi");

@@ -34,7 +34,7 @@ namespace ProjetRedLineAG.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("Get", new { id = data.Id }, data);
-            ;
+            
 
         }
         [HttpGet]
@@ -45,6 +45,38 @@ namespace ProjetRedLineAG.Controllers
             return await res;
 
         }
+        [HttpGet("person/")]
+        public async Task<IEnumerable<PersonModel>> GetContactsPure()
+        {
+            var res = _context.Person.ToListAsync();
+
+            return await res;
+
+        }
+        [HttpGet("personsent/")]
+        public async Task<IEnumerable<PersonSentModel>> GetContactsApplication(int id)
+        {
+            var res = _context.PersonSent.Where(p => p.ApplicationId == id)               
+                .ToListAsync();
+
+            return await res;
+
+        }
+
+        [HttpPut("edit/")]
+        public async Task<ActionResult<PersonSentModel>> UpdateApplication(PersonSentModel data)
+
+        {
+
+            _context.Entry(data).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
+
+        }
+
+
         [HttpGet("get/")]
         public async Task<IEnumerable<PersonModel>> GetContact(int id)
         {

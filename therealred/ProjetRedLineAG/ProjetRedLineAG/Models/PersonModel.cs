@@ -28,9 +28,9 @@ namespace ProjetRedLineAG.Models
         public StatutModel Statut { get; set; }
 
 
-        public int ApplicationId { get; set; }
-        [JsonIgnore]
+        public int? ApplicationId { get; set; }
+      
 
-       public ApplicationModel Application { get; set; }
+      
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ProjetRedLineAG.Migrations
 {
-    public partial class personsent2 : Migration
+    public partial class ibelieve2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

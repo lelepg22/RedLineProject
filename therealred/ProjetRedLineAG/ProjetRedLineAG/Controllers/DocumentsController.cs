@@ -27,6 +27,19 @@ namespace ProjetRedLineAG.Controllers
             _logger = logger;
         }*/
 
+        [HttpPut("edit/")]
+        public async Task<ActionResult<DocumentSentModel>> UpdateApplication(DocumentSentModel data)
+
+        {
+
+            _context.Entry(data).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
+
+        }
+
         [HttpGet]
 
         /*public async IEnumerable<List<Application>> Get()

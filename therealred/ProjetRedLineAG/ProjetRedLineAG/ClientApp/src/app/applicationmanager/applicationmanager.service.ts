@@ -19,6 +19,7 @@ export class ApplicationManagerService {
 
     constructor(private http: HttpClient) {
     }
+    //main-page
     goHome(): Observable<[any]> {
         this.url = '/home'
         return this.http.get<[any]>(this.url);
@@ -31,6 +32,18 @@ export class ApplicationManagerService {
         this.url = '/contacts'
         return this.http.get<[any]>(this.url);
     }
+    //get's by id
+    getApplicationDocSent(id: any): Observable<[any]> {
+        this.url = '/home/documentsent?id=' + id;
+        return this.http.get<[any]>(this.url);
+        
+    }
+    getApplicationPersonSent(id: any): Observable<[any]> {
+        this.url = '/contacts/personsent?id=' + id;
+        return this.http.get<[any]>(this.url);
+
+    }
+    
     getEntrepriseNoApplication(id: any): Observable<[any]> {
         this.url = '/entreprises/get?id=' + id;
         return this.http.get<[any]>(this.url);
@@ -39,11 +52,62 @@ export class ApplicationManagerService {
         this.url = '/contacts/get?id=' + id;
         return this.http.get<[any]>(this.url);
     }
+    getEntreprise(id: number): Observable<[any]> {
+        this.url = 'home/entreprise?id=' + id;
+
+        return this.http.get<[any]>(this.url);
+
+    }
+    getPerson(id: number): Observable<[any]> {
+        this.url = 'home/person?id=' + id;
+
+        return this.http.get<[any]>(this.url);
+
+    }
+    
+    getApplication(id: number): Observable<ApplicationEntreprisePerson> {
+        this.url = 'home/application?id=' + id;
+
+        return this.http.get<any>(this.url);
+
+    }
+    //Data-filler
+    getContacts(): Observable<[any]> {
+        this.url = 'contacts/person';
+        return this.http.get<[any]>(this.url);
+    }
+
+    getDocs():  Observable<[any]> {
+        this.url = 'home/docs';
+        return this.http.get<[any]>(this.url);
+    }
     getPersonDocEntreprise(): Observable<[any]> {
         this.url = 'home/form';
         return this.http.get<[any]>(this.url);
     }
+    deleteApplication(id: number) {
+        this.url = 'home/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
+    //put
 
+    updateApplication(data: ApplicationEntreprisePerson) {     
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+        debugger;
+        
+        this.url = '/home';
+        console.log(data);
+        console.log('dapplic');
+        
+        return this.http.put<ApplicationEntreprisePerson>(this.url, data[0], httpOptions);
+
+    
+
+    }
+
+    // Posts
     postApplication(data: ApplicationEntreprisePerson) {
         this.url = 'home/';
        //this.url2 = 'contacts/personSent';
@@ -54,9 +118,7 @@ export class ApplicationManagerService {
         }
         return this.http.post<ApplicationEntreprisePerson>(this.url, data, httpOptions);
 
-       // this.http.post<PersonSent>(this.url2, person, httpOptions);
-        
-       
+       // this.http.post<PersonSent>(this.url2, person, httpOptions);     
     
     }
     postEntreprise(data: Entreprises): Observable<ApplicationEntreprisePerson> {
@@ -80,35 +142,4 @@ export class ApplicationManagerService {
         return this.http.post<ApplicationEntreprisePerson>(this.url, data, httpOptions);
 
     }
-
-    getEntreprise(id: number): Observable<[any]> {
-        this.url = 'home/entreprise?id=' + id;
-       
-        return this.http.get<[any]>(this.url);
-
-    }
-    getPerson(id: number): Observable<[any]> {
-        this.url = 'home/person?id=' + id;
-
-        return this.http.get<[any]>(this.url);
-
-    }
-    getApplication(id: number): Observable<[any]> {
-        this.url = 'home/application?id=' + id;
-
-        return this.http.get<[any]>(this.url);
-
-    }
-
-    /*
-    postTest(data: Application): Observable<Application> {
-        
-    console.log(data);
-    console.log('dada ');
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        }
-        return this.http.post<Application>(this.url, data, httpOptions);
-
-    }*/
 }

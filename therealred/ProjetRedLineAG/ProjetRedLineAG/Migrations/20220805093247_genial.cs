@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetRedLineAG.Migrations
 {
-    public partial class initial : Migration
+    public partial class genial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,33 +64,6 @@ namespace ProjetRedLineAG.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Document",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    TitleDocument = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Document", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DocumentsSent",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DocumentId = table.Column<int>(nullable: false),
-                    ApplicationId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DocumentsSent", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PersistedGrants",
                 columns: table => new
                 {
@@ -105,6 +78,19 @@ namespace ProjetRedLineAG.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PersistedGrants", x => x.Key);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Statut",
+                columns: table => new
+                {
+                    StatutId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TitleStatut = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Statut", x => x.StatutId);
                 });
 
             migrationBuilder.CreateTable(
@@ -214,23 +200,65 @@ namespace ProjetRedLineAG.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonModel",
+                name: "DocumentsSent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationId = table.Column<int>(nullable: false),
+                    DocumentId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DocumentsSent", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Document",
+                columns: table => new
+                {
+                    DocumentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TitleDocument = table.Column<string>(nullable: true),
+                    DocumentSentModelId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Document", x => x.DocumentId);
+                    table.ForeignKey(
+                        name: "FK_Document_DocumentsSent_DocumentSentModelId",
+                        column: x => x.DocumentSentModelId,
+                        principalTable: "DocumentsSent",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Person",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LastNamePerson = table.Column<string>(nullable: true),
                     FirstNamePerson = table.Column<string>(nullable: true),
-                    StatutPerson = table.Column<string>(nullable: true),
                     TelPerson = table.Column<string>(nullable: true),
                     EmailPerson = table.Column<string>(nullable: true),
                     CommentsPerson = table.Column<string>(nullable: true),
-                    EntrepriseId = table.Column<int>(nullable: true),
-                    ApplicationId = table.Column<int>(nullable: false)
+                    EntrepriseId = table.Column<int>(nullable: false),
+                    StatutId = table.Column<int>(nullable: false),
+                    ApplicationId = table.Column<int>(nullable: false),
+                    ApplicationModelApplicationId = table.Column<int>(nullable: true),
+                    PersonSentModelId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonModel", x => x.Id);
+                    table.PrimaryKey("PK_Person", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Person_Statut_StatutId",
+                        column: x => x.StatutId,
+                        principalTable: "Statut",
+                        principalColumn: "StatutId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -250,9 +278,9 @@ namespace ProjetRedLineAG.Migrations
                 {
                     table.PrimaryKey("PK_Entreprise", x => x.EntrepriseId);
                     table.ForeignKey(
-                        name: "FK_Entreprise_PersonModel_PersonId",
+                        name: "FK_Entreprise_Person_PersonId",
                         column: x => x.PersonId,
-                        principalTable: "PersonModel",
+                        principalTable: "Person",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -278,6 +306,26 @@ namespace ProjetRedLineAG.Migrations
                         column: x => x.EntrepriseId,
                         principalTable: "Entreprise",
                         principalColumn: "EntrepriseId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PersonSent",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationId = table.Column<int>(nullable: false),
+                    PersonId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonSent", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PersonSent_Application_ApplicationId",
+                        column: x => x.ApplicationId,
+                        principalTable: "Application",
+                        principalColumn: "ApplicationId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -337,6 +385,16 @@ namespace ProjetRedLineAG.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Document_DocumentSentModelId",
+                table: "Document",
+                column: "DocumentSentModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DocumentsSent_ApplicationId",
+                table: "DocumentsSent",
+                column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Entreprise_PersonId",
                 table: "Entreprise",
                 column: "PersonId");
@@ -352,17 +410,72 @@ namespace ProjetRedLineAG.Migrations
                 columns: new[] { "SubjectId", "ClientId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PersonModel_ApplicationId",
-                table: "PersonModel",
+                name: "IX_Person_ApplicationId",
+                table: "Person",
+                column: "ApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_ApplicationModelApplicationId",
+                table: "Person",
+                column: "ApplicationModelApplicationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_EntrepriseId",
+                table: "Person",
+                column: "EntrepriseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_PersonSentModelId",
+                table: "Person",
+                column: "PersonSentModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Person_StatutId",
+                table: "Person",
+                column: "StatutId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonSent_ApplicationId",
+                table: "PersonSent",
                 column: "ApplicationId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_PersonModel_Application_ApplicationId",
-                table: "PersonModel",
+                name: "FK_DocumentsSent_Application_ApplicationId",
+                table: "DocumentsSent",
                 column: "ApplicationId",
                 principalTable: "Application",
                 principalColumn: "ApplicationId",
                 onDelete: ReferentialAction.Cascade);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Person_Entreprise_EntrepriseId",
+                table: "Person",
+                column: "EntrepriseId",
+                principalTable: "Entreprise",
+                principalColumn: "EntrepriseId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Person_Application_ApplicationId",
+                table: "Person",
+                column: "ApplicationId",
+                principalTable: "Application",
+                principalColumn: "ApplicationId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Person_Application_ApplicationModelApplicationId",
+                table: "Person",
+                column: "ApplicationModelApplicationId",
+                principalTable: "Application",
+                principalColumn: "ApplicationId",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Person_PersonSent_PersonSentModelId",
+                table: "Person",
+                column: "PersonSentModelId",
+                principalTable: "PersonSent",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -370,6 +483,10 @@ namespace ProjetRedLineAG.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Application_Entreprise_EntrepriseId",
                 table: "Application");
+
+            migrationBuilder.DropForeignKey(
+                name: "FK_Person_Entreprise_EntrepriseId",
+                table: "Person");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -393,9 +510,6 @@ namespace ProjetRedLineAG.Migrations
                 name: "Document");
 
             migrationBuilder.DropTable(
-                name: "DocumentsSent");
-
-            migrationBuilder.DropTable(
                 name: "PersistedGrants");
 
             migrationBuilder.DropTable(
@@ -405,10 +519,19 @@ namespace ProjetRedLineAG.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "DocumentsSent");
+
+            migrationBuilder.DropTable(
                 name: "Entreprise");
 
             migrationBuilder.DropTable(
-                name: "PersonModel");
+                name: "Person");
+
+            migrationBuilder.DropTable(
+                name: "PersonSent");
+
+            migrationBuilder.DropTable(
+                name: "Statut");
 
             migrationBuilder.DropTable(
                 name: "Application");

@@ -10,8 +10,8 @@ using ProjetRedLineAG.Data;
 namespace ProjetRedLineAG.Migrations
 {
     [DbContext(typeof(ApplicationsContext))]
-    [Migration("20220801145113_goodluckyyes")]
-    partial class goodluckyyes
+    [Migration("20220805100633_ibelieveless")]
+    partial class ibelieveless
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -414,7 +414,10 @@ namespace ProjetRedLineAG.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationId")
+                    b.Property<int?>("ApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ApplicationModelApplicationId")
                         .HasColumnType("int");
 
                     b.Property<string>("CommentsPerson")
@@ -423,7 +426,7 @@ namespace ProjetRedLineAG.Migrations
                     b.Property<string>("EmailPerson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EntrepriseId")
+                    b.Property<int>("EntrepriseId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstNamePerson")
@@ -432,17 +435,61 @@ namespace ProjetRedLineAG.Migrations
                     b.Property<string>("LastNamePerson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("StatutPerson")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("PersonSentModelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatutId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TelPerson")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ApplicationModelApplicationId");
+
+                    b.HasIndex("EntrepriseId");
+
+                    b.HasIndex("PersonSentModelId");
+
+                    b.HasIndex("StatutId");
+
+                    b.ToTable("Person");
+                });
+
+            modelBuilder.Entity("ProjetRedLineAG.Models.PersonSentModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
                     b.HasIndex("ApplicationId");
 
-                    b.ToTable("PersonModel");
+                    b.ToTable("PersonSent");
+                });
+
+            modelBuilder.Entity("ProjetRedLineAG.Models.StatutModel", b =>
+                {
+                    b.Property<int>("StatutId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TitleStatut")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatutId");
+
+                    b.ToTable("Statut");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -530,8 +577,31 @@ namespace ProjetRedLineAG.Migrations
 
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonModel", b =>
                 {
-                    b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
+                    b.HasOne("ProjetRedLineAG.Models.ApplicationModel", null)
                         .WithMany("Person")
+                        .HasForeignKey("ApplicationModelApplicationId");
+
+                    b.HasOne("ProjetRedLineAG.Models.EntrepriseModel", "Entreprise")
+                        .WithMany()
+                        .HasForeignKey("EntrepriseId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ProjetRedLineAG.Models.PersonSentModel", null)
+                        .WithMany("Person")
+                        .HasForeignKey("PersonSentModelId");
+
+                    b.HasOne("ProjetRedLineAG.Models.StatutModel", "Statut")
+                        .WithMany()
+                        .HasForeignKey("StatutId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjetRedLineAG.Models.PersonSentModel", b =>
+                {
+                    b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
+                        .WithMany("PersonSent")
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

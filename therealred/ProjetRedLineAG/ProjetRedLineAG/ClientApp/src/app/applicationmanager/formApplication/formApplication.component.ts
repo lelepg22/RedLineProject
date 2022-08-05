@@ -86,8 +86,6 @@ export class FormApplicationComponent implements OnInit {
         this.documentTitle = x.titleDocument;
         this.document = x;
         
-        
-       
     }
     addDocToList() {
         this.application.documentSent.push({ DocumentId: this.document.documentId, ApplicationId: (this.applicId) })

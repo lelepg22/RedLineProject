@@ -10,8 +10,8 @@ using ProjetRedLineAG.Data;
 namespace ProjetRedLineAG.Migrations
 {
     [DbContext(typeof(ApplicationsContext))]
-    [Migration("20220802161745_personsent")]
-    partial class personsent
+    [Migration("20220805095604_ibelieve")]
+    partial class ibelieve
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -414,7 +414,10 @@ namespace ProjetRedLineAG.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ApplicationId")
+                    b.Property<int?>("ApplicationId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ApplicationModelApplicationId")
                         .HasColumnType("int");
 
                     b.Property<string>("CommentsPerson")
@@ -423,7 +426,7 @@ namespace ProjetRedLineAG.Migrations
                     b.Property<string>("EmailPerson")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EntrepriseId")
+                    b.Property<int>("EntrepriseId")
                         .HasColumnType("int");
 
                     b.Property<string>("FirstNamePerson")
@@ -444,6 +447,10 @@ namespace ProjetRedLineAG.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationId");
+
+                    b.HasIndex("ApplicationModelApplicationId");
+
+                    b.HasIndex("EntrepriseId");
 
                     b.HasIndex("PersonSentModelId");
 
@@ -573,9 +580,18 @@ namespace ProjetRedLineAG.Migrations
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonModel", b =>
                 {
                     b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
-                        .WithMany("Person")
+                        .WithMany()
                         .HasForeignKey("ApplicationId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("ProjetRedLineAG.Models.ApplicationModel", null)
+                        .WithMany("Person")
+                        .HasForeignKey("ApplicationModelApplicationId");
+
+                    b.HasOne("ProjetRedLineAG.Models.EntrepriseModel", "Entreprise")
+                        .WithMany()
+                        .HasForeignKey("EntrepriseId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ProjetRedLineAG.Models.PersonSentModel", null)
@@ -592,7 +608,7 @@ namespace ProjetRedLineAG.Migrations
             modelBuilder.Entity("ProjetRedLineAG.Models.PersonSentModel", b =>
                 {
                     b.HasOne("ProjetRedLineAG.Models.ApplicationModel", "Application")
-                        .WithMany()
+                        .WithMany("PersonSent")
                         .HasForeignKey("ApplicationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

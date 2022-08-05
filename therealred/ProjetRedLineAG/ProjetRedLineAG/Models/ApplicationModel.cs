@@ -27,9 +27,10 @@ namespace ProjetRedLineAG.Models
 
 
         public int EntrepriseId { get; set; }
+        
         public EntrepriseModel Entreprise { get; set; }
         
-        public ICollection<PersonModel> Person { get; set; }
+        //public ICollection<PersonModel>Person { get; set; }
 
         public ICollection<DocumentSentModel> DocumentSent { get; set; }
 

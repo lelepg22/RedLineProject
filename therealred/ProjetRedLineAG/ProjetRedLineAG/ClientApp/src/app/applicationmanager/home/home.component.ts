@@ -31,6 +31,10 @@ export class HomeComponent implements OnInit {
         }, error => console.error(error));
 
     }
+    goCardApplication(id: any) {
+       
+        this.router.navigateByUrl('/cardApplication/' + id);
+    }
    
        /*
         this._amService.postTest(this.application).subscribe(() => {
