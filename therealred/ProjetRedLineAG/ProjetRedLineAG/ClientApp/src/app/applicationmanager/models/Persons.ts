@@ -6,8 +6,8 @@ export class Persons {
     TelPerson: string;
     EmailPerson: string;
     CommentsPerson: string;
-    EntrepriseId: number = 1;
-    StatutId: number = 1;
+    entrepriseId: number = 1;
+    statutId: number = 1;
     ApplicationId: number = 1;    
     Statut: [object] = [{}];
 }

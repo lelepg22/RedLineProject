@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
@@ -15,8 +15,13 @@ export class HomeComponent implements OnInit {
 
     public applications : [any];
     public application: Application;
-    
+    public link: string = "applications";
 
+    public applicationsList: boolean = true;
+   
+    public documents: boolean = false;
+    public contacts: boolean = false;
+  
     constructor(private router: Router, private _amService: ApplicationManagerService) {
     
     }
@@ -35,21 +40,10 @@ export class HomeComponent implements OnInit {
        
         this.router.navigateByUrl('/cardApplication/' + id);
     }
-   
-       /*
-        this._amService.postTest(this.application).subscribe(() => {
-            alert('treg');
-            console.log(this.application);
-        })
-    }
-    
-    public navigate(x) {
-        alert(x)
-        this.router.navigateByUrl('/cardApplication/' + x)
 
+    access(value: string) {
+        this.link = value;
     }
 
-
-}*/
    
 }

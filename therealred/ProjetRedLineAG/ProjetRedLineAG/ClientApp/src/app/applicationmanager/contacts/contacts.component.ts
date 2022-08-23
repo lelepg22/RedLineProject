@@ -31,6 +31,9 @@ export class ContactsComponent implements OnInit {
             console.log(this.contacts);
         }, error => console.error(error));
     }
+    personNavigate(id: number) {
+        this.router.navigateByUrl('/cardPerson/' + id)
+    }
 }
 
 

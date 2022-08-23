@@ -21,11 +21,14 @@ import { FormEntrepriseComponent } from './formEntreprise/formEntreprise.compone
 import { FormPersonComponent } from './formPerson/formPerson.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CardEntrepriseComponent } from './cardEntreprise/cardEntreprise.component';
+import { CardPersonComponent } from './cardPerson/cardPerson.component';
 import { CardApplicationComponent } from './cardApplication/cardApplication.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CommonModule } from '@angular/common';
 import { ApplicationManagerService } from './applicationmanager.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ApplicationsComponent } from './applications/applications.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +44,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     FormPersonComponent,
     ProfileComponent,
     CardEntrepriseComponent,
+    CardPersonComponent,
     CardApplicationComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FilterPipe,
+    ApplicationsComponent
   ],
   imports: [
     CommonModule,

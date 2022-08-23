@@ -22,7 +22,7 @@ export class CardApplicationComponent {
     @Input() personsList: PersonsList;
     @Input() document: Documents;
     @Input() application: ApplicationEntreprisePerson;
-
+    public documentsList: [{}] = [{}];
     public documentSent: [any] = [{}];
     public documentList: [any];
     public documents: [any] = [{}];
@@ -73,7 +73,7 @@ export class CardApplicationComponent {
             console.log('xitaaas');
             console.log(this.personSent);
 
-            // ASSOCIATING docs with doc sentList for the application
+            // ASSOCIATING persons with persons sentList for the application
             this._amService.getContacts().subscribe(data => {
                 this.personList = data;
                 console.log("blog");
@@ -82,8 +82,10 @@ export class CardApplicationComponent {
                 this.personSent.forEach(x => {                    
                     this.personList.forEach(y => {
                         if (x.personId == y.id) {
-                            this.persons.push(y)
+                            var pers = Object.assign(y, { "personSentId": x.id })
+                            this.persons.push(pers)
                             console.log(this.persons);
+                            console.log('coisafeira');
                         }
                     });
                 })
@@ -104,12 +106,13 @@ export class CardApplicationComponent {
                 console.log(this.documentList);
 
                 this.documentSent.forEach(x => {
-                   
 
                     this.documentList.forEach(y => {
                         if (x.documentId == y.documentId) {
-                            this.documents.push(y)
+                            var doc = Object.assign(y, { "id": x.id });
+                            this.documents.push(doc);
                             console.log(this.documents);
+                            console.log("arroba");
                         }
                     });
                 })
@@ -119,9 +122,6 @@ export class CardApplicationComponent {
         })        
     }
     editContact() {
-
-        this.persons.shift();
-        
 
         this.saved.push(this.documents, this.persons, this.application, this.entreprise);
        
@@ -144,12 +144,19 @@ export class CardApplicationComponent {
     addContactToList() {
 
         console.log(this.person);
+        
+        var data = { ApplicationId: this.application[0].applicationId, PersonId: this.person.id }
+        this.application[0].personSent.push(data);
         console.log(this.application);
-        debugger;
-        this.application[0].personSent.push({ ApplicationId: this.application.Id, PersonId: this.person.id });
-        this.personsList.person.push(this.person);        
+       
+        
+        this.personsList.person.push(this.person);         
         console.log('macaco');
-        console.log(this.personsList)
+        console.log(this.personsList);
+        this._amService.postPersonSent(data).subscribe();
+
+
+
     }
     setDocument(x: Documents) {
         this.documentTitle = x.titleDocument;
@@ -157,11 +164,14 @@ export class CardApplicationComponent {
 
     }
     addDocToList() {
-        this.application[0].documentSent.push({ DocumentId: this.document.documentId, ApplicationId: this.application[0].applicationId })
-        this.documentList.push(this.document);
-        debugger;
+        var data = { DocumentId: this.document.documentId, ApplicationId: this.application[0].applicationId };
+        this.application[0].documentSent.push(data);
+        this.documentsList.push(this.document);       
+         
         console.log('aqui');
+        console.log(this.application);
         console.log(this.documentList);
+        this._amService.postDocSent(data).subscribe();
 
     }
     reloadComponent() {
@@ -177,6 +187,19 @@ export class CardApplicationComponent {
     }
     goDelete(id: number) {
         this._amService.deleteApplication(id).subscribe(() => {
+            let link = ['/'];
+            this.router.navigate(link);
+        })
+    }
+    goDeleteDocSent(id: number) {
+        this._amService.deleteDocumentSent(id).subscribe(() => {
+            let link = ['/'];
+            this.router.navigate(link);
+        })
+    }
+    goDeletePersonSent(id: number) {
+        alert(id);
+        this._amService.deletePersonSent(id).subscribe(() => {
             let link = ['/'];
             this.router.navigate(link);
         })

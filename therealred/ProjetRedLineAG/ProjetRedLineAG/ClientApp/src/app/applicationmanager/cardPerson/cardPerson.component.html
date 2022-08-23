@@ -1,0 +1,108 @@
+﻿<main>
+    <div>
+        <h1> Contacts </h1>
+
+        <div id="handler">
+            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
+                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
+            </button>
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Type
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Date</a></li>
+                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
+                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
+                    <li><a class="dropdown-item" href="#">Status</a></li>
+                </ul>
+            </div>
+
+            <input placeholder="search candidature" />
+
+            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
+        </div>
+    </div>
+
+    <div id="mainPage" class="col-12">
+
+        <div class='cardPerson col-xl-9'>
+            <div id="gradient"></div>
+
+            <div *ngIf="person[0]" id="card">
+
+
+
+                <h2>{{person[0].firstNamePerson}} {{person[0].lastNamePerson}}</h2>
+
+                <p><strong>{{statut[0].titleStatut}}</strong> in <em>{{entreprise[0].titleEntreprise}}</em></p>
+                <p *ngIf="!edit">{{person[0].commentsPerson}}</p>
+
+                <textarea *ngIf="edit" [(ngModel)]="person[0].commentsPerson"></textarea>
+
+                <span *ngIf="edit">email<i class="fas fa-envelope-square"></i>: <input [(ngModel)]="person[0].emailPerson" /></span>
+
+                <span *ngIf="!edit" class="left bottom">tel<i class="fas fa-mobile-android-alt"></i>: {{person[0].telPerson}}</span>
+                <span *ngIf="!edit" class="right bottom">email<i class="fas fa-envelope-square"></i>: {{person[0].emailPerson}}</span>
+
+                <span *ngIf="edit" class="left bottom">tel<i class="fas fa-mobile-android-alt"></i>:<input [(ngModel)]="person[0].telPerson" /> </span>
+
+
+
+                <button *ngIf="!edit" (click)="editPerson()">Edit</button>
+                <button *ngIf="edit" (click)="goEditPerson()">Confirmer</button>
+
+                <button (click)="deletePerson()"><i class="fas fa-trash-alt"></i></button>
+
+            </div>
+        </div>
+        <aside class="col-xl-2">
+            <div id="lists">
+                <ul>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="jobs">
+                <h5 id="jobboards">
+                    Jobboards
+                </h5>
+                <ul>
+                    <li>
+                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
+                    </li>
+                    <li>
+                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
+                    </li>
+                    <li>
+                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+    <nav class="row">
+        <ul id="ulDown">
+            <li>
+                À propos de moi
+            </li>
+            <li>
+                Autres projets
+            </li>
+            <li>
+                Contactez-moi
+            </li>
+        </ul>
+    </nav>
+</main>

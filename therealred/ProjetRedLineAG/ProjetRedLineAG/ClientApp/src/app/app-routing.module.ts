@@ -19,6 +19,7 @@ import { FormPersonComponent } from './applicationmanager/formPerson/formPerson.
 import { ProfileComponent } from './applicationmanager/profile/profile.component';
 import { CardEntrepriseComponent } from './applicationmanager/cardEntreprise/cardEntreprise.component';
 import { CardApplicationComponent } from './applicationmanager/cardApplication/cardApplication.component';
+import { CardPersonComponent } from './applicationmanager/cardPerson/cardPerson.component';
 
 
 const routes: Routes = [
@@ -36,7 +37,7 @@ const routes: Routes = [
     { path: 'contact', component: ContactsComponent },
     { path: 'cardEntreprise/:id', component: CardEntrepriseComponent },    
     { path: 'cardApplication/:id', component: CardApplicationComponent },
-    // manque cardPerson/:id
+    { path: 'cardPerson/:id', component: CardPersonComponent }
     // manque 
 ]
 

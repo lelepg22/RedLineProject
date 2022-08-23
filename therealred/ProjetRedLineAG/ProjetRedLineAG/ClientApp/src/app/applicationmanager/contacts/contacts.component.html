@@ -1,33 +1,7 @@
-<main>
-    <div>
-        <h1> Contacts </h1>
-
-        <div id="handler">
-            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
-            </button>
-
-            <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Type
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Statut</a></li>
-                    <li><a class="dropdown-item" href="#">Contact</a></li>
-                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
-                    
-                </ul>
-            </div>
-
-            <input placeholder="search candidature" />
-
-            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
-        </div>
-    </div>
-
-    <div id="mainPage" class="col-12">
-
         <p *ngIf="!contacts"><em>Loading...</em></p>
+        <button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/formPerson']">Ajouter un(e) contact</a>
+        </button>
         <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
             <thead>
                 <tr>
@@ -40,69 +14,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let contact of contacts">
+                <tr (click)="personNavigate(contact.id)" *ngFor="let contact of contacts">
                     <td>{{ contact.statutPerson }}</td>
                     <td>{{ contact.lastNamePerson }}</td>
                     <td>{{ contact.firstNamePerson }}</td>
                     <td class=" nav-item" [routerLinkActive]="['link-active']" [routerLink]="['/cardEntreprise']">
-                        {{ contact.entreprise.titleEntreprise }}</td>
+                        {{ contact.entreprise.titleEntreprise }}
+                    </td>
                     <td>{{ contact.telPerson }}</td>
                     <td>{{ contact.emailPerson }}</td>
 
                 </tr>
             </tbody>
         </table>
-        <aside class="col-xl-2">
-            <div id="lists">
-                <ul>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
-                    </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
-                    </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
-                    </li>
-                </ul>
-            </div>
-            <div id="jobs">
-                <h5 id="jobboards">
-                    Jobboards
-                </h5>
-                <ul>
-                    <li>
-                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
-                    </li>
-                    <li>
-                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
-                    </li>
-                    <li>
-                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
-                    </li>
-
-                </ul>
-            </div>
-        </aside>
-    </div>
-    <nav class="row">
-
-        <ul id="ulDown">
-            <li>
-                À propos de moi
-            </li>
-            <li>
-                Autres projets
-            </li>
-            <li>
-                Contactez-moi
-            </li>
-
-        </ul>
-    </nav>
-
-
-</main>
+      

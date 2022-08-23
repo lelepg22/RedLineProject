@@ -19,13 +19,32 @@ namespace ProjetRedLineAG.Controllers
             _context = context;
         }
 
-
         private readonly ILogger<DocumentsController> _logger;
 
         /*public EntreprisesController(ILogger<EntreprisesController> logger)
         {
             _logger = logger;
         }*/
+        [HttpPost("sent")]
+        public async Task<ActionResult<DocumentSentModel>> PostDocumentSent(DocumentSentModel data)
+        {
+            _context.DocumentsSent.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
+
+        }
+        [HttpPost]
+        public async Task<ActionResult<DocumentSentModel>> PostDocument(DocumentModel data)
+        {
+            _context.Document.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data }, data);
+
+        }
 
         [HttpPut("edit/")]
         public async Task<ActionResult<DocumentSentModel>> UpdateApplication(DocumentSentModel data)
@@ -39,36 +58,47 @@ namespace ProjetRedLineAG.Controllers
             return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
 
         }
-
-        [HttpGet]
-
-        /*public async IEnumerable<List<Application>> Get()
+        [HttpDelete("sent/delete/")]
+        public async Task<ActionResult<DocumentSentModel>> DeleteDocSent(int id)
         {
-
-            //apllisList.Select(r => apllisList.Select(x => x.EntrepriseId.ToString() == entreprisesList.Where(y => x.EntrepriseId == y.Id).ToString()));
-
-            if (_context.Applications == null)
+            var docsSent= await _context.DocumentsSent.FindAsync(id);
+            if (docsSent == null)
             {
-                var apllisList = await _context.Applications.ToListAsync();
-
-
-                List<Application> list = new List<Application>();
-                apllisList.ForEach(x => list.Add(new Application()
-                {
-                    Id = x.Id,
-                    TitleApplication = x.TitleApplication,
-                    EntrepriseApplication = x.EntrepriseName,
-                    StatusApplication = x.StatusApplication,
-                    TimeApplication = x.TimeApplication,
-                }));
-
-                return list.ToArray();
+                return NotFound();
             }
-            return new[] { new Application() };
+            var personSent = await _context.PersonSent.FindAsync(id);
+            if (personSent != null)
+            {
+                _context.PersonSent.Remove(personSent);
+            }
 
+            _context.DocumentsSent.Remove(docsSent);
+            await _context.SaveChangesAsync();
+
+            return docsSent;
 
         }
-        }*/
+
+        [HttpDelete("delete/")]
+
+        public async Task<ActionResult<DocumentModel>> DeleteDoc(int id)
+        {
+            var doc = await _context.Document.FindAsync(id);
+            if (doc == null)
+            {
+                return NotFound();
+            }
+            
+
+            _context.Document.Remove(doc);
+            await _context.SaveChangesAsync();
+
+            return doc;
+
+        }
+
+
+        [HttpGet]
 
         public async Task<IEnumerable<DocumentModel>> Get()
         {

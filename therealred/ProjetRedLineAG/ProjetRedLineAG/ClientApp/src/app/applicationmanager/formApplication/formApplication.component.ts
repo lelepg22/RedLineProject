@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePerson';
 import { ApplicationManagerService } from '../applicationmanager.service';
@@ -21,8 +21,9 @@ export class FormApplicationComponent implements OnInit {
     @Input() person: Persons;
     @Input() personList: PersonsList;
     @Input() document: Documents;
+    @Input() personSent: PersonSent; 
 
-    @Input() personSent: PersonSent; //?
+    @Output() manipulatingLink = new EventEmitter<string>();
 
     documentsList: [{}] = [{}];
     inputPerson: string = "";
@@ -111,5 +112,10 @@ export class FormApplicationComponent implements OnInit {
         console.log('macaco');
         
         
+    }
+    navigate(link: string) {
+
+        this.manipulatingLink.emit(link);
+
     }
 }

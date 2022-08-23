@@ -15,12 +15,14 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { AppRoutingModule } from './app-routing.module';
 import { ApplicationManagerModule } from './applicationmanager/applicationmanager.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,    
     CounterComponent,
-    FetchDataComponent,   
+    FetchDataComponent,
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

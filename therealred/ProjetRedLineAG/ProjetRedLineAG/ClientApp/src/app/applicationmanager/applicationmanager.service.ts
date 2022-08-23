@@ -7,6 +7,7 @@ import { Entreprises } from './models/Entreprises';
 import { Persons } from './models/Persons';
 import { PersonSent } from './models/PersonSent';
 import { PersonsList } from './models/PersonsList';
+import { DocumentSent } from './models/DocumentSent';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class ApplicationManagerService {
     }
     goContact(): Observable<[any]> {
         this.url = '/contacts'
+        return this.http.get<[any]>(this.url);
+    }
+    goDocuments(): Observable<[any]> {
+        this.url = '/documents'
         return this.http.get<[any]>(this.url);
     }
     //get's by id
@@ -59,10 +64,15 @@ export class ApplicationManagerService {
 
     }
     getPerson(id: number): Observable<[any]> {
-        this.url = 'home/person?id=' + id;
+        this.url = 'contacts/persons?id=' + id;
 
         return this.http.get<[any]>(this.url);
 
+    }
+    getStatut(id: number): Observable<[any]> {
+        this.url = 'contacts/statut?id=' + id;
+
+        return this.http.get<[any]>(this.url);
     }
     
     getApplication(id: number): Observable<ApplicationEntreprisePerson> {
@@ -85,25 +95,74 @@ export class ApplicationManagerService {
         this.url = 'home/form';
         return this.http.get<[any]>(this.url);
     }
+    //delete
+    deletePerson(id: number) {
+        this.url = 'contacts/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
+
     deleteApplication(id: number) {
         this.url = 'home/delete?id=' + id;
         return this.http.delete<any>(this.url);
     }
+    deleteDocumentSent(id: number) {        
+        this.url = 'documents/sent/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
+    deleteDocument(id: number) {
+        this.url = 'documents/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
+    deletePersonSent(id: number) {
+        this.url = 'contacts/sent/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
+
     //put
 
     updateApplication(data: ApplicationEntreprisePerson) {     
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
-        debugger;
-        
+       
         this.url = '/home';
         console.log(data);
         console.log('dapplic');
         
         return this.http.put<ApplicationEntreprisePerson>(this.url, data[0], httpOptions);
+    }
 
-    
+    updateCommentEntreprise(data: Entreprises) {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+
+        this.url = '/entreprises/comment';
+        console.log(data);
+        console.log('dapplic');        
+
+        return this.http.put<Entreprises>(this.url, data, httpOptions);
+    }
+    updateEntreprisePerson(id: number) {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+        this.url = '/entreprises/persons?id=' + id; 
+        console.log(id);
+        console.log('dapplic');
+
+        return this.http.put<number>(this.url, id, httpOptions);
+    }
+    updatePerson(data: Persons) {
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+
+        this.url = '/contacts/update';
+        console.log(data);
+        console.log('dapplic');
+
+        return this.http.put<Persons>(this.url, data, httpOptions);
 
     }
 
@@ -140,6 +199,40 @@ export class ApplicationManagerService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
         return this.http.post<ApplicationEntreprisePerson>(this.url, data, httpOptions);
+
+    }
+
+    postPersonSent(data: PersonSent): Observable<PersonSent> {      
+        
+        this.url = '/Contacts/sent';
+        console.log(data);
+        console.log('dada submit');
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+        return this.http.post<PersonSent>(this.url, data, httpOptions);
+
+    }
+    postDocSent(data: DocumentSent): Observable<DocumentSent> {
+
+        this.url = '/documents/sent';
+        console.log(data);
+        console.log('dada submit');
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+        return this.http.post<DocumentSent>(this.url, data, httpOptions);
+
+    }
+    postDocument(data: Document): Observable<Document> {
+
+        this.url = '/documents';
+        console.log(data);
+        console.log('dada submit');
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+        return this.http.post<Document>(this.url, data, httpOptions);
 
     }
 }

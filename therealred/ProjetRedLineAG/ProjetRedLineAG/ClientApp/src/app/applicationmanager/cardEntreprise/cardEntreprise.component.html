@@ -45,19 +45,30 @@
                         </div>
                         <div *ngIf="entreprises" class="comment">
                             <h3>Commentaires</h3>
-                            <h4 *ngIf="!entreprises[0].entreprise.commentsEntreprise">No Comments</h4>
+                            <h4 *ngIf="!entreprises[0].entreprise.commentsEntreprise">{{comment}}No Comments</h4>
                             <textarea *ngIf="entreprises[0].entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
                         </div>
 
-                        <div *ngIf="entreprise" class="comment">
+                        <div *ngIf="!entreprises" class="comment">
                             <h3>Commentaires</h3>
-                            <h4 *ngIf="!entreprise.commentsEntreprise">No Comments</h4>
+                            <h4 *ngIf="!entreprise.commentsEntreprise">No Comments{{entreprise.commentsEntreprise}}</h4>
                             <textarea *ngIf="entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
+                        </div>
+                        <div *ngIf="edit">
+                            <div>
+
+                                <textarea [(ngModel)]="comment">{{entreprise.commentsEntreprise}} 
+                                </textarea>
+                                <button (click)="updateComment()"> Modifier </button>
+                               
+
+                            </div>
+                         
                         </div>
                     </div>
                 </div>
                 <div *ngIf="entreprises" id="contactEntreprise">
-                    <h3>Contacts</h3>
+                  
                     <ul *ngFor="let entreprise of entreprises">
                         <li *ngFor="let person of entreprise.person"><a [routerLinkActive]="['link-active']" [routerLink]="['/cardPerson/'+ person.id]" href="" target="_blank">{{person.firstNamePerson}} {{person.lastNamePerson}} - {{person.statutPerson}}</a></li>
                     </ul>
@@ -66,12 +77,13 @@
                 <div *ngIf="persons" id="contactEntreprise">
                     <h3>Contacts</h3>
                     <ul>
-                        <li *ngFor="let person of persons"><a [routerLinkActive]="['link-active']" [routerLink]="['/cardPerson/'+ person.id]" href="" target="_blank">{{person.firstNamePerson}} {{person.lastNamePerson}} - {{person.statutPerson}}</a></li>
+                        <li *ngFor="let person of persons"><a [routerLinkActive]="['link-active']" [routerLink]="['/cardPerson/'+ person.id]" href="" target="_blank">{{person.firstNamePerson}} {{person.lastNamePerson}} - {{person.statutPerson}}</a><button *ngIf="edit" (click)="updateEntreprisePerson(person.id)">Supprimer</button></li>
+                        
                     </ul>
 
                 </div>
             </div>
-            <button type="button" class="btn btn-success">Edit</button>
+            <button (click)="editEntreprise()"  type="button" class="btn btn-success">Edit</button>
         </div>
         <aside class="col-xl-2">
             <div id="lists">

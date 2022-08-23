@@ -58,17 +58,44 @@ namespace ProjetRedLineAG.Controllers
 
         }
 
-        //HttpPost
-        //Sauvegarder une entreprise
-
-        /*[HttpGet("entreprise/{id}")]
-        public async Task<IEnumerable<EntrepriseModel>> GetEntreprise(int id)
+        [HttpPut("persons/")]
+        public async Task<ActionResult<PersonModel>> UpdatePersonEntreprise(int id)           
         {
+            var person = await _context.Person.FindAsync(id);
+            person.EntrepriseId = 1;
+            _context.Entry(person).State = EntityState.Modified;
 
-            var res = _context.Entreprises.Include(s => s.Person).Include(s => s.Application).Where(s=> s.EntrepriseId == id).Where(s=> s.EntrepriseId == s.Application.EntrepriseId)
-                .Where(s=> s.EntrepriseId == s.Person.EntrepriseId).ToListAsync();
-            return await res;
-        }*/
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = id }, id);
+
+        }
+        [HttpPut("comment/")]
+        public async Task<ActionResult<PersonModel>> UpdateCommentEntreprise(EntrepriseModel data)
+        {
+            var entreprise = await _context.Entreprise.FindAsync(data.EntrepriseId);
+            entreprise.CommentsEntreprise = data.CommentsEntreprise;
+            _context.Entry(entreprise).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.EntrepriseId }, data.EntrepriseId);
+
+        }
 
     }
+
+    //HttpPost
+    //Sauvegarder une entreprise
+
+    /*[HttpGet("entreprise/{id}")]
+    public async Task<IEnumerable<EntrepriseModel>> GetEntreprise(int id)
+    {
+
+        var res = _context.Entreprises.Include(s => s.Person).Include(s => s.Application).Where(s=> s.EntrepriseId == id).Where(s=> s.EntrepriseId == s.Application.EntrepriseId)
+            .Where(s=> s.EntrepriseId == s.Person.EntrepriseId).ToListAsync();
+        return await res;
+    }*/
+
 }
+

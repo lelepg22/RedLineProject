@@ -1,68 +1,40 @@
 ﻿<main>
-    <div>
-        <h1> Candidatures </h1>       
-
-        <div id="handler">
-            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
-            </button>
-
-            <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Type
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Date</a></li>
-                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
-                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
-                    <li><a class="dropdown-item" href="#">Status</a></li>
-                </ul>
-            </div>
-
-            <input placeholder="search candidature" />
-
-            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
-        </div>
-    </div>
+    <app-search-bar (manipulatingLink)="access('formApp')" [applications]="applications"></app-search-bar>    
 
     <div id="mainPage" class="col-12">
 
-        <p *ngIf="!applications"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="applications">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Titre de la candidature</th>
-                    <th>Entreprise</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let application of applications" (click)="goCardApplication(application.applicationId)">
-                    <td>{{ application.timeApplication | date:"dd/MM/yyyy, h:mm"  }}</td>
-                    <td>{{ application.titleApplication }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']">
-                     <a class="nav-link text-dark" [routerLink]="['/cardEntreprise/' + application.entrepriseId ]">{{ application.entreprise.titleEntreprise}}</a>
-                    </td>
-                    <td>{{ application.statusApplication }}</td>
+        <app-applications *ngIf="link == 'applications'" [applications]="applications"></app-applications>
 
-                </tr>
-            </tbody>
-        </table>
+        <app-entreprises-component *ngIf="link == 'entreprise'"></app-entreprises-component>
+
+        <app-contacts-component *ngIf="link == 'contacts'"> </app-contacts-component>
+
+        <app-documents-component *ngIf="link == 'documents'"> </app-documents-component>
+
+        <app-formApplication-component (manipulatingLink)="access($event)" *ngIf="link == 'formApp'"></app-formApplication-component>
+
+        <app-formEntreprise-component *ngIf="link == 'formEntreprise'"></app-formEntreprise-component>
+
+        <app-formPerson-component *ngIf="link == 'formPerson'"></app-formPerson-component>
+
         <aside class="col-xl-2">
             <div id="lists">
                 <ul>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
+                    <li class="nav-item" [routerLinkActive]="['link-active']" (click)="access('applications')">
+                        Candidatures
                     </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
+                    <li class="nav-item" [routerLinkActive]="['link-active']" (click)="access('entreprise')">
+                        Entreprises
                     </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
+                    <li class="nav-item" [routerLinkActive]="['link-active']" (click)="access('contacts')">
+                        Contacts
+                    </li>
+                    <li class="nav-item" [routerLinkActive]="['link-active']" (click)="access('documents')">
+                        Documents
                     </li>
                 </ul>
             </div>
+
             <div id="jobs">
                 <h5 id="jobboards">
                     Jobboards

@@ -48,16 +48,15 @@ export class FormPersonComponent implements OnInit {
     }
     setStatut(x: any) { 
         this.statutTitle = x.titleStatut;
-        this.person.StatutId = x.statutId;
+        this.person.statutId = x.statutId;
        /* this.person.Statut.shift();
         this.person.Statut.push({ TitleStatut: x });*/
         
     }
     setEntreprise(x: any, y: string) {
         
-        this.person.EntrepriseId = x;
+        this.person.entrepriseId = x;
         this.entrepriseTitle = y;
-       
 
     }
 }

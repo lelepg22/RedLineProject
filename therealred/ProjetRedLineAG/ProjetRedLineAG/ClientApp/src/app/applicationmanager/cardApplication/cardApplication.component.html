@@ -27,7 +27,7 @@
 
     <div id="mainPage" class="col-12">
 
-        <div *ngIf="application" class="headerCandidature">
+        <div *ngIf="application[0]" class="headerCandidature">
             <h2 *ngIf="application[0].externalLinkApplication" (click)="navigate(application[0].externalLinkApplication)"> {{application[0].titleApplication}}</h2>
 
             <h2 *ngIf="!application[0].externalLinkApplication"> {{application[0].titleApplication}}</h2>
@@ -36,13 +36,14 @@
             <p>Id.{{application[0].applicationId}}</p>
         </div>
 
-        <h4 *ngIf="application"> {{application[0].statusApplication}}</h4>
+        <h4 *ngIf="application[0]"> {{application[0].statusApplication}}</h4>
         <h4 *ngIf="saved[1]"><input [(ngModel)]="application[0].statusApplication" value="{{application[0].statusApplication}}" /> </h4>
         <div class="mainCandidature">
             <div class="docEnvoye">
+
                 <ul *ngIf="documents[1]">
                     Envoyé:
-                    <li class="clean" *ngFor="let document of documents">{{document.titleDocument}} <button *ngIf="saved[1]"> Supprimer</button></li>
+                    <li class="clean" *ngFor="let document of documents">{{document.titleDocument}} <button (click)=goDeleteDocSent(document.id) *ngIf="saved[1]"> Supprimer</button></li>
                 </ul>
                 <div *ngIf="saved[1]" class="docSelectFormCandidature">
                     <div class="buttonFormList">
@@ -61,11 +62,20 @@
                                 <span><i class="fas fa-plus"></i></span>
                             </li>
                         </ul>
-
+                    </div>
+                    <div class="listAndAdd" *ngIf="application[0].documentSent[0]">                        
+                        <ul class="wrapper">
+                            <li *ngFor="let docs of documentsList" class="icon clean addDoc">
+                                <span class="tooltip">Retirer</span>
+                                <span>{{docs.titleDocument}}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+
             </div>
-            <div *ngIf="application" class="commentCandidature">
+
+            <div *ngIf="application[0]" class="commentCandidature">
                 <h6>Commentaires</h6>
                 <p *ngIf="!application[0].commentsApplication">
                     Aucun commentaire
@@ -101,7 +111,7 @@
                     <li *ngFor="let added of persons" class="icon icon2 clean addDoc">
                         <span class="tooltip">Retirer</span>
                         <span>{{added.firstNamePerson}} {{ "  " }} {{added.lastNamePerson}} </span>
-                        <button *ngIf="saved[1]"> Supprimer</button>
+                        <button (click)=goDeletePersonSent(added.personSentId)  *ngIf="saved[1]"> Supprimer</button>
                     </li>
                 </ul>
             </div>

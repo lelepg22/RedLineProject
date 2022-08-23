@@ -15,6 +15,8 @@ export class CardEntrepriseComponent implements OnInit {
     public entreprises: [any];
     public entreprise: [any] = [{}];
     public persons: [any];
+    public edit: boolean = false;
+    public comment: string;
     
     
     
@@ -41,13 +43,15 @@ export class CardEntrepriseComponent implements OnInit {
                    console.log('biito');
                     console.log(result);
                    
-                    this.entreprise = result;
+                     this.entreprise = result;
+                    
                     console.log(this.entreprise);
                  });
                 return 
 
             }
             console.log("oxi");
+            
             this.entreprises = result;
             console.log(this.entreprises)
 
@@ -56,6 +60,24 @@ export class CardEntrepriseComponent implements OnInit {
 
 
     }
-  
+    editEntreprise() {
+        this.edit = true;
+
+    }
+    updateEntreprisePerson(id: number) {
+        this._amService.updateEntreprisePerson(id).subscribe(() => {
+            let link = ['/'];
+            this.router.navigate(link);
+        })
+
+    }
+    updateComment() {
+        this.entreprise[0].EntrepriseId = +this.route.snapshot.params['id'];       
+        this.entreprise[0].CommentsEntreprise = this.comment; 
+        this._amService.updateCommentEntreprise(this.entreprise[0]).subscribe(() => {
+            let link = ['/'];
+            this.router.navigate(link);
+        })
+}
 
 }

@@ -1,102 +1,22 @@
-<main>
-    <div>
-        <h1> ENTREPRISES </h1>
-
-        <div id="handler">
-            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
-            </button>
-
-            <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Type
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Date</a></li>
-                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
-                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
-                    <li><a class="dropdown-item" href="#">Status</a></li>
-                </ul>
-            </div>
-
-            <input placeholder="search candidature" />
-
-            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
-        </div>
-    </div>
-
-    <div id="mainPage" class="col-12">
-
-        <p *ngIf="!entreprises"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="entreprises">
-            <thead>
-                <tr>
-                    <th>Id.Entreprise</th>
-                    <th>Entreprisee</th>
-                    <th>Email</th>
-                    <th>Telephone</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let entreprise of entreprises" (click)="goCardEntreprise(entreprise.entrepriseId)">                    
-                    <td>{{ entreprise.entrepriseId }}</td>
-                    <td>{{ entreprise.titleEntreprise }}</td>                    
-                    <td>{{ entreprise.emailEntreprise }}</td>
-                    <td>{{ entreprise.telEntreprise }}</td>                    
-                </tr>
-            </tbody>
-        </table>
-        <aside class="col-xl-2">
-            <div id="lists">
-                <ul>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
-                    </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
-                    </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
-                    </li>
-                </ul>
-            </div>
-            <div id="jobs">
-                <h5 id="jobboards">
-                    Jobboards
-                </h5>
-                <ul>
-                    <li>
-                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
-                    </li>
-                    <li>
-                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
-                    </li>
-                    <li>
-                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
-                    </li>
-
-                </ul>
-            </div>
-        </aside>
-    </div>
-    <nav class="row">
-
-        <ul id="ulDown">
-            <li>
-                À propos de moi
-            </li>
-            <li>
-                Autres projets
-            </li>
-            <li>
-                Contactez-moi
-            </li>
-
-        </ul>
-    </nav>
-
-
-</main>
+<p *ngIf="!entreprises"><em>Loading...</em></p>
+<table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="entreprises">
+    <thead>
+        <tr>
+            <th>Id.Entreprise</th>
+            <th>Entreprisee</th>
+            <th>Email</th>
+            <th>Telephone</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let entreprise of entreprises" (click)="goCardEntreprise(entreprise.entrepriseId)">
+            <td>{{ entreprise.entrepriseId }}</td>
+            <td>{{ entreprise.titleEntreprise }}</td>
+            <td>{{ entreprise.emailEntreprise }}</td>
+            <td>{{ entreprise.telEntreprise }}</td>
+        </tr>
+    </tbody>
+</table>
+<button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
+    <a class="nav-link text-dark" [routerLink]="['/formEntreprise']">Ajouter une entreprise</a>
+</button>       

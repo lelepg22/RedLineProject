@@ -37,6 +37,19 @@ namespace ProjetRedLineAG.Controllers
             
 
         }
+
+        [HttpPost("sent")]
+        public async Task<ActionResult<PersonSentModel>> PostPersonSent(PersonSentModel data)
+        {
+            _context.PersonSent.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
+
+
+        }
+
         [HttpGet]
         public async Task<IEnumerable<PersonModel>> GetContacts()
         {
@@ -62,9 +75,22 @@ namespace ProjetRedLineAG.Controllers
             return await res;
 
         }
+        [HttpPut("update/")]
+        public async Task<ActionResult<PersonModel>> UpdatePerson(PersonModel data)
+
+        {
+
+            _context.Entry(data).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data.ApplicationId }, data);
+
+        }
+
 
         [HttpPut("edit/")]
-        public async Task<ActionResult<PersonSentModel>> UpdateApplication(PersonSentModel data)
+        public async Task<ActionResult<PersonSentModel>> UpdatePersonSent(PersonSentModel data)
 
         {
 
@@ -85,6 +111,63 @@ namespace ProjetRedLineAG.Controllers
             return await res;
 
         }
+        [HttpGet("statut/")]
+        public async Task<IEnumerable<StatutModel>> GetStatut(int id)
+        {
+            var res = _context.Statut.Where(e => e.StatutId == id).ToListAsync();
+
+            return await res;
+
+        }
+
+        [HttpGet("persons/")]
+        public async Task<IEnumerable<PersonModel>> GetPerson(int id)
+        {
+            var res = _context.Person.Where(e => e.Id == id).ToListAsync();
+
+            return await res;
+
+        }
+
+        [HttpDelete("sent/delete/")]
+        public async Task<ActionResult<PersonSentModel>> DeletePersonSent(int id)
+        {
+            var personSent = await _context.PersonSent.FindAsync(id);
+            if (personSent == null)
+            {
+                return NotFound();
+            }
+            
+            if (personSent != null)
+            {
+                _context.PersonSent.Remove(personSent);
+            }
+            
+            await _context.SaveChangesAsync();
+
+            return personSent;
+
+        }
+        [HttpDelete("delete/")]
+        public async Task<ActionResult<PersonModel>> DeletePerson(int id)
+        {
+            var person = await _context.Person.FindAsync(id);
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            if (person != null)
+            {
+                _context.Person.Remove(person);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return person;
+
+        }
+
 
         /*[HttpPost("personSent/")]
         public async Task<ActionResult<EntrepriseModel>> PostPersonSent(PersonSentModel data)
