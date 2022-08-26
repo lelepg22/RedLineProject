@@ -8,7 +8,7 @@ export class ApplicationEntreprisePerson {
     ExternalLinkApplication: string;
     StatusApplication: string = "ouvert";
     TimeApplication: Date = new Date();
-    EntrepriseId: number = 2 ;    
+    EntrepriseId: number = 1 ;    
     documentSent: [object] = [{}];
     personSent: [object] = [{}];    
     

@@ -4,8 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './applicationmanager/home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
@@ -25,8 +23,7 @@ import { CardPersonComponent } from './applicationmanager/cardPerson/cardPerson.
 const routes: Routes = [
 
     { path: '', component: HomeComponent, pathMatch: 'full' },
-    { path: 'counter', component: CounterComponent },
-    { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
+    //canActivate: [AuthorizeGuard] },
     { path: 'entreprise', component: EntreprisesComponent },
     { path: 'document', component: DocumentsComponent },
     { path: 'login', component: LoginComponent },

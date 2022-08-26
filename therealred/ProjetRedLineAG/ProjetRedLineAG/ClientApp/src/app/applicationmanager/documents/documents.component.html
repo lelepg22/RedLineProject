@@ -1,27 +1,38 @@
 
-        <p *ngIf="!documents"><em>Loading...</em></p>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="documents">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Document</th>
+<p *ngIf="!documents"><em>Loading...</em></p>
+<div class="rowAddDoc">
+    <button (click)="addDoc()" role="button" class="button-13 nav-item " [routerLinkActive]="['link-active']">
+        <i class="fas fa-folder-plus"></i>
+    </button>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let document of documents">
-                    <td>{{ document.id }}</td>
-                    <td>{{ document.titleDocument }}</td>
-                    <td><button (click)="deleteDocument(document.documentId)"><i class="fas fa-trash-alt"></i></button></td>
+    <div class="inputDoc" *ngIf="add">
+        <input placeholder="Titre du document" [(ngModel)]="newDoc.titleDocument" />
+        <ul class="wrapper">
+            <li *ngIf="add" (click)="goDoc()" class="icon addDoc arrowSent arrowDoc pointer">
+                <span class="tooltip">Envoyer Document</span>
+                <span class="buttonArrow"><i class="fas fa-share"></i></span>
+            </li>
+        </ul>
 
-                </tr>
-            </tbody>
-        </table>
-        <button (click)="addDoc()" role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
-            <i class="fas fa-folder-plus"></i>
-        </button>
-        <div *ngIf="add">
-            <input placeholder="Titre du document" [(ngModel)]="newDoc.titleDocument" />
-            <button (click)="goDoc()" ><i class="fas fa-share"></i></button>
+    </div>
+</div>
+<table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="documents">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Document</th>
+            <th></th>
 
-        </div>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let document of documents">
+            <td>{{ document.documentId }}</td>
+            <td>{{ document.titleDocument }}</td>
+            <td><button class="pointer" (click)="deleteDocument(document.documentId)"><i class="fas fa-trash-alt"></i></button></td>
+
+        </tr>
+    </tbody>
+</table>
+
+

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
@@ -17,6 +17,12 @@ export class CardEntrepriseComponent implements OnInit {
     public persons: [any];
     public edit: boolean = false;
     public comment: string;
+    public statutList: [any];
+    public personsList: [any];
+
+    @Input() id: number;
+
+    @Output() manipulatingLink = new EventEmitter<{ id: number, link: string }>();
     
     
     
@@ -26,25 +32,42 @@ export class CardEntrepriseComponent implements OnInit {
 
     }
     ngOnInit(): void {
-        let id = +this.route.snapshot.params['id'];
-        this._amService.getEntreprisePerson(id).subscribe(result => {
+        
+        this._amService.getEntreprisePerson(this.id).subscribe(result => {
             
             console.log('batato');
             console.log(result);
-            this.persons = result;
+            this.persons = result;            
+            
+            if (this.persons.length > 0) {
+                this._amService.goStatuts().subscribe(result => {
+                    console.log('statuts');
+                    this.statutList = result;
+
+                    this.persons.forEach(x => {
+                        this.statutList.forEach(y => {
+                            if (y.statutId == x.statutId) {
+                                x.statutId = y.titleStatut
+                            }
+                        })
+                    })
+                    console.log(this.statutList);
+                    console.log('new');
+                    console.log(this.persons);
+                    
+
+                }, error => console.error(error));
+            }
             console.log(this.persons);
         })
-        this._amService.getEntreprise(id).subscribe(result => {
+        this._amService.getEntreprise(this.id).subscribe(result => {
           
 
             if (result.length < 1) {
-                 this._amService.getEntrepriseNoApplication(id).subscribe(result => {
+                 this._amService.getEntrepriseNoApplication(this.id).subscribe(result => {
                   
-                   console.log('biito');
-                    console.log(result);
-                   
                      this.entreprise = result;
-                    
+                     console.log('biito');
                     console.log(this.entreprise);
                  });
                 return 
@@ -64,6 +87,46 @@ export class CardEntrepriseComponent implements OnInit {
         this.edit = true;
 
     }
+    deleteEntreprise(id: number) {
+        let text = "Supprimer ?";
+        
+        if (confirm(text) == true) {
+            if (this.persons.length > 0) {
+                this.persons.forEach(x => {
+                    this.statutList.forEach(y => {
+                        if (y.titleStatut == x.statutId) {
+                            x.statutId = y.statutId
+                        }
+                    })
+                })
+               
+                this.persons.forEach(x => {
+                    x.entrepriseId = 1;
+                    this._amService.updatePerson(x).subscribe(() => {
+                        let link = ['/'];
+                        this.router.navigate(link);
+                        alert("saa")
+                        this._amService.deleteEntreprise(id).subscribe(() => {
+                            let link = ['/'];
+                            this.router.navigate(link);
+                        })
+                        
+                    })                    
+                })
+            } 
+            if (this.persons.length < 1) {
+                this._amService.deleteEntreprise(id).subscribe(() => {
+                    let link = ['/'];
+                    this.router.navigate(link);
+                })
+            }
+
+        } else {
+            return
+        }
+
+
+    }
     updateEntreprisePerson(id: number) {
         this._amService.updateEntreprisePerson(id).subscribe(() => {
             let link = ['/'];
@@ -71,13 +134,30 @@ export class CardEntrepriseComponent implements OnInit {
         })
 
     }
-    updateComment() {
-        this.entreprise[0].EntrepriseId = +this.route.snapshot.params['id'];       
+    updateEntreprise() {
+        this.entreprise[0].EntrepriseId = this.id;
         this.entreprise[0].CommentsEntreprise = this.comment; 
+        
         this._amService.updateCommentEntreprise(this.entreprise[0]).subscribe(() => {
             let link = ['/'];
             this.router.navigate(link);
         })
-}
+    }
+    navigateWithId(linkSent: string, idSent: number) {
+
+        this.manipulatingLink.emit({ link: linkSent, id: idSent });
+
+    }
+    reloadComponent() {
+
+        let currentUrl = this.router.url;
+
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+        this.router.onSameUrlNavigation = 'reload';
+
+        this.router.navigate([currentUrl]);
+
+    }
 
 }

@@ -3,7 +3,8 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
       <div class="container">
-          <a class="navbar-brand" [routerLink]="['/']">Gestionnaire des Candidatures</a>
+          <img class="logoNav" src="../../assets/img/android-chrome-192x192.png" alt="logo" />
+          <a class="navbar-brand titleNav" [routerLink]="['/']">Gestionnaire des Candidatures</a>
           <button class="navbar-toggler"
                   type="button"
                   data-toggle="collapse"
@@ -17,16 +18,10 @@
                [ngClass]="{ show: isExpanded }">
               <app-login-menu></app-login-menu>
               <ul class="navbar-nav flex-grow">
-                  <li class="nav-item"
+                  <li class="nav-item linkNav"
                       [routerLinkActive]="['link-active']"
                       [routerLinkActiveOptions]="{ exact: true }">
-                      <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-                  </li>
-                  <li class="nav-item" [routerLinkActive]="['link-active']">
-                      <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
-                  </li>
-                  <li class="nav-item" [routerLinkActive]="['link-active']">
-                      <a class="nav-link text-dark" [routerLink]="['/fetch-data']">Fetch data</a>
+                      <a class="nav-link text-dark" [routerLink]="['/']">Accueil</a>
                   </li>
               </ul>
           </div>

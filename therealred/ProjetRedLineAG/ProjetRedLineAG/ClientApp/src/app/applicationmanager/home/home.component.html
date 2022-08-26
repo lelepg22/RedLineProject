@@ -3,19 +3,25 @@
 
     <div id="mainPage" class="col-12">
 
-        <app-applications *ngIf="link == 'applications'" [applications]="applications"></app-applications>
+        <app-applications *ngIf="link == 'applications'" (manipulatingLink)="accessWithId($event.link, $event.id)" [applications]="applications"></app-applications>
 
-        <app-entreprises-component *ngIf="link == 'entreprise'"></app-entreprises-component>
+        <app-entreprises-component (manipulatingLink)="access($event)" (manipulateWithId)="accessWithId($event.link, $event.id)" *ngIf="link == 'entreprise'"></app-entreprises-component>
 
-        <app-contacts-component *ngIf="link == 'contacts'"> </app-contacts-component>
+        <app-contacts-component (manipulatingLink)="access($event)" (manipulateWithId)="accessWithId($event.link, $event.id)" *ngIf="link == 'contacts'"> </app-contacts-component>
 
         <app-documents-component *ngIf="link == 'documents'"> </app-documents-component>
 
         <app-formApplication-component (manipulatingLink)="access($event)" *ngIf="link == 'formApp'"></app-formApplication-component>
 
-        <app-formEntreprise-component *ngIf="link == 'formEntreprise'"></app-formEntreprise-component>
+        <app-formEntreprise-component (manipulatingLink)="access($event)"  *ngIf="link == 'formEntreprise'"></app-formEntreprise-component>
 
-        <app-formPerson-component *ngIf="link == 'formPerson'"></app-formPerson-component>
+        <app-formPerson-component (manipulatingLink)="access($event)" *ngIf="link == 'formPerson'"></app-formPerson-component>
+
+        <app-cardApplication-component [id]="id" *ngIf="link == 'cardApplication'"> </app-cardApplication-component>
+
+        <app-cardEntreprise-component (manipulatingLink)="accessWithId($event.link, $event.id)" [id]="id" *ngIf="link == 'cardEntreprise'"> </app-cardEntreprise-component>
+
+        <app-cardPerson-component [id]="id" *ngIf="link == 'cardPerson'"> </app-cardPerson-component>
 
         <aside class="col-xl-2">
             <div id="lists">

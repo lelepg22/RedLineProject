@@ -22,6 +22,9 @@ export class CardApplicationComponent {
     @Input() personsList: PersonsList;
     @Input() document: Documents;
     @Input() application: ApplicationEntreprisePerson;
+
+    @Input() id: number;
+
     public documentsList: [{}] = [{}];
     public documentSent: [any] = [{}];
     public documentList: [any];
@@ -45,9 +48,9 @@ export class CardApplicationComponent {
         this.document = new Documents();
         this.application = new ApplicationEntreprisePerson()
 
-        let id = +this.route.snapshot.params['id'];
+        //let id = +this.route.snapshot.params['id'];
 
-        this._amService.getApplication(id).subscribe(result => {
+        this._amService.getApplication(this.id).subscribe(result => {
             console.log("oxi");
             this.application = result;
             console.log(this.application);
@@ -68,7 +71,7 @@ export class CardApplicationComponent {
             console.log(this.formInfo);
         });
 
-        this._amService.getApplicationPersonSent(id).subscribe(data => {
+        this._amService.getApplicationPersonSent(this.id).subscribe(data => {
             this.personSent = data;
             console.log('xitaaas');
             console.log(this.personSent);
@@ -94,7 +97,7 @@ export class CardApplicationComponent {
 
         })
 
-        this._amService.getApplicationDocSent(id).subscribe(data => {
+        this._amService.getApplicationDocSent(this.id).subscribe(data => {
             this.documentSent = data;
             console.log('xitos');
             console.log(this.documentSent);

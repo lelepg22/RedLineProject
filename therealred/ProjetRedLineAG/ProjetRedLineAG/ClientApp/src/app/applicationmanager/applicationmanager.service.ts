@@ -8,6 +8,8 @@ import { Persons } from './models/Persons';
 import { PersonSent } from './models/PersonSent';
 import { PersonsList } from './models/PersonsList';
 import { DocumentSent } from './models/DocumentSent';
+import { Statut } from './models/Statut';
+import { debug } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,10 @@ export class ApplicationManagerService {
     }
     goDocuments(): Observable<[any]> {
         this.url = '/documents'
+        return this.http.get<[any]>(this.url);
+    }
+    goStatuts(): Observable<[any]> {
+        this.url = '/contacts/statuts'
         return this.http.get<[any]>(this.url);
     }
     //get's by id
@@ -117,6 +123,11 @@ export class ApplicationManagerService {
         this.url = 'contacts/sent/delete?id=' + id;
         return this.http.delete<any>(this.url);
     }
+    deleteEntreprise(id: number) {
+        this.url = 'entreprises/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
+
 
     //put
 
@@ -156,8 +167,8 @@ export class ApplicationManagerService {
     updatePerson(data: Persons) {
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-        }
-
+        }        
+        
         this.url = '/contacts/update';
         console.log(data);
         console.log('dapplic');
@@ -211,6 +222,17 @@ export class ApplicationManagerService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
         return this.http.post<PersonSent>(this.url, data, httpOptions);
+
+    }
+    postStatut(data: Statut): Observable<Statut> {
+
+        this.url = '/Contacts/statut';
+        console.log(data);
+        console.log('dada submit');
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        }
+        return this.http.post<Statut>(this.url, data, httpOptions);
 
     }
     postDocSent(data: DocumentSent): Observable<DocumentSent> {

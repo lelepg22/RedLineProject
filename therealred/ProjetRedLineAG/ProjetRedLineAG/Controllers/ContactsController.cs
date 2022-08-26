@@ -49,6 +49,17 @@ namespace ProjetRedLineAG.Controllers
 
 
         }
+        [HttpPost("statut")]
+        public async Task<ActionResult<PersonSentModel>> PostStatut(StatutModel data)
+        {
+            _context.Statut.Add(data);
+
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("Get", new { id = data }, data);
+
+
+        }
 
         [HttpGet]
         public async Task<IEnumerable<PersonModel>> GetContacts()
@@ -115,6 +126,14 @@ namespace ProjetRedLineAG.Controllers
         public async Task<IEnumerable<StatutModel>> GetStatut(int id)
         {
             var res = _context.Statut.Where(e => e.StatutId == id).ToListAsync();
+
+            return await res;
+
+        }
+        [HttpGet("statuts/")]
+        public async Task<IEnumerable<StatutModel>> GetStatuts(int id)
+        {
+            var res = _context.Statut.ToListAsync();
 
             return await res;
 

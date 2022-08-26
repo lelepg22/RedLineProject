@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.css']
+    styleUrls: ['../home/home.component.css']
 })
 export class SearchBarComponent implements OnInit {
     @Input() applications: any;

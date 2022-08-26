@@ -25,16 +25,19 @@ export class FormApplicationComponent implements OnInit {
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
-    documentsList: [{}] = [{}];
-    inputPerson: string = "";
+    documentsList: [{ documentId: number, titleDocument: string }] = [{ documentId: 0, titleDocument: "" }];
+    inputPerson: string = "Personne";
     applicId: number = 0;
     entrepriseTitle: string = "Entreprises";
     documentTitle: string = "Documents";
     statutTitle: string = "Statuts";
 
+    public newDoc: any;
+    public add: boolean = false;
+
 
     ngOnInit() {
-
+        this.newDoc = new Documents;
         this.application = new ApplicationEntreprisePerson();
         this.personSent = new PersonSent();
         this.personList = new PersonsList();
@@ -89,11 +92,24 @@ export class FormApplicationComponent implements OnInit {
         
     }
     addDocToList() {
+        if (!this.document.documentId) {
+            return console.log("Vous n'avez pas choisi de document");
+        }
         this.application.documentSent.push({ DocumentId: this.document.documentId, ApplicationId: (this.applicId) })
         this.documentsList.push(this.document);
         console.log('aqui');
         console.log(this.documentsList);
         
+    }
+    removeFromDocList(id: number) {
+        for (var i = 0; i < this.documentsList.length; i++) {
+            if (this.documentsList[i].documentId == id) {
+                console.log(this.documentsList[i].documentId + " - " + id);
+                this.documentsList.splice(i, 1);
+                
+            }
+        }
+     
     }
 
     setStatut(x: any) {
@@ -104,18 +120,45 @@ export class FormApplicationComponent implements OnInit {
     addContactToList() {
      
         console.log(this.person);
+        
+        if (!this.person.id) {
+            return console.log("Vous n'avez pas choisi une personne");
+        }
         console.log(this.application)
         
        // this.personSent.person.push({PersonId: this.person.id, ApplicationId: (this.applicId) });
+        
         this.personList.person.push(this.person);
         this.application.personSent.push({ PersonId: this.person.id, ApplicationId: (this.applicId) });       
         console.log('macaco');
         
         
     }
+    removeFromPersonList(id: number) {
+        for (var i = 0; i < this.personList.person.length; i++) {
+            if (this.personList.person[i].id == id) {
+                console.log(this.personList.person[i].id + " - " + id);
+                this.personList.person.splice(i, 1);
+               
+
+            }
+        }
+
+    }
+
     navigate(link: string) {
 
         this.manipulatingLink.emit(link);
+
+    }
+    addDoc() {
+        this.add = true;
+    }
+    goDoc() {
+        this._amService.postDocument(this.newDoc).subscribe(() => {            
+            let link = ['/document'];
+            this.router.navigate(link);
+        })
 
     }
 }

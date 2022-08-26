@@ -44,6 +44,24 @@ namespace ProjetRedLineAG.Controllers
             return await res;
 
         }
+        [HttpDelete("delete/")]
+
+        public async Task<ActionResult<EntrepriseModel>> DeleteEntreprise(int id)
+        {            
+
+
+            var entreprise = await _context.Entreprise.FindAsync(id);
+            if (entreprise == null)
+            {
+                return NotFound();
+            }
+
+            _context.Entreprise.Remove(entreprise);
+            await _context.SaveChangesAsync();
+
+            return entreprise;
+
+        }
 
         [HttpPost]
         public async Task<ActionResult<EntrepriseModel>> PostEntreprises(EntrepriseModel data)
@@ -75,6 +93,8 @@ namespace ProjetRedLineAG.Controllers
         {
             var entreprise = await _context.Entreprise.FindAsync(data.EntrepriseId);
             entreprise.CommentsEntreprise = data.CommentsEntreprise;
+            entreprise.TelEntreprise = data.TelEntreprise;
+            
             _context.Entry(entreprise).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();

@@ -1,141 +1,92 @@
-<main>
-    <div>
-        <h1> Contacts </h1>
+        <div class='cardEntreprise col-xl-9'>
+    <h2 *ngIf="entreprises"><a href="{{entreprises[0].entreprise.linkEntreprise}}" target="_blank">{{entreprises[0].entreprise.titleEntreprise}}</a></h2>
+    <h2 *ngIf="entreprise"><a href="{{entreprise[0].linkEntreprise}}" target="_blank">{{entreprise[0].titleEntreprise}}</a></h2>
+    <div id="innerCardEntreprise">
+        <h3>Candidatures</h3>
+        <div *ngIf="entreprises" id="listCandidatures" class="nav-item" [routerLinkActive]="['link-active']">
 
-        <div id="handler">
-            <button class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/formApplication']">Candidature<i class="fas fa-calendar-plus"></i> </a>
-            </button>
+            <a *ngFor="let entreprise of entreprises" class="pointer nav-link text-dark" (click)="navigateWithId('cardApplication', entreprise.applicationId) ">{{entreprise.titleApplication}}</a>
 
-            <div class="btn-group">
-                <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Type
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Date</a></li>
-                    <li><a class="dropdown-item" href="#">Titre Candidature</a></li>
-                    <li><a class="dropdown-item" href="#">Entreprise</a></li>
-                    <li><a class="dropdown-item" href="#">Status</a></li>
-                </ul>
-            </div>
-
-            <input placeholder="search candidature" />
-
-            <button class="button-30 buttonRechercher" role="button">RECHERCHER </button>
         </div>
-    </div>
-
-    <div id="mainPage" class="col-12">
-
-        <div  class='cardEntreprise col-xl-9'>
-            <h2 *ngIf="entreprises">{{entreprises[0].entreprise.titleEntreprise}}</h2>
-            <h2 *ngIf="entreprise">{{entreprise[0].titleEntreprise}}</h2>
-            <div id="innerCardEntreprise">
-                <h3>Candidatures</h3>
-                <div *ngIf="entreprises" id="listCandidatures" class="nav-item" [routerLinkActive]="['link-active']">
-
-                    <a *ngFor="let entreprise of entreprises" class="nav-link text-dark" [routerLink]="['/cardApplication/' + entreprise.applicationId]">{{entreprise.titleApplication}}</a>
+        <div id="commentaireEntreprise">
+            <div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Commentaires</label>
 
                 </div>
-                <div id="commentaireEntreprise">
+                <div *ngIf="entreprises" class="comment">
+                    <h3>Commentaires</h3>
+                    <h4 *ngIf="!entreprises[0].entreprise.commentsEntreprise">{{comment}}No Comments</h4>
+                    <h4> AQUI ENTREPRISES</h4>
+                    <textarea *ngIf="entreprises[0].entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
+                </div>
+
+                <div *ngIf="!entreprises" class="comment">
+                    <h3>Commentaires</h3>
+                    <h4>Aqui entrepri</h4>
+                    <p>{{entreprise[0].commentsEntreprise}}</p>
+                    <h4 *ngIf="!entreprise[0].commentsEntreprise">No Comments</h4>
+                    <textarea *ngIf="entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
+                </div>
+                <div *ngIf="edit">
                     <div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Commentaires</label>
 
-                        </div>
-                        <div *ngIf="entreprises" class="comment">
-                            <h3>Commentaires</h3>
-                            <h4 *ngIf="!entreprises[0].entreprise.commentsEntreprise">{{comment}}No Comments</h4>
-                            <textarea *ngIf="entreprises[0].entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
-                        </div>
-
-                        <div *ngIf="!entreprises" class="comment">
-                            <h3>Commentaires</h3>
-                            <h4 *ngIf="!entreprise.commentsEntreprise">No Comments{{entreprise.commentsEntreprise}}</h4>
-                            <textarea *ngIf="entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
-                        </div>
-                        <div *ngIf="edit">
-                            <div>
-
-                                <textarea [(ngModel)]="comment">{{entreprise.commentsEntreprise}} 
+                        <textarea placeholder="Nouveau commentaire" class="form-control newComment" [(ngModel)]="comment">{{entreprise.commentsEntreprise}} 
                                 </textarea>
-                                <button (click)="updateComment()"> Modifier </button>
-                               
 
-                            </div>
-                         
-                        </div>
                     </div>
-                </div>
-                <div *ngIf="entreprises" id="contactEntreprise">
-                  
-                    <ul *ngFor="let entreprise of entreprises">
-                        <li *ngFor="let person of entreprise.person"><a [routerLinkActive]="['link-active']" [routerLink]="['/cardPerson/'+ person.id]" href="" target="_blank">{{person.firstNamePerson}} {{person.lastNamePerson}} - {{person.statutPerson}}</a></li>
-                    </ul>
-
-                </div>
-                <div *ngIf="persons" id="contactEntreprise">
-                    <h3>Contacts</h3>
-                    <ul>
-                        <li *ngFor="let person of persons"><a [routerLinkActive]="['link-active']" [routerLink]="['/cardPerson/'+ person.id]" href="" target="_blank">{{person.firstNamePerson}} {{person.lastNamePerson}} - {{person.statutPerson}}</a><button *ngIf="edit" (click)="updateEntreprisePerson(person.id)">Supprimer</button></li>
-                        
-                    </ul>
 
                 </div>
             </div>
-            <button (click)="editEntreprise()"  type="button" class="btn btn-success">Edit</button>
         </div>
-        <aside class="col-xl-2">
-            <div id="lists">
-                <ul>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/entreprise']">Entreprises</a>
-                    </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/contact']">Contacts</a>
-                    </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/document']">Documents</a>
-                    </li>
-                </ul>
-            </div>
-            <div id="jobs">
-                <h5 id="jobboards">
-                    Jobboards
-                </h5>
-                <ul>
-                    <li>
-                        <a href="https://fr.indeed.com/?r=us" target="_blank">Indeed</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/jobs/" target="_blank">Linkedin</a>
-                    </li>
-                    <li>
-                        <a href="https://www.pole-emploi.fr/accueil/" target="_blank">Pole-emploi</a>
-                    </li>
-                    <li>
-                        <a href="https://www.welcometothejungle.com/fr" target="_blank">Welcome to the Jungle</a>
-                    </li>
+        <div *ngIf="entreprises" id="contactEntreprise">
+            <ul *ngFor="let entreprise of entreprises">
+                <li *ngFor="let person of entreprise.person"><a class="pointer" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardPerson', person.id)" href="" target="_blank"><span>{{person.firstNamePerson}} {{person.lastNamePerson}}</span> <strong>  {{person.statutId}} </strong> <i class="fas fa-user-tie"></i></a></li>
+            </ul>
 
-                </ul>
-            </div>
-        </aside>
+        </div>
+        <div *ngIf="persons" id="contactEntreprise">
+            <h3>Contacts</h3>
+            <ul>
+                <li *ngFor="let person of persons" class="pointer" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardPerson', person.id)"><span>{{person.firstNamePerson}} {{person.lastNamePerson}}</span> <strong>  {{person.statutId}} <i class="fas fa-user-tie"></i></strong><span class="removePerson"><button class="pointer" *ngIf="edit" (click)="updateEntreprisePerson(person.id)"><i class="fas fa-trash-alt"></i></button></span></li>
+
+            </ul>
+
+        </div>
     </div>
-    <nav class="row">
+    <button *ngIf="!edit" (click)="editEntreprise()" type="button" class="btn btn-info">Edit</button>
+    <button *ngIf="edit" (click)="updateEntreprise()" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
+    <div *ngIf="edit">
+        <button *ngIf="entreprises" (click)="deleteEntreprise(entreprises[0].entreprise.entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+        <button *ngIf="!entreprises" (click)="deleteEntreprise(entreprise[0].entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 
-        <ul id="ulDown">
-            <li>
-                À propos de moi
-            </li>
-            <li>
-                Autres projets
-            </li>
-            <li>
-                Contactez-moi
-            </li>
+    </div>
+    <button *ngIf="edit" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
+    <div class="telEmailForm">
+        
+            <i class="cardShadow fas fa-envelope"></i>
+            <div *ngIf="edit">
+                <input [(ngModel)]="entreprise[0].emailEntreprise" type="type" name="name" value="" />
+            </div>
+            <div *ngIf="!edit">
+                <p>
+                    <span *ngIf="entreprises">{{entreprises[0].entreprise.emailEntreprise}}</span>
+                    <span *ngIf="!entreprises">{{entreprise[0].emailEntreprise}}</span>
+                </p>
+            </div>       
+        
+            <i class="cardShadow fas fa-phone"></i>
+            <div *ngIf="edit">
+                <input [(ngModel)]="entreprise[0].telEntreprise" type="type" name="name" value="" />
+            </div>
+            <div *ngIf="!edit">
+                <p>
+                    <span *ngIf="entreprises">{{entreprises[0].entreprise.telEntreprise}}</span>
+                    <span *ngIf="!entreprises">{{entreprise[0].telEntreprise}}</span>
+                </p>
+            </div>
+        
+</div>
 
-        </ul>
-    </nav>
-
-
-</main>
+</div>
+       

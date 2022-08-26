@@ -1,15 +1,19 @@
-<p *ngIf="!entreprises"><em>Loading...</em></p>
+﻿<p *ngIf="!entreprises"><em>Loading...</em></p>
+<button (click)="navigate('formEntreprise')" role="button" class="button-13 nav-item buttonAddPerson" [routerLinkActive]="['link-active']">
+    <i class="fas fa-plus"></i>
+    <i class="fas fa-building"></i>
+</button>
 <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="entreprises">
     <thead>
         <tr>
             <th>Id.Entreprise</th>
-            <th>Entreprisee</th>
+            <th>Entreprise</th>
             <th>Email</th>
             <th>Telephone</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let entreprise of entreprises" (click)="goCardEntreprise(entreprise.entrepriseId)">
+        <tr class="pointer" *ngFor="let entreprise of entreprises" (click)="navigateWithId('cardEntreprise', entreprise.entrepriseId)">
             <td>{{ entreprise.entrepriseId }}</td>
             <td>{{ entreprise.titleEntreprise }}</td>
             <td>{{ entreprise.emailEntreprise }}</td>
@@ -17,6 +21,3 @@
         </tr>
     </tbody>
 </table>
-<button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
-    <a class="nav-link text-dark" [routerLink]="['/formEntreprise']">Ajouter une entreprise</a>
-</button>       

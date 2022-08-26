@@ -9,11 +9,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let application of applications" (click)="goCardApplication(application.applicationId)">
+        <tr class="pointer" *ngFor="let application of applications" (click)="navigateWithId('cardApplication', application.applicationId)">
             <td>{{ application.timeApplication | date:"dd/MM/yyyy, h:mm"  }}</td>
             <td>{{ application.titleApplication }}</td>
-            <td class=" nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/cardEntreprise/' + application.entrepriseId ]">{{ application.entreprise.titleEntreprise}}</a>
+            <td (click)="navigateWithId('cardEntreprise', application.entrepriseId)"  class="pointer nav-item" [routerLinkActive]="['link-active']">
+                {{ application.entreprise.titleEntreprise}}
             </td>
             <td>{{ application.statusApplication }}</td>
 

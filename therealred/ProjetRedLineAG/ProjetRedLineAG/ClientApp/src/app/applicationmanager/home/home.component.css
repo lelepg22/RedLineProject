@@ -3,7 +3,19 @@
     padding: 0;
     background: #222;
 }
-
+button{
+    cursor:pointer !important;
+}
+a{
+    cursor:pointer !important;
+}
+.pointer {
+    cursor: pointer !important;
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+    .pointer:hover {
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    }
 
 
 .left {
@@ -176,7 +188,7 @@ nav ul li {
 
 .table {
     margin-right: 15px;
-    width:93%;
+    width:97%;
 }
 
 #jobboards {
@@ -209,13 +221,144 @@ aside {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
-
+app-applications{
+    width:100%;
+}
+app-entreprises-component{
+    width:100%;
+}
+app-contacts-component{
+    width:100%;
+}
+app-documents-component{
+    width:100%;
+}
+app-formApplication-component{
+    width:100%;
+}
+app-formEntreprise-component{
+    width:100%;
+}
+app-formPerson-component{
+    width:100%;
+}
+app-cardApplication-component{
+    width:100%;
+}
+app-cardEntreprise-component{
+    width:100%;
+}
+app-cardPerson-component{
+    width:100%;
+}
 .cardShadow {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
+.arrowSent {
+    border: 2px solid #ffc107;
+    background-color: #239b21 !important;
+}
+.buttonArrow {
+    text-align: center;
+    margin-left: -2px !important;
+    color: #ffc107;
+    text-shadow: 3px 5px 2px #474747;
+}
+.arrowDoc {
+    width: 40px;
+    border-radius: 22px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rowAddDoc{
+    display:flex;
+    
+}
+    .rowAddDoc button {
+        font-size: 1.4rem;
+        width: 55px;
+        height: 50px;
+        margin-right: 10px;
+        margin-bottom: 12px;
+    }
+.contactFormContact{
+    display:flex;
+}
+.contactFormContact .inputContact{
+    margin-left: 15px;
+}
+.inputContact input {
+    margin: 10px !important;
+    text-align: center;
+    height: 40px;
+    border-radius: 17px;
+    width: 220px;
+}
+.telEmailForm{
+    justify-content:center;
+}
+    .telEmailForm input {
+        text-align: center;
+        height: 40px;
+        border-radius: 17px;
+        width: 220px;
+    }
+.statutSelectFormCandidature div{
+    align-items:center;
 
-.cardShadow:hover {
+}
+.statutSelectFormCandidature button {
+    height:40px;
+}
+.statutInput {
+    display: flex;
+    margin-left: 10px !important;
+    align-items: center;
+}
+    .statutInput input {
+        margin: 10px !important;
+        text-align: center;
+        height: 40px;
+        border-radius: 17px;
+        width: 220px;
+    }
+
+.inputDoc {
+    display: flex;
+    margin-left: 9%;
+    height: 50px;
+    align-items:center;
+}
+    .inputDoc input {
+        text-align: center;
+        height: 40px;
+        border-radius: 17px;
+        margin-right:10px;
+    }
+.buttonAddPerson {
+    width: 55px;
+    height: 50px !important;
+    margin-bottom: 12px;
+    font-size: 1.16rem !important;
+}
+.mainFormCandidature .inputEntreprise {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.19rem;
+}
+    .mainFormCandidature .inputEntreprise input{
+        margin:unset;
+        margin-left:10px;
+        margin-top:10px;
+        margin-bottom: 10px;
+        font-size:1rem;
+    }
+
+    .cardShadow:hover {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
     }
 
@@ -419,6 +562,9 @@ h1 {
     padding-bottom: 15px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin: auto;
+    width: 92%;
+    padding: 20px;
 }
 
     .cardEntreprise:hover {
@@ -432,11 +578,17 @@ h1 {
     }
 
     .cardEntreprise h3 {
-        padding-bottom: 10px;
-        padding-top: 10px;
+       
         text-align: center;
         font-size: 1.32rem;
         border: 2px solid;
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 18px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border-radius: 15px;
+        font-weight: 300;
         font-family: "JetBrains Mono",monospace;
     }
 
@@ -462,16 +614,42 @@ h1 {
 }
 
     #contactEntreprise ul li {
-        line-height: 40px;
         border: 1px solid;
         width: 40%;
+        text-align: center;
         margin: auto;
         margin-top: 10px;
+        margin-bottom: 18px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border-radius: 15px;
+        font-weight: 400;
+        height: 35px;
     }
-
-        #contactEntreprise ul li a {
+        #contactEntreprise ul li strong {
+            float: right;
+            margin-right: 10px;
+            border-left: 2px solid;
+            padding-left:10px;
+        }
+        #contactEntreprise ul li button {
+            width: 35px;
+            height: 35px;
+            border-radius: 20px;
+            transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        #contactEntreprise ul li button:hover {
+            background-color:darkred;
+            color:white;
+        }
+            #contactEntreprise ul li a {
             display: block;
             width: 100%;
+        }
+        .removePerson {
+            position: absolute;
+            margin-top: -4px;
+            right: 41%;
         }
 
 #listCandidatures {
@@ -484,7 +662,13 @@ h1 {
         line-height: 40px;
         text-align: center;
         border: 1px solid;
-        margin: 10px;
+        margin: 10px;       
+        margin-top: 10px;
+        margin-bottom: 18px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border-radius: 15px;
+        font-weight: 300;
     }
 
 .cardPerson {
@@ -803,13 +987,7 @@ h1 {
     .icon2 .tooltip{
         background-color: red !important;
     }
-     .wrapper .icon2 .tooltip:hover {
-            
-            top: 0px !important;
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
-        }
+    
     
     formCandidature .listAndAdd .wrapper .tooltip::before {
         position: absolute;
@@ -894,26 +1072,7 @@ h1 {
 
 .contactFormCandidature {
     align-items: center;
-}
-
-
-    .contactFormCandidature .inputButton i {
-        width: 40px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: 7px;
-        margin-right: 7px;
-        border: 1px solid;
-        border-radius: 10px;
-        z-index: 1070;
-    }
-
-        .contactFormCandidature .inputButton i:hover {
-            background: black;
-            color: white;
-        }
+}   
 
     .contactFormCandidature .inputButton {
         display: flex;
@@ -929,6 +1088,11 @@ h1 {
                 display: block;
                 width: 98%;
             }
+.inputButton button{
+    flex: unset;
+    min-width: 130px;
+    justify-content: space-evenly;
+}
 
 .mainFormCandidature .comment h3 {
     font-size: 1.3rem;
@@ -950,10 +1114,30 @@ h1 {
 .mainFormCandidature .inputGde {
     display: block;
     width: 78%;
-    margin: auto;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 18px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 15px;
+    font-weight: 300;
+}
+.inputDiv{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.inputDiv input {
+   margin-left:10px;
+}
+.remove:hover{
+    background-image:url(../../../assets/img/remove.jpg) !important;
+    background-size:contain !important;
+}
+.inputDiv i{
+    min-width:25px;
+    font-weight:bold;
+    font-size: 1.25rem;
 }
 
 .buttonsForm {
@@ -1013,7 +1197,10 @@ h1 {
     padding-left: 10px;
     color: #555;
 }
-
+.newComment {
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
 .cardLogin .wrapper .form-field input {
     width: 100%;
     display: block;
@@ -1247,8 +1434,19 @@ h1 {
         margin-top: 53px;
     }
 
+    .titlesCardEntreprise {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 18px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border-radius: 15px;
+        font-weight: 300;
+    }
+
     #contactEntreprise ul li {
         width: 90%;
+
     }
 }
 

@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
     public applications : [any];
     public application: Application;
     public link: string = "applications";
+    public id: number;
 
     public applicationsList: boolean = true;
    
@@ -35,14 +36,14 @@ export class HomeComponent implements OnInit {
 
         }, error => console.error(error));
 
-    }
-    goCardApplication(id: any) {
-       
-        this.router.navigateByUrl('/cardApplication/' + id);
-    }
+    }   
 
     access(value: string) {
         this.link = value;
+    }
+    accessWithId(value: string, id: number) {       
+        this.link = value;
+        this.id = id;
     }
 
    

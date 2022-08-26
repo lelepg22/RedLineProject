@@ -1,6 +1,6 @@
         <p *ngIf="!contacts"><em>Loading...</em></p>
-        <button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/formPerson']">Ajouter un(e) contact</a>
+        <button (click)="navigate('formPerson')" role="button" class="button-13 nav-item buttonAddPerson" [routerLinkActive]="['link-active']">
+            <i class="fas fa-user-plus"></i>
         </button>
         <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
             <thead>
@@ -14,11 +14,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr (click)="personNavigate(contact.id)" *ngFor="let contact of contacts">
-                    <td>{{ contact.statutPerson }}</td>
+                <tr class="pointer" (click)="navigateWithId('cardPerson',contact.id)" *ngFor="let contact of contacts">
+                    <td>{{ contact.statutId }}</td>
                     <td>{{ contact.lastNamePerson }}</td>
                     <td>{{ contact.firstNamePerson }}</td>
-                    <td class=" nav-item" [routerLinkActive]="['link-active']" [routerLink]="['/cardEntreprise']">
+                    <td class="pointer nav-item" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardEntreprise', contact.entreprise.entrepriseId)">
                         {{ contact.entreprise.titleEntreprise }}
                     </td>
                     <td>{{ contact.telPerson }}</td>

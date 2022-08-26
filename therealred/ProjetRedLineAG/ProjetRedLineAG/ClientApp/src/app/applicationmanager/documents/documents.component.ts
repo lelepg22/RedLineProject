@@ -23,7 +23,7 @@ export class DocumentsComponent implements OnInit {
     ngOnInit() {
         this._amService.goDocuments().subscribe(result => {
             console.log(result);
-            this.documents = result;
+            this.documents = result;            
         }, error => console.error(error));
         this.newDoc = new Documents;
     }
@@ -47,6 +47,9 @@ export class DocumentsComponent implements OnInit {
         this.add = true;
     }
     goDoc() {
+        
+        if (!this.newDoc.titleDocument) {
+            return console.log("Vous n'avez pas ajouté de document") }
         this._amService.postDocument(this.newDoc).subscribe(() => {
             let link = ['/document'];
             this.router.navigate(link);

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
@@ -19,15 +19,17 @@ export class CardPersonComponent implements OnInit {
     public person: [Persons];
     public edit: boolean = false;
     public comment: string;
-    public statut: [any];    
+    public statut: [any]; 
+
+    @Input() id: number;
     
 
     constructor(private router: Router, private _amService: ApplicationManagerService, private route: ActivatedRoute,) {
 
     }
     ngOnInit(): void {
-        let id = +this.route.snapshot.params['id'];
-        this._amService.getPerson(id).subscribe(result => {
+        
+        this._amService.getPerson(this.id).subscribe(result => {
 
             console.log('person');
             console.log(result);
@@ -64,7 +66,7 @@ export class CardPersonComponent implements OnInit {
             })
             
         })
-        this._amService.getEntreprisePerson(id).subscribe(result => {
+        this._amService.getEntreprisePerson(this.id).subscribe(result => {
             
             console.log('batato');
             console.log(result);
@@ -88,7 +90,7 @@ export class CardPersonComponent implements OnInit {
 
     }
     updateComment() {
-        this.entreprise[0].EntrepriseId = +this.route.snapshot.params['id'];       
+        this.entreprise[0].EntrepriseId = this.id;       
         this.entreprise[0].CommentsEntreprise = this.comment; 
         this._amService.updateCommentEntreprise(this.entreprise[0]).subscribe(() => {
             let link = ['/'];

@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
@@ -12,6 +12,10 @@ import { ApplicationManagerService } from '../applicationmanager.service';
 export class EntreprisesComponent implements OnInit {
     public entreprises: [any];
 
+    @Output() manipulatingLink = new EventEmitter<string>();
+
+    @Output() manipulateWithId = new EventEmitter<{ id: number, link: string }>();
+
     constructor(private router: Router, private _amService: ApplicationManagerService) {
       
     }
@@ -24,6 +28,18 @@ export class EntreprisesComponent implements OnInit {
     goCardEntreprise(x: any) {
         
         this.router.navigateByUrl('/cardEntreprise/' + x)
+    }
+
+    navigate(link: string) {
+
+        this.manipulatingLink.emit(link);
+
+    }
+
+    navigateWithId(linkSent: string, idSent: number) {
+
+        this.manipulateWithId.emit({ link: linkSent, id: idSent });
+
     }
 
 }
