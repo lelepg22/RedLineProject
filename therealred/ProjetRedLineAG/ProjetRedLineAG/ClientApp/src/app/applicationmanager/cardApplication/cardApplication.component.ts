@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,6 +25,8 @@ export class CardApplicationComponent {
 
     @Input() id: number;
 
+    @Output() manipulatingLink = new EventEmitter<{ id: number, link: string }>();
+
     public documentsList: [{}] = [{}];
     public documentSent: [any] = [{}];
     public documentList: [any];
@@ -34,6 +36,7 @@ export class CardApplicationComponent {
     public personList: [any];
     public persons: [any] = [{}];
     public saved: [any] = [{}];
+    public statutList: [any];
     public update: ApplicationUp;
     inputPerson: string = "";
     documentTitle: string = "Documents";
@@ -92,6 +95,25 @@ export class CardApplicationComponent {
                         }
                     });
                 })
+                this.persons.shift();
+                this._amService.goStatuts().subscribe(result => {
+                    console.log('statuts');
+                    this.statutList = result;
+
+                    this.persons.forEach(x => {
+                        this.statutList.forEach(y => {
+                            if (y.statutId == x.statutId) {
+                                x.statutId = y.titleStatut
+                            }
+                        })
+                    })
+                    console.log(this.statutList);
+                    console.log('new');
+                    console.log(this.persons);
+
+
+                })
+
 
             })
 
@@ -215,6 +237,12 @@ export class CardApplicationComponent {
         })
 
     }
+    navigateWithId(linkSent: string, idSent: number) {
+
+        this.manipulatingLink.emit({ link: linkSent, id: idSent });
+
+    }
+
 
   
 }

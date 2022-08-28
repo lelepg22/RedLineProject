@@ -54,7 +54,7 @@
 
         </div>
     </div>
-    <button *ngIf="!edit" (click)="editEntreprise()" type="button" class="btn btn-info">Edit</button>
+    <button *ngIf="!edit" (click)="editEntreprise()" type="button" class="btn btn-warning">Edit</button>
     <button *ngIf="edit" (click)="updateEntreprise()" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
     <div *ngIf="edit">
         <button *ngIf="entreprises" (click)="deleteEntreprise(entreprises[0].entreprise.entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>

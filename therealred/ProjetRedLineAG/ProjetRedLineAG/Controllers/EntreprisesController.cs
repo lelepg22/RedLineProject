@@ -94,6 +94,7 @@ namespace ProjetRedLineAG.Controllers
             var entreprise = await _context.Entreprise.FindAsync(data.EntrepriseId);
             entreprise.CommentsEntreprise = data.CommentsEntreprise;
             entreprise.TelEntreprise = data.TelEntreprise;
+            entreprise.EmailEntreprise = data.EmailEntreprise;
             
             _context.Entry(entreprise).State = EntityState.Modified;
 

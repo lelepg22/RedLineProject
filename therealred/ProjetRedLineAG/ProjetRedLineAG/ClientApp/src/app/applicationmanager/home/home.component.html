@@ -17,7 +17,7 @@
 
         <app-formPerson-component (manipulatingLink)="access($event)" *ngIf="link == 'formPerson'"></app-formPerson-component>
 
-        <app-cardApplication-component [id]="id" *ngIf="link == 'cardApplication'"> </app-cardApplication-component>
+        <app-cardApplication-component (manipulatingLink)="accessWithId($event.link, $event.id)"  [id]="id" *ngIf="link == 'cardApplication'"> </app-cardApplication-component>
 
         <app-cardEntreprise-component (manipulatingLink)="accessWithId($event.link, $event.id)" [id]="id" *ngIf="link == 'cardEntreprise'"> </app-cardEntreprise-component>
 

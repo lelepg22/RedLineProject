@@ -242,9 +242,11 @@ app-formEntreprise-component{
 app-formPerson-component{
     width:100%;
 }
-app-cardApplication-component{
-    width:100%;
+app-cardApplication-component {
+    width: 100%;
+
 }
+
 app-cardEntreprise-component{
     width:100%;
 }
@@ -554,6 +556,78 @@ h1 {
 #commentaireEntreprise .mb-3 {
     display: none;
 }
+.cardApplication {
+    border: 2px solid #f8f9fa;
+    margin-right: 22px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 20px;
+}
+
+    .cardApplication:hover{
+        box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+    }
+
+    .cardApplication h2 {
+        text-align: center;
+        margin-bottom: 17px;
+        font-family: 'typewriter', sans-serif;
+        margin-top: -47px;
+    }
+    .cardApplication h4 {
+    width: fit-content;
+    padding: 7px 15px;
+    padding-bottom: 9px;
+    border-radius: 23px;
+    margin-left: -15px;
+    margin-top: -18px;
+    margin-bottom: 25px;
+    color: #bd2314;
+    font-size: 1.4rem;
+    background: #FFFFFF;
+    text-shadow: 1px 0px 1px #cccccc, 0px 1px 1px #eeeeee, 2px 1px 1px #cccccc, 1px 2px 1px #eeeeee, 3px 2px 1px #cccccc, 2px 3px 1px #eeeeee, 4px 3px 1px #cccccc, 3px 4px 1px #eeeeee, 5px 4px 1px #cccccc, 4px 5px 1px #eeeeee, 6px 5px 1px #cccccc, 5px 6px 1px #eeeeee, 7px 6px 1px #cccccc;
+
+    }
+    .headerCandidature p {
+        font-weight:800;
+    }
+.commentCandidature {
+    text-align:center;
+
+}
+.commentCandidature h6{
+    font-size:1.3rem;
+}
+    .commentCandidature p {    
+    width: fit-content;
+    padding: 20px 17%;
+    margin: auto;
+    border-radius: 14px;
+    box-shadow: inset 0 0 10px;
+}
+.footerCandidature {
+    display: flex;
+    flex-direction: column;
+}
+    .footerCandidature h5 {
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: auto;
+        border-radius: 15px;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        background-image: linear-gradient(to right bottom, #f9fafb, #f6f8f8, #f3f5f6, #f1f3f3, #eef0f0);
+    }
+.footerCandidature h5 span{
+    margin-left: 6px;   
+    border-radius: 9px;
+    padding: 1px 27px;
+    padding-bottom: 5px;
+    text-shadow: -1px -1px 1px rgb(255 255 255 / 10%), 1px 1px 1px rgb(0 0 0 / 50%);
+    
+}
+
 
 .cardEntreprise {
     border: 2px solid #f8f9fa;
@@ -569,6 +643,7 @@ h1 {
 
     .cardEntreprise:hover {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
+
     }
 
     .cardEntreprise h2 {
