@@ -9,7 +9,7 @@ import { PersonSent } from './models/PersonSent';
 import { PersonsList } from './models/PersonsList';
 import { DocumentSent } from './models/DocumentSent';
 import { Statut } from './models/Statut';
-import { debug } from 'console';
+//import { debug } from 'console';
 
 @Injectable({
   providedIn: 'root'

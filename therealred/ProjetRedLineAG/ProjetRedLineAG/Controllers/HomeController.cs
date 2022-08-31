@@ -29,7 +29,7 @@ namespace ProjetRedLineAG.Controllers
         /* public HomeController(ILogger<HomeController> logger)
          {
              _logger = logger;
-         }*/
+         } */
 
         [HttpGet]
         public async Task<IEnumerable<ApplicationModel>> Get()
@@ -125,7 +125,7 @@ namespace ProjetRedLineAG.Controllers
             return applications;
 
         }
-        //[Authorize]
+        // [Authorize]
         [HttpPost]
         public async Task<ActionResult<ApplicationModel>> PostApplication(ApplicationModel data)
 

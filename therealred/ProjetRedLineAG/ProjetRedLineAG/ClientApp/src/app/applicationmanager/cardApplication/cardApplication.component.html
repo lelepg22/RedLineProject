@@ -4,22 +4,26 @@
         <h2 *ngIf="application[0].externalLinkApplication" (click)="navigate(application[0].externalLinkApplication)"> {{application[0].titleApplication}}</h2>
 
         <h2 *ngIf="!application[0].externalLinkApplication"> {{application[0].titleApplication}}</h2>
-        <h2 *ngIf="saved[1]"><input [(ngModel)]="application[0].titleApplication" value="{{application[0].titleApplication}}" /> </h2>
+        <div *ngIf="saved[1]"><input [(ngModel)]="application[0].titleApplication" placeholder="nouveau titre" /> </div>
 
 
     </div>
 
         <h4 *ngIf="application[0]"> {{application[0].statusApplication}}</h4>
-        <h4 *ngIf="saved[1]"><input [(ngModel)]="application[0].statusApplication" value="{{application[0].statusApplication}}" /> </h4>
+        <h4 *ngIf="saved[1]"><input [(ngModel)]="application[0].statusApplication" placeholder="nouveau statut" /> </h4>
         <div class="mainCandidature">
             <div class="docEnvoye">
-
+                <span class="docSent"> <i class="fa-solid fa-file-circle-check"></i></span>
                 <ul *ngIf="documents[1]">
-                    Envoyé:
-                    <li class="clean" *ngFor="let document of documents">{{document.titleDocument}} <button (click)=goDeleteDocSent(document.id) *ngIf="saved[1]"> Supprimer</button></li>
+
+                    <li class="clean" *ngFor="let document of documents">
+                        {{document.titleDocument}}
+                        <button class="pointer" (click)=goDeleteDocSent(document.id) *ngIf="saved[1]"><i class="fas fa-trash-alt"></i></button>
+
+                    </li>
                 </ul>
                 <div *ngIf="saved[1]" class="docSelectFormCandidature">
-                    <div class="buttonFormList">
+                    <div class="buttonFormList listAndAdd">
                         <div class="btn-group">
                             <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{documentTitle}}
@@ -38,8 +42,8 @@
                     </div>
                     <div class="listAndAdd" *ngIf="application[0].documentSent[0]">
                         <ul class="wrapper">
-                            <li *ngFor="let docs of documentsList" class="icon clean addDoc">
-                                <span class="tooltip">Retirer</span>
+                            <li (click)="removeFromDocList(docs.documentId)" *ngFor="let docs of documentsList" class="docAdded remove icon clean addDoc">
+                                <span class="tooltip">{{docs.titleDocument}}</span>
                                 <span>{{docs.titleDocument}}</span>
                             </li>
                         </ul>
@@ -49,24 +53,22 @@
             </div>
 
             <div *ngIf="application[0]" class="commentCandidature">
-                <h6>Commentaires</h6>
-                <p *ngIf="!application[0].commentsApplication">
-                    Aucun commentaire
-                </p>
-                <p *ngIf="application[0].commentsApplication">
-                    {{application[0].commentsApplication}}
-                </p>
+                <h6>Commentaires</h6>                
+                    <p class="commentaire" *ngIf="!application[0].commentsApplication">
+                        Aucun commentaire
+                    </p>                
+                
+                    <p class="commentaire" *ngIf="application[0].commentsApplication">
+                        {{application[0].commentsApplication}}
+                    </p>
+                
                 <div *ngIf="saved[1]">
-                    <div *ngIf="application[0].commentsApplication">
+                    <div style="z-index:-2">
 
-                        <textarea [(ngModel)]="application[0].commentsApplication">{{application[0].commentsApplication}} 
+                        <textarea placeholder="Nouveau commentaire" [(ngModel)]="application[0].commentsApplication">{{application[0].commentsApplication}} 
                         </textarea>
                     </div>
-                    <div *ngIf="!application[0].commentsApplication">
-                        <textarea [(ngModel)]="application[0].commentsApplication">
-                        </textarea>
-                    </div>
-                </div>
+                    
             </div>
             <div *ngIf="personSent" id="contactEntreprise">
                 <ul>
@@ -83,38 +85,47 @@
                 <h5 *ngIf="entreprise" class="nav-item pointer" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardEntreprise', entreprise[0].entrepriseId) ">
                     <i class="fas fa-industry"></i> <span>{{entreprise[0].titleEntreprise}}</span>
                 </h5>
-                <button *ngIf="saved[1]" (click)="updateApplication(saved)" type="button" class="btn btn-success">Go</button>
-                <button *ngIf="!saved[1]" (click)="editContact()" type="button" class="btn btn-warning">Edit</button>
-                <button *ngIf="saved[1]" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
-                <button *ngIf="saved[1]" (click)="goDelete(application[0].applicationId)" type="button" class="btn btn-danger">Supprimer</button>
+                <div class="listAndAdd personEditCardApplication" *ngIf="saved[1]">
 
-            </div>
+                    <div class="inputButton btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{inputPerson}}
+                        </button>
 
+                        <ul class="wrapper">
+                            <li (click)="addContactToList()" class="icon addDoc">
+                                <span class="tooltip">Ajouter</span>
+                                <span><i class="fas fa-plus"></i></span>
+                            </li>
+                        </ul>
+                        <ul *ngIf="formInfo" class="dropdown-menu">
+                            <li *ngFor="let person of formInfo[1]" (click)="setPerson(person)">{{person.lastNamePerson}} {{person.firstNamePerson}} </li>
+                        </ul>
+                    </div>
+                    <div class="listAndAdd" *ngIf="personsList.person[1]">
+                        <ul class="wrapper">
+                            <li (click)="removeFromPersonList(added.id)" *ngFor="let added of personsList.person" class="icon remove icon2 clean addDoc">
+                                <span class="tooltip">Retirer</span>
+                                <span>{{added.firstNamePerson}} {{ "  " }} {{added.lastNamePerson}} </span>
+                            </li>
+                        </ul>
+                    </div>
 
-            <div class="listAndAdd" *ngIf="saved[1]">
-
-                <div class="inputButton btn-group">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <input [value]="inputPerson" name="persona" placeholder="prenom, nom"> <span (click)="addContactToList()"><i class="fas fa-plus"></i></span>
+                    <button (click)="navigateWithId('formPerson')"  role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
+                        <i class="fas fa-user-plus"></i>
                     </button>
-                    <ul *ngIf="formInfo" class="dropdown-menu">
-                        <li *ngFor="let person of formInfo[1]" (click)="setPerson(person)">{{person.lastNamePerson}} {{person.firstNamePerson}} </li>
-                    </ul>
-                </div>
-                <div class="listAndAdd" *ngIf="personsList.person[1]">
-                    <ul class="wrapper">
-                        <li *ngFor="let added of personsList.person" class="icon icon2 clean addDoc">
-                            <span class="tooltip">Retirer</span>
-                            <span>{{added.firstNamePerson}} {{ "  " }} {{added.lastNamePerson}} </span>
-                        </li>
-                    </ul>
-                </div>
 
-                <button role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
-                    <a class="nav-link text-dark" [routerLink]="['/formPerson']">Ajouter un(e) contact</a>
-                </button>
-
+                </div>
+                <div class="buttonsFooter">
+                    <button *ngIf="saved[1]" (click)="updateApplication(saved)" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
+                    <button *ngIf="!saved[1]" (click)="editContact()" type="button" class="btn btn-warning">Edit</button>
+                    <button *ngIf="saved[1]" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
+                    <button *ngIf="saved[1]" (click)="goDelete(application[0].applicationId)" type="button" class="btn btn-danger">Supprimer</button>
+                </div>
             </div>
+
+
+            
 
 
         </div>

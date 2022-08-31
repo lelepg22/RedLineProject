@@ -23,7 +23,9 @@ export class EntreprisesComponent implements OnInit {
         this._amService.goEntreprise().subscribe(result => {
             console.log(result);
             this.entreprises = result;
+            this.do();
         }, error => console.error(error));
+        
     }
     goCardEntreprise(x: any) {
         
@@ -40,6 +42,12 @@ export class EntreprisesComponent implements OnInit {
 
         this.manipulateWithId.emit({ link: linkSent, id: idSent });
 
+    }
+    
+    do() {
+        let link2 = ['/'];
+        this.router.navigate(link2);
+        
     }
 
 }

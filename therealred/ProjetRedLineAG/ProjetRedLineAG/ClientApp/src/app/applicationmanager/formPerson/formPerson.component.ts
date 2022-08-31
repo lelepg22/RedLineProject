@@ -78,8 +78,8 @@ export class FormPersonComponent implements OnInit {
     }
     goStatutNew() {
         this._amService.postStatut(this.statut).subscribe(() => {
-            let link = ['/contact'];
-            this.router.navigate(link);
+            this.ngOnInit();
+            this.addNewStatut = false;
         })
 
     }

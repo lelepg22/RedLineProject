@@ -18,12 +18,14 @@ import { ProfileComponent } from './applicationmanager/profile/profile.component
 import { CardEntrepriseComponent } from './applicationmanager/cardEntreprise/cardEntreprise.component';
 import { CardApplicationComponent } from './applicationmanager/cardApplication/cardApplication.component';
 import { CardPersonComponent } from './applicationmanager/cardPerson/cardPerson.component';
+import { ApplicationsComponent } from './applicationmanager/applications/applications.component';
 
 
 const routes: Routes = [
 
-    { path: '', component: HomeComponent, pathMatch: 'full' },
-    //canActivate: [AuthorizeGuard] },
+    { path: '', component: HomeComponent, pathMatch: 'full' } ,    
+    //, canActivate: [AuthorizeGuard]
+    { path: 'applications', component: ApplicationsComponent },
     { path: 'entreprise', component: EntreprisesComponent },
     { path: 'document', component: DocumentsComponent },
     { path: 'login', component: LoginComponent },
@@ -35,7 +37,7 @@ const routes: Routes = [
     { path: 'cardEntreprise/:id', component: CardEntrepriseComponent },    
     { path: 'cardApplication/:id', component: CardApplicationComponent },
     { path: 'cardPerson/:id', component: CardPersonComponent }
-    // manque 
+ 
 ]
 
 @NgModule({

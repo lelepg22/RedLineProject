@@ -1,5 +1,5 @@
 ﻿<main>
-    <app-search-bar (manipulatingLink)="access('formApp')" [applications]="applications"></app-search-bar>    
+    <app-search-bar (manipulatingLink)="accessWithId($event.link, $event.id)" [applications]="applications"></app-search-bar>    
 
     <div id="mainPage" class="col-12">
 

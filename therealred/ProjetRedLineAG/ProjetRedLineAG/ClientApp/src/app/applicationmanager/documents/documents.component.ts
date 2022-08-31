@@ -34,7 +34,7 @@ export class DocumentsComponent implements OnInit {
         if (confirm(text) == true) {
 
             this._amService.deleteDocument(id).subscribe(() => {
-                let link = ['/'];
+                let link = ['/applications'];
                 this.router.navigate(link);
             })
 
@@ -51,7 +51,7 @@ export class DocumentsComponent implements OnInit {
         if (!this.newDoc.titleDocument) {
             return console.log("Vous n'avez pas ajouté de document") }
         this._amService.postDocument(this.newDoc).subscribe(() => {
-            let link = ['/document'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
 

@@ -16,8 +16,10 @@ export class ApplicationsComponent implements OnInit {
 
     constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.do();
+   
+    }
     goCardApplication(id: any) {
 
         this.router.navigateByUrl('/cardApplication/' + id);
@@ -27,5 +29,10 @@ export class ApplicationsComponent implements OnInit {
         this.manipulatingLink.emit({ link: linkSent, id: idSent });
 
     }
+    do() {
+        let link2 = ['/'];
+        this.router.navigate(link2);
+    }
+  
 
 }

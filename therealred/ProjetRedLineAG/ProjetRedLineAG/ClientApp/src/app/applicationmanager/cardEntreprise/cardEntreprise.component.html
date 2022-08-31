@@ -16,22 +16,26 @@
                 </div>
                 <div *ngIf="entreprises" class="comment">
                     <h3>Commentaires</h3>
-                    <h4 *ngIf="!entreprises[0].entreprise.commentsEntreprise">{{comment}}No Comments</h4>
-                    <h4> AQUI ENTREPRISES</h4>
-                    <textarea *ngIf="entreprises[0].entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
+
+                    <p class="commentaire">
+                        {{entreprises[0].entreprise.commentsEntreprise}}
+                        <span *ngIf="!entreprises[0].entreprise.commentsEntreprise">Aucun commentaire</span>
+                    </p>
                 </div>
 
                 <div *ngIf="!entreprises" class="comment">
                     <h3>Commentaires</h3>
-                    <h4>Aqui entrepri</h4>
-                    <p>{{entreprise[0].commentsEntreprise}}</p>
-                    <h4 *ngIf="!entreprise[0].commentsEntreprise">No Comments</h4>
-                    <textarea *ngIf="entreprise.commentsEntreprise" class="form-control" id="exampleFormControlTextarea1" rows="3">{{entreprises[0].entreprise.commentsEntreprise}}</textarea>
+                    <p class="commentaire">
+                        {{entreprise[0].commentsEntreprise}}
+                        <span *ngIf="!entreprise[0].commentsEntreprise">Aucun commentaire</span>
+                    </p>
+
+
                 </div>
                 <div *ngIf="edit">
                     <div>
 
-                        <textarea placeholder="Nouveau commentaire" class="form-control newComment" [(ngModel)]="comment">{{entreprise.commentsEntreprise}} 
+                        <textarea placeholder="Nouveau commentaire" class="form-control newComment" [(ngModel)]="comment"> 
                                 </textarea>
 
                     </div>
@@ -54,39 +58,50 @@
 
         </div>
     </div>
-    <button *ngIf="!edit" (click)="editEntreprise()" type="button" class="btn btn-warning">Edit</button>
-    <button *ngIf="edit" (click)="updateEntreprise()" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
-    <div *ngIf="edit">
-        <button *ngIf="entreprises" (click)="deleteEntreprise(entreprises[0].entreprise.entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
-        <button *ngIf="!entreprises" (click)="deleteEntreprise(entreprise[0].entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 
-    </div>
-    <button *ngIf="edit" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
     <div class="telEmailForm">
-        
+        <div>
             <i class="cardShadow fas fa-envelope"></i>
             <div *ngIf="edit">
+
                 <input [(ngModel)]="entreprise[0].emailEntreprise" type="type" name="name" value="" />
+
             </div>
             <div *ngIf="!edit">
                 <p>
                     <span *ngIf="entreprises">{{entreprises[0].entreprise.emailEntreprise}}</span>
                     <span *ngIf="!entreprises">{{entreprise[0].emailEntreprise}}</span>
                 </p>
-            </div>       
-        
+            </div>
+        </div>
+        <div>
             <i class="cardShadow fas fa-phone"></i>
             <div *ngIf="edit">
+
                 <input [(ngModel)]="entreprise[0].telEntreprise" type="type" name="name" value="" />
+
+
             </div>
+
             <div *ngIf="!edit">
                 <p>
                     <span *ngIf="entreprises">{{entreprises[0].entreprise.telEntreprise}}</span>
                     <span *ngIf="!entreprises">{{entreprise[0].telEntreprise}}</span>
                 </p>
             </div>
-        
-</div>
+        </div>
+
+    </div>
+    <div class="buttonsFooter">
+        <button *ngIf="!edit" (click)="editEntreprise()" type="button" class="btn btn-warning">Edit</button>
+        <button *ngIf="edit" (click)="updateEntreprise()" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
+        <div *ngIf="edit">
+            <button *ngIf="entreprises" (click)="deleteEntreprise(entreprises[0].entreprise.entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+            <button *ngIf="!entreprises" (click)="deleteEntreprise(entreprise[0].entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+
+        </div>
+        <button *ngIf="edit" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
+    </div>
 
 </div>
        

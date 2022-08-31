@@ -68,8 +68,9 @@ export class FormApplicationComponent implements OnInit {
         this.application.documentSent.shift();
         //this.personSent.person.shift();        
         this._amService.postApplication(this.application).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
+       
         })       
         
     }
@@ -156,8 +157,9 @@ export class FormApplicationComponent implements OnInit {
     }
     goDoc() {
         this._amService.postDocument(this.newDoc).subscribe(() => {            
-            let link = ['/document'];
-            this.router.navigate(link);
+            this.add = false;
+            this.ngOnInit();
+            
         })
 
     }

@@ -1,7 +1,10 @@
 .cardPerson {
     margin: 0 auto;
     padding: 0;
-    background: #222;
+    
+}
+.docResponsive{
+    display:none;
 }
 button{
     cursor:pointer !important;
@@ -21,12 +24,26 @@ a{
 .left {
     left: 25px;
 }
-
-
-
-.right {
-    right: 25px;
+.telEmailPerson {
+    margin-top: 20px;
+    text-align: center;    
+    display: flex;
+    justify-content: space-evenly;
 }
+    .telEmailPerson span {
+        
+        font-weight: 800;
+        font-size: 1.14rem;
+    }
+    .telEmailPerson span i {
+        font-size:1.6rem;
+    }
+
+
+
+    .right {
+        right: 25px;
+    }
 
 
 
@@ -73,12 +90,11 @@ a{
 #card {
     position: absolute;
     width: 450px;
-    height: 225px;
+    min-height: 225px;
     padding: 25px;
     padding-top: 0;
-    padding-bottom: 0;
-    left: 50%;
-    top: 67.5px;
+    padding-bottom: 15px;
+    left: 50%;    
     margin-left: -250px;
     background: #E9E2D0;
     box-shadow: -20px 0 35px -25px black, 20px 0 35px -25px black;
@@ -131,12 +147,18 @@ h1 {
 .collpase {
     position: absolute
 }
+.searchResult{
+    position:absolute;
+    top:48%;
+    z-index:5;
+}
 
 #handler {
     display: flex;
     justify-content: center;
     width: 100%;
     margin-left: -4vw;
+    flex-wrap: wrap;
 }
 
     #handler * {
@@ -147,6 +169,9 @@ h1 {
         text-align: center;
         font-family: 'typrewriter', sans-serif;
         font-style: italic;
+    }
+    #handler button{
+        max-height: 50px;
     }
 
 #collapseListGroup1 {
@@ -205,10 +230,12 @@ li {
     width: 100%;
     margin: 0;
     margin-top: 40px;
+    
 }
 
 aside {
     display: flex !important;
+    flex-wrap:wrap;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
@@ -556,7 +583,35 @@ h1 {
 #commentaireEntreprise .mb-3 {
     display: none;
 }
-.cardApplication {
+.docEnvoye ul li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    margin-top: 7px;
+}
+.docSent {
+    font-size: 1.6rem;
+    border-bottom: 2px solid;
+    display: block;
+    margin-bottom: 12px;
+}
+.docEnvoye ul li button {
+    border-radius: 20px;
+}
+    .docEnvoye ul li button:hover {
+        background-color: darkred;
+        color: white;
+    }
+.headerCandidature div {
+    position: absolute;
+    right: 50%;
+}
+.headerCandidature div input {
+    border-radius: 19px;
+    text-align: center;
+    font-weight: 500;
+}
+    .cardApplication {
     border: 2px solid #f8f9fa;
     margin-right: 22px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
@@ -567,6 +622,17 @@ h1 {
     .cardApplication:hover{
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
     }
+        .cardApplication h4 input {
+            border-radius: 19px;
+            text-align: center;
+            font-weight: 400;
+            width: 64%;
+            font-size: 1.2rem;
+        }
+        .cardApplication .commentCandidature {
+            position: relative;
+            bottom: 33px;
+        }
 
     .cardApplication h2 {
         text-align: center;
@@ -591,19 +657,51 @@ h1 {
     .headerCandidature p {
         font-weight:800;
     }
-.commentCandidature {
+    .docEnvoye {
+        position:absolute;
+        z-index:2;
+    }
+.personEditCardApplication {
+    text-align:initial !important;
+    margin-left: 18px;
+    margin-bottom: 17px;
+}
+    .personEditCardApplication .button-13 {
+        float: right;
+    }
+    .commentCandidature {
     text-align:center;
+    z-index:0;
 
+}
+.docAdded {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 60px;
 }
 .commentCandidature h6{
     font-size:1.3rem;
 }
-    .commentCandidature p {    
+        .commentCandidature textarea {
+            margin-top: 16px;
+            min-width: 50%;
+            padding: 7px;
+            border-radius: 17px;
+            text-align:center;
+        }
+
+.commentaire {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
-    padding: 20px 17%;
+    padding: 19px;
     margin: auto;
     border-radius: 14px;
     box-shadow: inset 0 0 10px;
+    max-width: 52%;
+    min-width: 52%;
+    line-break: anywhere;
 }
 .footerCandidature {
     display: flex;
@@ -619,6 +717,15 @@ h1 {
         margin-bottom: 20px;
         background-image: linear-gradient(to right bottom, #f9fafb, #f6f8f8, #f3f5f6, #f1f3f3, #eef0f0);
     }
+   .footerCandidature button {
+        width: 100px;
+        margin: auto;
+    }
+.buttonsFooter {
+    display: flex;
+    position: relative;
+    top: 12px;
+}
 .footerCandidature h5 span{
     margin-left: 6px;   
     border-radius: 9px;
@@ -703,8 +810,7 @@ h1 {
     }
         #contactEntreprise ul li strong {
             float: right;
-            margin-right: 10px;
-            border-left: 2px solid;
+            margin-right: 10px;            
             padding-left:10px;
         }
         #contactEntreprise ul li button {
@@ -724,7 +830,7 @@ h1 {
         .removePerson {
             position: absolute;
             margin-top: -4px;
-            right: 41%;
+            right: 24%;
         }
 
 #listCandidatures {
@@ -745,14 +851,53 @@ h1 {
         border-radius: 15px;
         font-weight: 300;
     }
-
+#card h2 {
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.5rem;
+}
+#card span{
+    display:flex;
+}
+#card p {
+    text-align: center;
+    font-size: 1.2rem;
+}
+#card strong {
+    margin-right: 21px;
+}
+#card i {
+    margin-right:10px;
+}
+.editPerson {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+}
+    .editPerson span {
+        margin-top: 12px;
+        align-items: center;
+    }
+.buttonsCardPerson {
+    display: flex;
+    justify-content: space-between;
+}
+    .buttonsCardPerson button {
+        border-radius: 10px;
+        padding: 3px 15px;
+        text-align: center;
+       
+    }
+        .buttonsCardPerson button i {
+            margin: unset !important;
+        }
 .cardPerson {
     font-family: Montserrat, sans-serif;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100vh;
+    align-items: center;    
+    flex-direction: column;    
     margin: 0;
 }
 
@@ -909,6 +1054,7 @@ h1 {
             .cardCandidature .docEnvoye ul li {
                 margin-left: 20px;
                 font-weight: 500;
+
             }
 
     .cardCandidature .commentCandidature h6 {
@@ -1005,20 +1151,20 @@ h1 {
                 padding: 3px 5px;
             }
 
-.formCandidature .listAndAdd *:focus,
-.formCandidature .listAndAdd *:active {
+.listAndAdd *:focus,
+ .listAndAdd *:active {
     outline: none !important;
     -webkit-tap-highlight-color: transparent;
 }
 
 
 
-.formCandidature .listAndAdd .wrapper {
+.listAndAdd .wrapper {
     display: inline-flex;
     list-style: none;
 }
 
-    .formCandidature .listAndAdd .wrapper .icon {
+    .listAndAdd .wrapper .icon {
         position: relative;
         background: #ffffff;
         border-radius: 50%;
@@ -1036,7 +1182,7 @@ h1 {
         transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    .formCandidature .listAndAdd .wrapper .tooltip {
+     .listAndAdd .wrapper .tooltip {
         position: absolute;
         top: 0;
         font-size: 14px;
@@ -1064,7 +1210,7 @@ h1 {
     }
     
     
-    formCandidature .listAndAdd .wrapper .tooltip::before {
+     .listAndAdd .wrapper .tooltip::before {
         position: absolute;
         content: "";
         height: 8px;
@@ -1076,26 +1222,26 @@ h1 {
         transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    .formCandidature .listAndAdd .wrapper .icon:hover .tooltip {
+     .listAndAdd .wrapper .icon:hover .tooltip {
         top: -45px;
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
 
-    .formCandidature .listAndAdd .wrapper .icon:hover span,
-    .formCandidature .listAndAdd .wrapper .icon:hover .tooltip {
+     .listAndAdd .wrapper .icon:hover span,
+     .listAndAdd .wrapper .icon:hover .tooltip {
         text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
     }
 
-    .formCandidature .listAndAdd .wrapper .addDoc:hover,
-    .formCandidature .listAndAdd .wrapper .addDoc:hover .tooltip,
-    .formCandidature .listAndAdd .wrapper .addDoc:hover .tooltip::before {
+     .listAndAdd .wrapper .addDoc:hover,
+     .listAndAdd .wrapper .addDoc:hover .tooltip,
+     .listAndAdd .wrapper .addDoc:hover .tooltip::before {
         background: #1877F2;
         color: #ffffff;
     }
 
-.formCandidature .listAndAdd button {
+ .listAndAdd button {
     padding: 5px 15px;
 }
 
@@ -1352,8 +1498,8 @@ h1 {
 
 @media(max-width: 380px) {
     .wrapper {
-        margin: 30px 20px;
-        padding: 40px 15px 15px 15px;
+        /* margin: 30px 20px;
+        padding: 40px 15px 15px 15px; */
     }
 }
 
@@ -1363,11 +1509,12 @@ h1 {
         flex-direction: row;
         min-height: unset;
         padding: 0;
+        padding-bottom:10px;
         margin-right: 5px;
         margin-left: 5px;
         margin-top: 6px;
-        border-radius: 35px;
-        height: 88px;
+        border-radius: 35px;        
+        flex-wrap:wrap
     }
 
     .table {
@@ -1388,18 +1535,25 @@ h1 {
         }
 
     #lists {
-        justify-content: unset;
+        justify-content: center;
         min-height: unset;
-        width: 92%;
+        width: unset;
     }
 
     #jobs {
         border: 0;
-        width: 100%;
+        width: unset;
         padding-top: 0;
-        margin-top: -16px;
+        margin-top: 16px;
+        padding-bottom:20px;
     }
-
+    nav {
+        display: flex;
+        justify-content: center;
+    }
+    #mainPage {
+        flex-wrap: wrap;
+    }
     #mainPage nav {
         justify-content: center;
         width: 70%;
@@ -1424,6 +1578,8 @@ h1 {
         line-height: 16px;
     }
 
+    
+
     #lists {
         padding-top: 0;
     }
@@ -1442,14 +1598,13 @@ h1 {
         margin-top: 41px;
     }
 
-    .buttonCandidature {
-        position: absolute;
-        top: 25%;
+    .buttonCandidature {      
         right: 1%;
     }
 
     .buttonRechercher {
         margin-left: 25px !important;
+      
     }
 
     .container {
@@ -1476,14 +1631,14 @@ h1 {
     #jobs li {
         line-height: 6px;
     }
-
+    
     #lists {
         justify-content: center;
         margin-bottom: 25px;
     }
 
         #lists li {
-            min-width: 21vw;
+            
         }
 
         #lists ul {
@@ -1493,6 +1648,7 @@ h1 {
     aside ul {
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
     }
 
     #ulDown {
@@ -1523,5 +1679,95 @@ h1 {
         width: 90%;
 
     }
-}
+    .buttonCandidature{
+        margin-top:-10px;
+    }
+        .buttonCandidature i {
+            margin-left:10px !important;
+        }
+        .topResponsive {
+        position: relative;
+        top: 50px;
+        }
+        .formCandidature .button-13{
+            min-width: 50px;
+        }
+        .mainFormCandidature textarea{
+            min-height:unset;
+        }
+       .icon2{
+           width: unset !important;
+               height: unset !important;
+       }
+    .docResponsive {
+        display: flex;
+        margin-top: 15px;        
+        border-radius: 10px;
+        height: 25px;
+    }
+    .docAddedResponsive {
+        position: relative;
+        top: 173px;
+        width: 10px;
+        right: 230px;
+    }
+    app-applications{
+        width:unset !important;
+    }
+    app-entreprises-component {
+        width: unset !important;
+        word-break: break-all;
+    }
+    app-contacts-component{
+        word-break: break-word;
+    }
+    .personAddResponsive {
+        margin-top: 50px;
+        margin-bottom: -50px;
+    }
+    .formCandidature{
+        margin-right:unset;
+        width:unset;
+        padding:12px;
+    }
+    .removePerson{
+        right:8%;
+    }
+    #card{
+        position:unset;
+        width: 100%;
+        margin-left: unset;
+    }
+        #card p {
+            display: flex;
+            justify-content: center;
+        }
+    .telEmailForm input {
+        width:100%;
+    }
+    .telEmailPerson {
+        flex-wrap: wrap;
+        justify-content:unset;
+    }
+    .cardApplication h4{
+        margin:auto;
+        text-align:center;
+    }
+    .cardApplication .commentCandidature{
+        position:unset;
+    }
+    .docEnvoye {
+        position:unset;
+    }
+    .headerCandidature div{
+        position:unset;
+        text-align:center;
+    }
+    .headerCandidature p {
+        display:none;
+    }
+    .headerCandidature h2 {
+        margin-top:unset;
+    }
+    }
 

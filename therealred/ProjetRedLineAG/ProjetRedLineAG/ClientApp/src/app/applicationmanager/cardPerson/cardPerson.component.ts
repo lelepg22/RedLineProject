@@ -43,7 +43,7 @@ export class CardPersonComponent implements OnInit {
                         console.log('fefe');
                         console.log(result);
 
-                        this.entreprise = result;
+                        this.entreprise = result;                        
 
                         console.log(this.entreprise);
                     });
@@ -51,9 +51,11 @@ export class CardPersonComponent implements OnInit {
 
                 }
                 console.log("linda");
-
+                
                 this.entreprises = result;
-                console.log(this.entreprises)
+                console.log(this.entreprises);
+              
+               
 
 
             }, error => console.error(error));
@@ -84,7 +86,7 @@ export class CardPersonComponent implements OnInit {
     }
     updateEntreprisePerson(id: number) {
         this._amService.updateEntreprisePerson(id).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
 
@@ -93,13 +95,13 @@ export class CardPersonComponent implements OnInit {
         this.entreprise[0].EntrepriseId = this.id;       
         this.entreprise[0].CommentsEntreprise = this.comment; 
         this._amService.updateCommentEntreprise(this.entreprise[0]).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
     }
     goEditPerson() {
         this._amService.updatePerson(this.person[0]).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
     }
@@ -109,14 +111,11 @@ export class CardPersonComponent implements OnInit {
         if (confirm(text) == true) {
 
             this._amService.deletePerson(this.person[0].id).subscribe(() => {
-                let link = ['/'];
+                let link = ['/applications'];
                 this.router.navigate(link);
-            })
-
-           
+            })          
 
         } else {
-
            return
 
         }

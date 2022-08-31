@@ -105,7 +105,7 @@ export class CardEntrepriseComponent implements OnInit {
                     this._amService.updatePerson(x).subscribe(() => {
                         let link = ['/'];
                         this.router.navigate(link);
-                        alert("saa")
+                       
                         this._amService.deleteEntreprise(id).subscribe(() => {
                             let link = ['/'];
                             this.router.navigate(link);
@@ -116,7 +116,7 @@ export class CardEntrepriseComponent implements OnInit {
             } 
             if (this.persons.length < 1) {
                 this._amService.deleteEntreprise(id).subscribe(() => {
-                    let link = ['/'];
+                    let link = ['/applications'];
                     this.router.navigate(link);
                 })
             }
@@ -129,7 +129,7 @@ export class CardEntrepriseComponent implements OnInit {
     }
     updateEntreprisePerson(id: number) {
         this._amService.updateEntreprisePerson(id).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
 
@@ -139,7 +139,7 @@ export class CardEntrepriseComponent implements OnInit {
         this.entreprise[0].CommentsEntreprise = this.comment; 
         
         this._amService.updateCommentEntreprise(this.entreprise[0]).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
     }
@@ -150,13 +150,8 @@ export class CardEntrepriseComponent implements OnInit {
     }
     reloadComponent() {
 
-        let currentUrl = this.router.url;
-
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
-        this.router.onSameUrlNavigation = 'reload';
-
-        this.router.navigate([currentUrl]);
+        let link = ['/applications'];
+        this.router.navigate(link);
 
     }
 

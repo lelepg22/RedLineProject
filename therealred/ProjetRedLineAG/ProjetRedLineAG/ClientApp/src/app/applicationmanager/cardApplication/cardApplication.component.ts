@@ -27,7 +27,7 @@ export class CardApplicationComponent {
 
     @Output() manipulatingLink = new EventEmitter<{ id: number, link: string }>();
 
-    public documentsList: [{}] = [{}];
+    documentsList: [{ documentId: number, titleDocument: string }] = [{ documentId: 0, titleDocument: "" }];
     public documentSent: [any] = [{}];
     public documentList: [any];
     public documents: [any] = [{}];
@@ -38,8 +38,9 @@ export class CardApplicationComponent {
     public saved: [any] = [{}];
     public statutList: [any];
     public update: ApplicationUp;
-    inputPerson: string = "";
+    inputPerson: string = "Personne";
     documentTitle: string = "Documents";
+
 
     constructor(private router: Router, private _amService: ApplicationManagerService, private route: ActivatedRoute,) {
 
@@ -201,20 +202,20 @@ export class CardApplicationComponent {
     }
     reloadComponent() {
 
-        let currentUrl = this.router.url;
-
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
-        this.router.onSameUrlNavigation = 'reload';
-
-        this.router.navigate([currentUrl]);
+        let link = ['/applications'];
+        this.router.navigate(link);  
 
     }
     goDelete(id: number) {
-        this._amService.deleteApplication(id).subscribe(() => {
-            let link = ['/'];
-            this.router.navigate(link);
-        })
+        let text = "Supprimer ?";
+
+        if (confirm(text) == true) {
+            this._amService.deleteApplication(id).subscribe(() => {
+                let link = ['/applications'];
+                this.router.navigate(link);                
+            })
+        }
+        else { return }
     }
     goDeleteDocSent(id: number) {
         this._amService.deleteDocumentSent(id).subscribe(() => {
@@ -232,7 +233,7 @@ export class CardApplicationComponent {
     updateApplication() {
 
         this._amService.updateApplication(this.application).subscribe(() => {
-            let link = ['/'];
+            let link = ['/applications'];
             this.router.navigate(link);
         })
 
@@ -240,6 +241,28 @@ export class CardApplicationComponent {
     navigateWithId(linkSent: string, idSent: number) {
 
         this.manipulatingLink.emit({ link: linkSent, id: idSent });
+
+    }
+    removeFromPersonList(id: number) {
+        for (var i = 0; i < this.personsList.person.length; i++) {
+            if (this.personsList.person[i].id == id) {
+                console.log(this.personsList.person[i].id + " - " + id);
+                this.personsList.person.splice(i, 1);
+
+
+            }
+        }
+
+    }
+
+    removeFromDocList(id: number) {
+        for (var i = 0; i < this.documentsList.length; i++) {
+            if (this.documentsList[i].documentId == id) {
+                console.log(this.documentsList[i].documentId + " - " + id);
+                this.documentsList.splice(i, 1);
+
+            }
+        }
 
     }
 

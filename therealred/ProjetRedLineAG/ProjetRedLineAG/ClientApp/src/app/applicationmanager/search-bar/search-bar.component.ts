@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class SearchBarComponent implements OnInit {
     @Input() applications: any;
 
-    @Output() manipulatingLink = new EventEmitter<string>();
+    @Output() manipulatingLink = new EventEmitter<{ id: number, link: string }>();
 
     public type: string = "Type";
     public typeId: number = 0;
@@ -28,7 +28,7 @@ export class SearchBarComponent implements OnInit {
 
     goForm() {
 
-        this.manipulatingLink.emit('formApp');
+        this.manipulatingLink.emit({ link: 'formApp', id: 0 });
 
     }
 
@@ -59,6 +59,15 @@ export class SearchBarComponent implements OnInit {
     public navigate(x) {
 
         this.router.navigateByUrl(x);
+
+    }
+    navigateWithId(linkSent: string, idSent: number) {
+        
+        this.manipulatingLink.emit({ link: linkSent, id: idSent });
+        this.searchStatusApplication = false;
+        this.searchEntrepriseApplication = false;
+        this.searchTitleApplication = false;
+        this.type = "Type";
 
     }
 
