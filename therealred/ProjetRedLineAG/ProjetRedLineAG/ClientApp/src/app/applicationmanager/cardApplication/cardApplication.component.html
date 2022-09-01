@@ -120,7 +120,7 @@
                     <button *ngIf="saved[1]" (click)="updateApplication(saved)" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
                     <button *ngIf="!saved[1]" (click)="editContact()" type="button" class="btn btn-warning">Edit</button>
                     <button *ngIf="saved[1]" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
-                    <button *ngIf="saved[1]" (click)="goDelete(application[0].applicationId)" type="button" class="btn btn-danger">Supprimer</button>
+                    <button *ngIf="saved[1]" (click)="goDelete(application[0].applicationId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
                 </div>
             </div>
 

@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
             
             console.log(result);
             this.applications = result;
+            this.applications.shift();
             
 
         }, error => console.error(error));

@@ -97,9 +97,9 @@ export class ApplicationManagerService {
         this.url = 'home/docs';
         return this.http.get<[any]>(this.url);
     }
-    getPersonDocEntreprise(): Observable<[any]> {
+    getPersonDocEntreprise(): Observable<[any, any, any,any]> {
         this.url = 'home/form';
-        return this.http.get<[any]>(this.url);
+        return this.http.get<[any,any,any,any]>(this.url);
     }
     //delete
     deletePerson(id: number) {

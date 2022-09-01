@@ -38,7 +38,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\applicationmanager\entreprises\entreprises.component.ts" />
+    <None Remove="ClientApp\src\app\applicationmanager\formEntreprise\formEntreprise.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="ClientApp\src\app\app-routing\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\applicationmanager\entreprises\entreprises.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\applicationmanager\formEntreprise\formEntreprise.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

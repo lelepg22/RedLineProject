@@ -41,7 +41,7 @@ namespace ProjetRedLineAG.Data
 
 
             //    modelBuilder.Entity<List<EntrepriseModel>>().HasNoKey();
-            /*  modelBuilder.Entity<ApplicationModel>().HasData(
+             modelBuilder.Entity<ApplicationModel>().HasData(
                       new ApplicationModel()
                       {
                           ApplicationId = 1,
@@ -55,16 +55,25 @@ namespace ProjetRedLineAG.Data
                      TitleEntreprise = "Non renseigné"
                  }
                 );
-           /*   modelBuilder.Entity<PersonModel>().HasData(
-                new PersonModel()
-                {
-                    EntrepriseId = 1,
-                    Id = 1,
-                    LastNamePerson = "Non renseigné",
 
+            modelBuilder.Entity<StatutModel>().HasData(
+                 new StatutModel()
+                 {
+                     StatutId = 1,
+                     TitleStatut = "Non renseigné"
+                 }
+               );
 
-                }
-                ) ;*/
+            modelBuilder.Entity<PersonModel>().HasData(
+              new PersonModel()
+              {
+                  EntrepriseId = 1,
+                  Id = 1,
+                  LastNamePerson = "Non renseigné",
+                  StatutId = 1
+
+              }
+              ) ;
         }
 
         public DbSet<ApplicationModel> Application { get; set; }

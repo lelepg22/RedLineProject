@@ -17,7 +17,7 @@ import { Documents } from '../models/Documents';
 })
 export class FormApplicationComponent implements OnInit {
     @Input() application: ApplicationEntreprisePerson;
-    @Input() formInfo: [any];
+    @Input() formInfo: [any,any,any,any];
     @Input() person: Persons;
     @Input() personList: PersonsList;
     @Input() document: Documents;
@@ -53,6 +53,8 @@ export class FormApplicationComponent implements OnInit {
 
         this._amService.getPersonDocEntreprise().subscribe(data => {
             this.formInfo = data;
+            this.formInfo[1].shift();
+            this.formInfo[0].shift();
             console.log('etaMenino');
             console.log(this.formInfo);            
         })

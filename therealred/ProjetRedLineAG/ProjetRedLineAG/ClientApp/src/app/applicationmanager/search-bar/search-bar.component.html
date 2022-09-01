@@ -1,9 +1,9 @@
 <div>
-    <h1> Candidatures </h1>
+    <!-- <h1> Candidatures </h1>-->
 
     <div id="handler">
         <button (click)="goForm()" class="button-30 buttonCandidature nav-item" [routerLinkActive]="['link-active']">
-            Candidature<i class="fas fa-calendar-plus"></i> 
+            Candidature<i class="fas fa-calendar-plus"></i>
         </button>
 
         <div class="topResponsive btn-group">
@@ -11,7 +11,7 @@
                 {{type}}
             </button>
             <ul class="dropdown-menu">
-               <!-- <li (click)="filterDate()">Date</li> -->
+                <!-- <li (click)="filterDate()">Date</li> -->
                 <li (click)="filterTitle()">Titre Candidature</li>
                 <li (click)="filterEntreprise()"> Entreprise</li>
                 <li (click)="filterStatus()">Status</li>
@@ -22,7 +22,7 @@
                    [(ngModel)]="searchText" placeholder="Enter text to search"
                    autofocus>
         </div>
-       <!-- <button class="button-30 buttonRechercher" role="button">RECHERCHER </button> -->
+        <!-- <button class="button-30 buttonRechercher" role="button">RECHERCHER </button> -->
         <br />
 
         <div class="searchResult" *ngIf="searchTitleApplication">

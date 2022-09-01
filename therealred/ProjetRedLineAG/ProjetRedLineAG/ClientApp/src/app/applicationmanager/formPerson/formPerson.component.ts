@@ -17,7 +17,7 @@ export class FormPersonComponent implements OnInit {
     @Input() application: ApplicationEntreprisePerson;
     @Input() entreprise: Entreprises;
     @Input() person: Persons;
-    @Input() formInfo: [any];
+    @Input() formInfo: [any,any, any, any];
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
@@ -37,6 +37,8 @@ export class FormPersonComponent implements OnInit {
 
         this._amService.getPersonDocEntreprise().subscribe(data => {
             this.formInfo = data;
+            this.formInfo[3].shift();
+            this.formInfo[0].shift();
             console.log('etaMenino');
             console.log(this.formInfo);
         })

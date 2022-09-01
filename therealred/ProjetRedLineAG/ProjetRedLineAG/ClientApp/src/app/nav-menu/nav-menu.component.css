@@ -42,9 +42,8 @@ html {
 
 @media screen and (max-width: 900px) {
     .logoNav {
-        position: absolute;
-        left: 40%;
-        width: 10%;
-        top: 54%;
+        width: 9%;
+        margin-left: 12px;
+        position:unset;
     }
 }

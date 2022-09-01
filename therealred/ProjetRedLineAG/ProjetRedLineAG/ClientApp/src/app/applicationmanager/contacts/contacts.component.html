@@ -2,7 +2,7 @@
         <button (click)="navigate('formPerson')" role="button" class="button-13 nav-item buttonAddPerson" [routerLinkActive]="['link-active']">
             <i class="fas fa-user-plus"></i>
         </button>
-        <table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="contacts">
+        <table class='col-xl-9 table table-striped entrepriseTable' aria-labelledby="tableLabel" *ngIf="contacts">
             <thead>
                 <tr>
                     <th>Statut</th>
@@ -21,8 +21,8 @@
                     <td class="pointer nav-item" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardEntreprise', contact.entreprise.entrepriseId)">
                         {{ contact.entreprise.titleEntreprise }}
                     </td>
-                    <td>{{ contact.telPerson }}</td>
-                    <td>{{ contact.emailPerson }}</td>
+                    <td class="telEmailList"> <span>{{ contact.telPerson }}</span> <i *ngIf="contact.telPerson" class="cardShadow fas fa-phone"></i> </td>
+                    <td class="telEmailList"><span>{{ contact.emailPerson }}</span> <i *ngIf="contact.emailPerson" class="cardShadow fas fa-envelope"></i></td>
 
                 </tr>
             </tbody>

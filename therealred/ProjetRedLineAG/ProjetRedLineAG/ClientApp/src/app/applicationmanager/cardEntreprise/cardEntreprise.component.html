@@ -95,12 +95,12 @@
     <div class="buttonsFooter">
         <button *ngIf="!edit" (click)="editEntreprise()" type="button" class="btn btn-warning">Edit</button>
         <button *ngIf="edit" (click)="updateEntreprise()" type="button" class="btn btn-success"><i class="fas fa-paper-plane"></i></button>
+        <button *ngIf="edit" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
         <div *ngIf="edit">
             <button *ngIf="entreprises" (click)="deleteEntreprise(entreprises[0].entreprise.entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
             <button *ngIf="!entreprises" (click)="deleteEntreprise(entreprise[0].entrepriseId)" type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
 
         </div>
-        <button *ngIf="edit" (click)="reloadComponent()" type="button" class="btn btn-warning">Annuler</button>
     </div>
 
 </div>

@@ -32,6 +32,7 @@ export class ContactsComponent implements OnInit {
         this._amService.goContact().subscribe(result => {
             console.log('BELEZA');
             this.contacts = result;
+            this.contacts.shift();
             //this.contacts.forEach(x=> 
             console.log(this.contacts);
             this._amService.goStatuts().subscribe(result => {

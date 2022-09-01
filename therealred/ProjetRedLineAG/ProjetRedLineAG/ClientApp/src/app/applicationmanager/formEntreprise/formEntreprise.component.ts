@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+ï»¿import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { Router } from '@angular/router';
@@ -14,10 +14,10 @@ import { PersonSent } from '../models/PersonSent';
     styleUrls: ['../home/home.component.css']
 
 })
-export class FormEntrepriseComponent implements OnInit{
-    @Input() application: ApplicationEntreprisePerson; 
+export class FormEntrepriseComponent implements OnInit {
+    @Input() application: ApplicationEntreprisePerson;
     @Input() entreprise: Entreprises;
-    @Input() formInfo: [any];
+    @Input() formInfo: [any, any, any, any];
     @Input() person: Persons;
     @Input() personList: PersonsList;
     @Input() personSent: PersonSent;
@@ -39,7 +39,7 @@ export class FormEntrepriseComponent implements OnInit{
             console.log("debuga");
             console.log(data);
             this.entrepriId = data[data.length - 1].entrepriseId;
-         
+
 
         })
 
@@ -60,15 +60,16 @@ export class FormEntrepriseComponent implements OnInit{
         private _amService: ApplicationManagerService,
         private router: Router) { }
     onSubmit(): void {
-        alert("Submit form !");
+
         console.log(this.entreprise);
         if (!this.entreprise.TelEntreprise) {
-            this.entreprise.TelEntreprise = "Non informé";
+            this.entreprise.TelEntreprise = "Non informÃ©";
         }
         if (!this.entreprise.EmailEntreprise) {
-            this.entreprise.EmailEntreprise = "Non informé";
+            this.entreprise.EmailEntreprise = "Non informÃ©";
 
         }
+        
         this._amService.postEntreprise(this.entreprise).subscribe(() => {
             let link = ['/entreprise'];
             this.router.navigate(link);
