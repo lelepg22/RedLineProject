@@ -3,6 +3,105 @@
     padding: 0;
     
 }
+.contactBlockName {
+    display: flex;
+    width: 100%;
+}
+.block .contactBlockName span:nth-child(1) {
+    display: flex;
+    margin-left: 12px;
+    margin-right: -12px;
+}
+.contactBlock{
+    width: 27% !important;
+}
+.contactBlock span {
+    width:100%;
+}
+.contactBlock span i{
+        width: 24%;
+        text-align: center;
+    }
+
+.block .contactBlockName span:nth-child(2) {
+    width: 100%;
+    padding-left: 0px;
+    display: flex;
+    justify-content: space-around;
+    font-weight: 600;
+    margin-right: 6%;    
+    text-shadow: 0 1px 0 #CCCCCC, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+.block {
+    display: flex;
+    min-height: 40px;
+    width: 22%;
+    margin: 10px auto;
+    margin-top: 20px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 50px 100px -20px, rgb(0 0 0 / 30%) 0px 30px 60px -30px, rgb(10 37 64 / 35%) 0px -2px 6px 0px inset;
+    border-radius: 10px;
+    align-items: center;
+    flex-direction: column;
+    line-height: 2.5rem;
+    background: #FFEFBA; /* fallback for old browsers */
+
+    background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA); /* Chrome 10-25, Safari 5.1-6 */
+
+    background: linear-gradient(to right, #FFFFFF, #FFEFBA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.blockEntreprises{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+.headerCards{
+    text-align:center;
+   }
+.headerCards h2 {
+    font-size: 1.5rem;
+
+}
+.entrepriseBlock span {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+    .entrepriseBlock span i {
+        margin-left: 10px;
+    }
+    .entrepriseBlock span span {
+        width: 100%;
+        margin-left: 17%;    
+    
+}
+    .entrepriseBlock div {
+        width: 100%;
+        display: flex;
+        line-height: 2.5rem;
+    }
+        .block div i { 
+        margin-top: 8px;
+        color: #ffd814;
+        margin-right: 10px;
+        font-size: 1.1rem;
+        text-shadow: -1px -1px 1px rgb(255 255 255 / 10%), 1px 1px 1px rgb(0 0 0 / 50%);
+}
+    
+.entrepriseBlock div:nth-child(1) span:nth-child(1) {
+    width: 20%;
+    margin-left:10px
+}
+    .entrepriseBlock div:nth-child(1) span:nth-child(2) {
+        width: 75%;
+        margin-left:16px;
+    }
+    .entrepriseBlock div:nth-child(2) span:nth-child(3) {
+        width: 45%
+    }
+    .entrepriseBlock div:nth-child(2) span:nth-child(4) {
+        width: 55%
+    }
 .docResponsive{
     display:none;
 }
@@ -18,7 +117,15 @@ a{
 }
     .pointer:hover {
         box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-    }
+    
+       }
+.pointerTxt{
+    cursor:pointer !important;
+}
+.pointerTxt :hover {
+    background-color: #bde7075e;   
+    box-shadow: 0 14px 28px rgb(0 0 0 / 25%), 0 10px 10px rgb(0 0 0 / 22%);
+}
 .telEmailList i {
     display: none;
 }
@@ -28,9 +135,10 @@ a{
 }
 .telEmailPerson {
     margin-top: 20px;
+    margin-bottom:15px;
     text-align: center;    
-    display: flex;
-    justify-content: space-evenly;
+    display: block;
+    
 }
     .telEmailPerson span {
         
@@ -104,7 +212,6 @@ a{
 }
 
 
-
     #card img {
         width: 150px;
         float: left;
@@ -174,6 +281,7 @@ h1 {
     }
     #handler button{
         max-height: 50px;
+        margin-top:12px;
     }
 
 #collapseListGroup1 {
@@ -214,7 +322,7 @@ nav ul li {
 }
 
 .table {
-    margin-right: 15px;
+    margin:auto;
     width:97%;
 }
 
@@ -314,6 +422,7 @@ app-cardPerson-component{
         height: 50px;
         margin-right: 10px;
         margin-bottom: 12px;
+        margin-left:15px;
     }
 .contactFormContact{
     display:flex;
@@ -331,6 +440,10 @@ app-cardPerson-component{
 .telEmailForm{
     justify-content:center;
 }
+    .telEmailForm div {
+        margin-right: 10px;
+        text-align: center;
+    }
     .telEmailForm input {
         text-align: center;
         height: 40px;
@@ -370,6 +483,7 @@ app-cardPerson-component{
         margin-right:10px;
     }
 .buttonAddPerson {
+    margin-left:15px;
     width: 55px;
     height: 50px !important;
     margin-bottom: 12px;
@@ -416,8 +530,10 @@ table:hover {
 }
 
 #lists li {
-        display: inline-block;
+        display: inline-flex;
         outline: 0;
+        justify-content:center;
+        align-items: center;
         cursor: pointer;
         border-radius: 8px;
         box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
@@ -704,6 +820,7 @@ h1 {
     max-width: 52%;
     min-width: 52%;
     line-break: anywhere;
+    text-align:center;
 }
 .footerCandidature {
     display: flex;
@@ -760,21 +877,23 @@ h1 {
         margin-bottom: 17px;
         font-family: 'typewriter', sans-serif;
     }
+        .cardEntreprise h2 i {
+            float:left;
+        }
 
-    .cardEntreprise h3 {
-       
-        text-align: center;
-        font-size: 1.32rem;
-        border: 2px solid;
-        text-align: center;
-        margin-top: 10px;
-        margin-bottom: 18px;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        border-radius: 15px;
-        font-weight: 300;
-        font-family: "JetBrains Mono",monospace;
-    }
+        .cardEntreprise h3 {
+            text-align: center;
+            font-size: 1.32rem;
+            border: 2px solid;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 18px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            border-radius: 15px;
+            font-weight: 300;
+            font-family: "JetBrains Mono",monospace;
+        }
 
     .cardEntreprise button {
         display: block;
@@ -865,6 +984,8 @@ h1 {
 #card p {
     text-align: center;
     font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
 }
 #card strong {
     margin-right: 21px;
@@ -1664,6 +1785,12 @@ h1 {
         width: 93%;
         margin-left: unset;
     }
+    .blockEntreprises {
+        flex-direction:column;
+    }
+    .block{
+        width:87%;
+    }
 
     #mainPage nav {
         width: 100%;
@@ -1736,7 +1863,7 @@ h1 {
         width:unset !important;
     }
     app-entreprises-component {
-        width: unset !important;
+        
         word-break: break-all;
     } 
         app-contacts-component{
@@ -1806,6 +1933,39 @@ h1 {
     .telEmailList i{        
              display:block;
          }
+    .headerCards button {
+        margin-top: 19px;
+    }
+    #handler{
+        margin-left:unset;
+    }
+    #handler button{
+        margin-top:unset;
+    }
+    .block {
+        padding: 12px;       
+       
+    }
+        .entrepriseBlock span {
+            margin-left:unset;
+            justify-content:center;
+        }
+        .entrepriseBlock span span{
+            margin-left:unset;
+        }
+        .entrepriseBlock div:nth-child(1) span:nth-child(1) {
+        width: unset;
+        margin-left: unset;
+    }
+
+    .entrepriseBlock div:nth-child(1) span:nth-child(2) {
+        width: unset;
+        margin-left: unset;
+    }
+    .contactBlock
+    {
+        width:82% !important;
+    }
     
     }
 

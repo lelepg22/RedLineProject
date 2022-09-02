@@ -1,6 +1,6 @@
         <div class='cardEntreprise col-xl-9'>
-    <h2 *ngIf="entreprises"><a href="{{entreprises[0].entreprise.linkEntreprise}}" target="_blank">{{entreprises[0].entreprise.titleEntreprise}}</a></h2>
-    <h2 *ngIf="entreprise"><a href="{{entreprise[0].linkEntreprise}}" target="_blank">{{entreprise[0].titleEntreprise}}</a></h2>
+    <h2 *ngIf="entreprises"><i class="fa-solid fa-industry"></i><a href="{{entreprises[0].entreprise.linkEntreprise}}" target="_blank">{{entreprises[0].entreprise.titleEntreprise}}</a></h2>
+    <h2 *ngIf="!entreprises"><i *ngIf="" class="fa-solid fa-industry"></i><a href="{{entreprise[0].linkEntreprise}}" target="_blank">{{entreprise[0].titleEntreprise}}</a></h2>
     <div id="innerCardEntreprise">
         <h3>Candidatures</h3>
         <div *ngIf="entreprises" id="listCandidatures" class="nav-item" [routerLinkActive]="['link-active']">

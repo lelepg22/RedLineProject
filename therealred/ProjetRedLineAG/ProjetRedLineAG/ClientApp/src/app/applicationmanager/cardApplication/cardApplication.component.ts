@@ -17,7 +17,7 @@ import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePers
 })
 export class CardApplicationComponent {
 
-    @Input() formInfo: [any];
+    @Input() formInfo: [any,any,any,any];
     @Input() person: Persons;
     @Input() personsList: PersonsList;
     @Input() document: Documents;

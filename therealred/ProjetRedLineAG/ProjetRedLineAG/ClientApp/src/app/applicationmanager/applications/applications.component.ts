@@ -25,6 +25,7 @@ export class ApplicationsComponent implements OnInit {
         this.router.navigateByUrl('/cardApplication/' + id);
     }
     navigateWithId(linkSent: string, idSent: number) {
+        if (idSent == 1) {return }
 
         this.manipulatingLink.emit({ link: linkSent, id: idSent });
 

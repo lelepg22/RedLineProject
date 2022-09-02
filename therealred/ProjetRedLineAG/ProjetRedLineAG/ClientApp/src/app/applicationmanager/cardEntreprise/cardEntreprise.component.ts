@@ -67,6 +67,7 @@ export class CardEntrepriseComponent implements OnInit {
                  this._amService.getEntrepriseNoApplication(this.id).subscribe(result => {
                   
                      this.entreprise = result;
+                   
                      console.log('biito');
                     console.log(this.entreprise);
                  });
@@ -76,6 +77,9 @@ export class CardEntrepriseComponent implements OnInit {
             console.log("oxi");
             
             this.entreprises = result;
+            if (this.entreprises[0].entreprise.entrepriseId == 1) {
+                alert('uno')
+            }
             console.log(this.entreprises)
 
 

@@ -1,7 +1,23 @@
         <p *ngIf="!contacts"><em>Loading...</em></p>
+        <div *ngIf="!contacts" class="loader">
+        </div>
         <button (click)="navigate('formPerson')" role="button" class="button-13 nav-item buttonAddPerson" [routerLinkActive]="['link-active']">
             <i class="fas fa-user-plus"></i>
         </button>
+        <div class="blockEntreprises">
+            <div class="pointer contactBlock block" (click)="navigateWithId('cardPerson',contact.id)" *ngFor="let contact of contacts">
+                <div class="contactBlockName">
+                    <span><i class="fas fa-user-tie"></i><strong>{{ contact.statutId }}</strong></span>
+                    <span>{{ contact.firstNamePerson }} {{ contact.lastNamePerson }}</span>
+                </div>
+                <span (click)="navigateWithId('cardEntreprise', contact.entreprise.entrepriseId)">
+                    <i class="fa-solid fa-industry"></i>  {{ contact.entreprise.titleEntreprise }}</span>
+
+                <span> <i class="fas fa-envelope"></i> <span>{{ contact.emailPerson }}</span></span>
+                <span><i class="fas fa-phone"></i> <span> {{ contact.telPerson }}</span></span>
+
+            </div>
+        </div>
         <table class='col-xl-9 table table-striped entrepriseTable' aria-labelledby="tableLabel" *ngIf="contacts">
             <thead>
                 <tr>
@@ -21,8 +37,8 @@
                     <td class="pointer nav-item" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardEntreprise', contact.entreprise.entrepriseId)">
                         {{ contact.entreprise.titleEntreprise }}
                     </td>
-                    <td class="telEmailList"> <span>{{ contact.telPerson }}</span> <i *ngIf="contact.telPerson" class="cardShadow fas fa-phone"></i> </td>
-                    <td class="telEmailList"><span>{{ contact.emailPerson }}</span> <i *ngIf="contact.emailPerson" class="cardShadow fas fa-envelope"></i></td>
+                    <td class="telEmailList"> <span>{{ contact.telPerson }}</span> <i *ngIf="contact.telPerson" class="fas fa-phone"></i> </td>
+                    <td class="telEmailList"><span>{{ contact.emailPerson }}</span> <i *ngIf="contact.emailPerson" class=" fas fa-envelope"></i></td>
 
                 </tr>
             </tbody>
