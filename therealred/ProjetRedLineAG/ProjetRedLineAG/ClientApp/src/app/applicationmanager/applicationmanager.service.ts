@@ -119,6 +119,10 @@ export class ApplicationManagerService {
         this.url = 'documents/delete?id=' + id;
         return this.http.delete<any>(this.url);
     }
+    deleteStatut(id: number) {
+        this.url = 'contacts/statut/delete?id=' + id;
+        return this.http.delete<any>(this.url);
+    }
     deletePersonSent(id: number) {
         this.url = 'contacts/sent/delete?id=' + id;
         return this.http.delete<any>(this.url);

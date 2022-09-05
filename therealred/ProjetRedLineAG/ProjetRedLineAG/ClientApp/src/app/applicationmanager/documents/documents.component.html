@@ -2,16 +2,6 @@
 <p *ngIf="!documents"><em>Loading...</em></p>
 <div *ngIf="!documents" class="loader">
 
-    <span></span>
-
-    <span></span>
-
-    <span></span>
-
-    <span></span>
-
-    <span></span>
-
 </div>
 <div class="rowAddDoc">
     <button (click)="addDoc()" role="button" class="button-13 nav-item " [routerLinkActive]="['link-active']">
@@ -29,7 +19,23 @@
 
     </div>
 </div>
-<table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="documents">
+<div class="blockEntreprises">
+
+    <div class="block documentBlock" *ngFor="let document of documents">
+
+        <div *ngIf="documents">
+
+            <span><strong>id:</strong>{{ document.documentId }}</span>
+
+            <span> {{ document.titleDocument }}</span>
+            <i class="fas fa-paste"></i>
+
+        </div>
+        <button class="pointer" (click)="deleteDocument(document.documentId)"><i class="fas fa-trash-alt"></i></button>
+
+    </div>
+</div>
+<!--<table class='col-xl-9 table table-striped' aria-labelledby="tableLabel" *ngIf="documents">
     <thead>
         <tr>
             <th>id</th>
@@ -42,10 +48,9 @@
         <tr *ngFor="let document of documents">
             <td>{{ document.documentId }}</td>
             <td>{{ document.titleDocument }}</td>
-            <td><button class="pointer" (click)="deleteDocument(document.documentId)"><i class="fas fa-trash-alt"></i></button></td>
+            <td></td>
 
         </tr>
     </tbody>
 </table>
-
-
+-->

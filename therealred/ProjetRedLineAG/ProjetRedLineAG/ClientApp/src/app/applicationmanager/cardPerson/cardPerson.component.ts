@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
@@ -22,6 +22,8 @@ export class CardPersonComponent implements OnInit {
     public statut: [any]; 
 
     @Input() id: number;
+
+    @Output() manipulatingLink = new EventEmitter<string>();
     
 
     constructor(private router: Router, private _amService: ApplicationManagerService, private route: ActivatedRoute,) {
@@ -86,8 +88,7 @@ export class CardPersonComponent implements OnInit {
     }
     updateEntreprisePerson(id: number) {
         this._amService.updateEntreprisePerson(id).subscribe(() => {
-            let link = ['/applications'];
-            this.router.navigate(link);
+            this.navigate('contacts'); 
         })
 
     }
@@ -95,14 +96,12 @@ export class CardPersonComponent implements OnInit {
         this.entreprise[0].EntrepriseId = this.id;       
         this.entreprise[0].CommentsEntreprise = this.comment; 
         this._amService.updateCommentEntreprise(this.entreprise[0]).subscribe(() => {
-            let link = ['/applications'];
-            this.router.navigate(link);
+            this.navigate('contacts'); 
         })
     }
     goEditPerson() {
         this._amService.updatePerson(this.person[0]).subscribe(() => {
-            let link = ['/applications'];
-            this.router.navigate(link);
+            this.navigate('contacts'); 
         })
     }
     deletePerson() {
@@ -111,14 +110,18 @@ export class CardPersonComponent implements OnInit {
         if (confirm(text) == true) {
 
             this._amService.deletePerson(this.person[0].id).subscribe(() => {
-                let link = ['/applications'];
-                this.router.navigate(link);
+                this.navigate('contacts');                
             })          
 
         } else {
            return
 
         }
+    }
+    navigate(link: string) {
+
+        this.manipulatingLink.emit(link);
+
     }
 
 }

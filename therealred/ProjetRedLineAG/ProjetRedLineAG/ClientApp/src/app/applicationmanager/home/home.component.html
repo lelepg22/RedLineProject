@@ -8,8 +8,8 @@
         <app-entreprises-component (manipulatingLink)="access($event)" (manipulateWithId)="accessWithId($event.link, $event.id)" *ngIf="link == 'entreprise'"></app-entreprises-component>
 
         <app-contacts-component (manipulatingLink)="access($event)" (manipulateWithId)="accessWithId($event.link, $event.id)" *ngIf="link == 'contacts'"> </app-contacts-component>
-
-        <app-documents-component *ngIf="link == 'documents'"> </app-documents-component>
+        <app-statuts *ngIf="link == 'statuts'"></app-statuts>
+        <app-documents-component (manipulatingLink)="access($event)" *ngIf="link == 'documents'"> </app-documents-component>
 
         <app-formApplication-component (manipulatingLink)="access($event)" *ngIf="link == 'formApp'"></app-formApplication-component>
 
@@ -21,7 +21,7 @@
 
         <app-cardEntreprise-component (manipulatingLink)="accessWithId($event.link, $event.id)" [id]="id" *ngIf="link == 'cardEntreprise'"> </app-cardEntreprise-component>
 
-        <app-cardPerson-component [id]="id" *ngIf="link == 'cardPerson'"> </app-cardPerson-component>
+        <app-cardPerson-component (manipulatingLink)="access($event)" [id]="id" *ngIf="link == 'cardPerson'"> </app-cardPerson-component>
 
         <aside class="col-xl-2">
             <div id="lists">

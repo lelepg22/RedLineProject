@@ -78,7 +78,7 @@ export class CardEntrepriseComponent implements OnInit {
             
             this.entreprises = result;
             if (this.entreprises[0].entreprise.entrepriseId == 1) {
-                alert('uno')
+                
             }
             console.log(this.entreprises)
 

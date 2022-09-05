@@ -29,21 +29,16 @@ namespace ProjetRedLineAG.Controllers
         /* public HomeController(ILogger<HomeController> logger)
          {
              _logger = logger;
-         } */
+         }*/ 
 
         [HttpGet]
         public async Task<IEnumerable<ApplicationModel>> Get()
-        {
-            /*_context.Applications.Add(new ApplicationModel
-            {
-                TitleApplication = "Front",
-              
-            });*/
+        {         
 
             await _context.SaveChangesAsync();
 
             var res = _context.Application.Include(s => s.Entreprise).ToListAsync();
-                //.Include(s => s.Entreprise)
+                
 
 
 
@@ -125,7 +120,7 @@ namespace ProjetRedLineAG.Controllers
             return applications;
 
         }
-        // [Authorize]
+        //[Authorize]
         [HttpPost]
         public async Task<ActionResult<ApplicationModel>> PostApplication(ApplicationModel data)
 

@@ -65,7 +65,7 @@ export class FormApplicationComponent implements OnInit {
         private router: Router) { }
 
     onSubmit(): void {
-        alert("Submit form !");
+        
         this.application.personSent.shift();
         this.application.documentSent.shift();
         //this.personSent.person.shift();        
@@ -98,10 +98,21 @@ export class FormApplicationComponent implements OnInit {
         if (!this.document.documentId) {
             return console.log("Vous n'avez pas choisi de document");
         }
+
         this.application.documentSent.push({ DocumentId: this.document.documentId, ApplicationId: (this.applicId) })
         this.documentsList.push(this.document);
+        var a = this.document;
+        this.documentsList.filter(function (e) {
+
+            e != a;
+            debugger;
+
+        });
+  
+       
         console.log('aqui');
         console.log(this.documentsList);
+        
         
     }
     removeFromDocList(id: number) {
@@ -160,7 +171,13 @@ export class FormApplicationComponent implements OnInit {
     goDoc() {
         this._amService.postDocument(this.newDoc).subscribe(() => {            
             this.add = false;
-            this.ngOnInit();
+            this._amService.getPersonDocEntreprise().subscribe(data => {
+                this.formInfo = data;
+                this.formInfo[1].shift();
+                this.formInfo[0].shift();
+                console.log('etaMenino');
+                console.log(this.formInfo);
+            })
             
         })
 

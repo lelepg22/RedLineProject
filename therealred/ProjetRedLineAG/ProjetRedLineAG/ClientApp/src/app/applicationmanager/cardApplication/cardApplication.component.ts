@@ -224,7 +224,7 @@ export class CardApplicationComponent {
         })
     }
     goDeletePersonSent(id: number) {
-        alert(id);
+        
         this._amService.deletePersonSent(id).subscribe(() => {
             let link = ['/'];
             this.router.navigate(link);

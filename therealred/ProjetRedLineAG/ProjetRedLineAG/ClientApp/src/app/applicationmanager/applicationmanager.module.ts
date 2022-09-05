@@ -27,10 +27,10 @@ import { ApplicationManagerService } from './applicationmanager.service';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ApplicationsComponent } from './applications/applications.component';
+import { StatutsComponent } from './statuts/statuts.component';
 
 @NgModule({
-  declarations: [
-    
+  declarations: [    
    
     HomeComponent,  
     EntreprisesComponent,
@@ -46,7 +46,8 @@ import { ApplicationsComponent } from './applications/applications.component';
     CardApplicationComponent,
     SearchBarComponent,
     FilterPipe,
-    ApplicationsComponent
+    ApplicationsComponent,
+    StatutsComponent
   ],
   imports: [
     CommonModule,

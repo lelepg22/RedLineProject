@@ -1,7 +1,7 @@
 ﻿<div class="cardApplication">
     <div *ngIf="application[0]" class="headerCandidature">
         <p>Id.{{application[0].applicationId}}</p>
-        <h2 *ngIf="application[0].externalLinkApplication" (click)="navigate(application[0].externalLinkApplication)"> {{application[0].titleApplication}}</h2>
+        <h2 class="pointer titleLink" *ngIf="application[0].externalLinkApplication" (click)="navigate(application[0].externalLinkApplication)"> {{application[0].titleApplication}}</h2>
 
         <h2 *ngIf="!application[0].externalLinkApplication"> {{application[0].titleApplication}}</h2>
         <div *ngIf="saved[1]"><input [(ngModel)]="application[0].titleApplication" placeholder="nouveau titre" /> </div>

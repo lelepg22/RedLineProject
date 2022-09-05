@@ -167,6 +167,27 @@ namespace ProjetRedLineAG.Controllers
             return personSent;
 
         }
+       
+        [HttpDelete("statut/delete/")]
+
+        public async Task<ActionResult<StatutModel>> DeleteStatut(int id)
+        {
+                     
+
+            var stat = await _context.Statut.FindAsync(id);
+            if (stat == null)
+            {
+                return NotFound();
+            }
+
+
+            _context.Statut.Remove(stat);
+            await _context.SaveChangesAsync();
+
+            return stat;
+
+        }
+
         [HttpDelete("delete/")]
         public async Task<ActionResult<PersonModel>> DeletePerson(int id)
         {

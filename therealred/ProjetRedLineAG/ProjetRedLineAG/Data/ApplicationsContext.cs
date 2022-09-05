@@ -37,11 +37,12 @@ namespace ProjetRedLineAG.Data
       {
          base.OnModelCreating(modelBuilder);
                   modelBuilder.Entity<PersonModel>().HasOne(e => e.Entreprise).WithMany().OnDelete(DeleteBehavior.NoAction);
-                 // modelBuilder.Entity<PersonModel>().HasOne(e => e.Application).WithMany().OnDelete(DeleteBehavior.SetNull);                
+                  modelBuilder.Entity<PersonModel>().HasOne(e => e.Statut).WithMany().OnDelete(DeleteBehavior.NoAction);
+            // modelBuilder.Entity<PersonModel>().HasOne(e => e.Application).WithMany().OnDelete(DeleteBehavior.SetNull);                
 
 
             //    modelBuilder.Entity<List<EntrepriseModel>>().HasNoKey();
-             modelBuilder.Entity<ApplicationModel>().HasData(
+            modelBuilder.Entity<ApplicationModel>().HasData(
                       new ApplicationModel()
                       {
                           ApplicationId = 1,

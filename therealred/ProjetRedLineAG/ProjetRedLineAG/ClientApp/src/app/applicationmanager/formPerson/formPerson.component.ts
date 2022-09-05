@@ -49,11 +49,11 @@ export class FormPersonComponent implements OnInit {
         private router: Router) { }
 
     onSubmit(): void {
-        alert("Submit form !");
+        
         console.log(this.person);
         this._amService.postPerson(this.person).subscribe(() => {
-            let link = ['/contact'];
-            this.router.navigate(link);
+            
+            this.navigate('contacts'); 
         })
     }
     setStatut(x: any) { 
@@ -80,7 +80,17 @@ export class FormPersonComponent implements OnInit {
     }
     goStatutNew() {
         this._amService.postStatut(this.statut).subscribe(() => {
-            this.ngOnInit();
+            //this.ngOnInit();
+            this.formInfo[3] = null;
+            this._amService.getPersonDocEntreprise().subscribe(data => {
+                this.formInfo = data;
+                this.formInfo[3].shift();
+                this.formInfo[0].shift();
+                console.log('etaMenino');
+                console.log(this.formInfo);
+            })
+        
+
             this.addNewStatut = false;
         })
 

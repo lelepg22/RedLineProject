@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ export class DocumentsComponent implements OnInit {
     public newDoc: any;
     public add: boolean = false;
 
+    @Output() manipulatingLink = new EventEmitter<string>();
 
     constructor(
         private _amService: ApplicationManagerService,
@@ -34,8 +35,8 @@ export class DocumentsComponent implements OnInit {
         if (confirm(text) == true) {
 
             this._amService.deleteDocument(id).subscribe(() => {
-                let link = ['/applications'];
-                this.router.navigate(link);
+                
+                this.ngOnInit();
             })
 
         } else {
@@ -51,9 +52,13 @@ export class DocumentsComponent implements OnInit {
         if (!this.newDoc.titleDocument) {
             return console.log("Vous n'avez pas ajouté de document") }
         this._amService.postDocument(this.newDoc).subscribe(() => {
-            let link = ['/applications'];
-            this.router.navigate(link);
+            this.ngOnInit();
         })
+
+    }
+    navigate(link: string) {
+
+        this.manipulatingLink.emit(link);
 
     }
 

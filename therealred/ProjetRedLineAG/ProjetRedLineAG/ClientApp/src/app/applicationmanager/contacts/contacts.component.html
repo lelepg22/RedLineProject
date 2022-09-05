@@ -2,9 +2,11 @@
         <div *ngIf="!contacts" class="loader">
         </div>
         <button (click)="navigate('formPerson')" role="button" class="button-13 nav-item buttonAddPerson" [routerLinkActive]="['link-active']">
-            <i class="fas fa-user-plus"></i>
+            <i class="fas fa-user-plus"></i>   
         </button>
-        <div class="blockEntreprises">
+        <button (click)="navigate('statuts')" role="button" class="button-13 nav-item buttonStatutsList" [routerLinkActive]="['link-active']">
+            <i class="fas fa-list"></i>  Statuts Liste
+        </button><div class="blockEntreprises">
             <div class="pointer contactBlock block" (click)="navigateWithId('cardPerson',contact.id)" *ngFor="let contact of contacts">
                 <div class="contactBlockName">
                     <span><i class="fas fa-user-tie"></i><strong>{{ contact.statutId }}</strong></span>
@@ -18,7 +20,7 @@
 
             </div>
         </div>
-        <table class='col-xl-9 table table-striped entrepriseTable' aria-labelledby="tableLabel" *ngIf="contacts">
+       <!-- <table class='col-xl-9 table table-striped entrepriseTable' aria-labelledby="tableLabel" *ngIf="contacts">
             <thead>
                 <tr>
                     <th>Statut</th>
@@ -42,5 +44,5 @@
 
                 </tr>
             </tbody>
-        </table>
+        </table> -->
       
