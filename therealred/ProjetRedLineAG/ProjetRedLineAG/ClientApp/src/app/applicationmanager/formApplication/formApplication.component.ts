@@ -32,6 +32,7 @@ export class FormApplicationComponent implements OnInit {
     documentTitle: string = "Documents";
     statutTitle: string = "Statuts";
 
+    public listFilter: any;
     public newDoc: any;
     public add: boolean = false;
 
@@ -98,16 +99,21 @@ export class FormApplicationComponent implements OnInit {
         if (!this.document.documentId) {
             return console.log("Vous n'avez pas choisi de document");
         }
+        var c = this.document.documentId;
+        this.listFilter = this.application.documentSent.filter(function (x) {
+            return x.DocumentId != c
+        })
+        this.application.documentSent = this.listFilter;
 
         this.application.documentSent.push({ DocumentId: this.document.documentId, ApplicationId: (this.applicId) })
-        this.documentsList.push(this.document);
+        console.log(this.application.documentSent);
         var a = this.document;
-        this.documentsList.filter(function (e) {
-
-            e != a;
-            debugger;
-
+        this.listFilter = this.documentsList.filter(function (e) {
+            return e != a;
         });
+        this.documentsList = this.listFilter;
+        this.documentsList.push(this.document);
+       
   
        
         console.log('aqui');
@@ -138,13 +144,27 @@ export class FormApplicationComponent implements OnInit {
         if (!this.person.id) {
             return console.log("Vous n'avez pas choisi une personne");
         }
-        console.log(this.application)
+        console.log(this.application);
+        var a = this.person;
         
-       // this.personSent.person.push({PersonId: this.person.id, ApplicationId: (this.applicId) });
-        
+        this.listFilter = this.personList.person.filter(function (e) {
+            return e != a;
+        });
+
+        this.personList.person = this.listFilter;
         this.personList.person.push(this.person);
+
+        var b = this.person.id;
+
+        this.listFilter = this.application.personSent.filter(function (x) {            
+            return x.PersonId != b
+        })
+        console.log(this.listFilter, "aqui");
+
+        this.application.personSent = this.listFilter;        
+       
         this.application.personSent.push({ PersonId: this.person.id, ApplicationId: (this.applicId) });       
-        console.log('macaco');
+        console.log(this.application.personSent);
         
         
     }

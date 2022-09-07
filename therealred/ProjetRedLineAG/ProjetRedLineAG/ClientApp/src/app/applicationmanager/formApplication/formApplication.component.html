@@ -92,7 +92,7 @@
 
                         </div>
 
-                        <div class="listAndAdd" *ngIf="personList.person[1]">
+                        <div class="listAndAdd" *ngIf="personList.person.length > 0">
                             <ul class="personAddResponsive wrapper">
                                 <li (click)="removeFromPersonList(added.id)" *ngFor="let added of personList.person" class="icon remove icon2 clean addDoc">
                                     <span class="tooltip">Retirer</span>
@@ -100,7 +100,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="listAndAdd" *ngIf="documentsList[1]">
+                        <div class="listAndAdd" *ngIf="documentsList.length > 0">
                             <ul class="wrapper docAddedResponsiv">
                                 <li (click)="removeFromDocList(docs.documentId)" *ngFor="let docs of documentsList" class="icon icon2 remove clean addDoc">
                                     <span class="tooltip">Retirer</span>
@@ -116,7 +116,7 @@
                         <textarea [(ngModel)]="application.CommentsApplication" name="comment"></textarea>
                     </div>
                     <div class="buttonsForm">
-                        <button (click)="onSubmit(application, personSent)" type="button" class="btn btn-success"><i class="fa-solid fa-circle-check"></i></button>
+                        <button (click)="onSubmit()" type="button" class="btn btn-success"><i class="fa-solid fa-circle-check"></i></button>
                         <button (click)="navigate('applications')" type="button" class="btn btn-danger"><i class="fa-solid fa-ban"></i></button>
                     </div>
                 </form>

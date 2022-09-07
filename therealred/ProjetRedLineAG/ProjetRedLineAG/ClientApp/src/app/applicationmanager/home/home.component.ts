@@ -31,8 +31,11 @@ export class HomeComponent implements OnInit {
         this._amService.goHome().subscribe(result => {
             
             console.log(result);
+            
             this.applications = result;
             this.applications.shift();
+            this.applications.reverse();
+            
             
 
         }, error => console.error(error));

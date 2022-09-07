@@ -351,7 +351,7 @@ h1 {
     }
     #handler button{
         max-height: 50px;
-        margin-top:12px;
+        
     }
 
 #collapseListGroup1 {
@@ -557,15 +557,17 @@ app-cardPerson-component{
     }
 .buttonStatutsList {
     float: right;
+    margin-top: 15px;
     margin-right: 12px;
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
 }
     .buttonStatutsList i {
         font-size: 1.1rem;
         margin-right: 10px;
     }
 .buttonAddPerson {
+    margin-top: 15px;
     margin-left:15px;
     width: 55px;
     height: 50px !important;
@@ -937,6 +939,10 @@ h1 {
     display: flex;
     position: relative;
     top: 12px;
+}
+.buttonsFooter div{
+    margin: auto;
+
 }
 .footerCandidature h5 span{
     margin-left: 6px;   
@@ -2064,7 +2070,9 @@ h1 {
     {
         width:82% !important;
     }
-   
-    
+    .applicationBlock span:nth-child(2) i {
+        margin-right: -15%;
+        margin-left: 14%;
+    }
     }
 

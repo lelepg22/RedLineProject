@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -6,7 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent {
-  isExpanded = false;
+  
+  
+ isExpanded = false;
+
+ constructor(private router: Router) {
+    }
+
+    navigate() {
+        window.location.reload();
+    }
 
   collapse() {
     this.isExpanded = false;

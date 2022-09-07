@@ -37,8 +37,7 @@ namespace ProjetRedLineAG.Controllers
 
             await _context.SaveChangesAsync();
 
-            var res = _context.Application.Include(s => s.Entreprise).ToListAsync();
-                
+            var res = _context.Application.Include(s => s.Entreprise).ToListAsync();                
 
 
 

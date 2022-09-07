@@ -38,6 +38,7 @@ export class CardApplicationComponent {
     public saved: [any] = [{}];
     public statutList: [any];
     public update: ApplicationUp;
+    public listFilter: any;
     inputPerson: string = "Personne";
     documentTitle: string = "Documents";
 
@@ -46,6 +47,7 @@ export class CardApplicationComponent {
 
     }
     ngOnInit(): void {
+        
         this.update = new ApplicationUp();
         this.person = new Persons();
         this.personsList = new PersonsList();
@@ -71,6 +73,7 @@ export class CardApplicationComponent {
 
         this._amService.getPersonDocEntreprise().subscribe(data => {
             this.formInfo = data;
+            this.formInfo[1].shift();
             console.log('etaMenino');
             console.log(this.formInfo);
         });
@@ -82,6 +85,7 @@ export class CardApplicationComponent {
 
             // ASSOCIATING persons with persons sentList for the application
             this._amService.getContacts().subscribe(data => {
+
                 this.personList = data;
                 console.log("blog");
                 console.log(this.personList);
@@ -112,9 +116,7 @@ export class CardApplicationComponent {
                     console.log('new');
                     console.log(this.persons);
 
-
                 })
-
 
             })
 
@@ -168,20 +170,39 @@ export class CardApplicationComponent {
         console.log(this.person);
     }
     addContactToList() {
-
-        console.log(this.person);
+        var x = this.person;
+        this.listFilter = this.persons.filter(function (a) {
+           return  a.id == x.id
+        }
+        );
         
-        var data = { ApplicationId: this.application[0].applicationId, PersonId: this.person.id }
-        this.application[0].personSent.push(data);
-        console.log(this.application);
-       
+        if (this.listFilter.length > 0) {
+            return console.log('déjà ajouté');
+        }
+
+        this.listFilter = this.personsList.person.filter(function (e) {
+            return e != x
+        })
+        if (this.listFilter.length == this.personsList.person.length) {
+            var data = { ApplicationId: this.application[0].applicationId, PersonId: this.person.id }
+            this.application[0].personSent.push(data);
+            this._amService.postPersonSent(data).subscribe(x => {
+                this._amService.getApplicationPersonSent(this.id).subscribe(data => {
+                    
+                    this.personSent = data;
+                    console.log('xitaaas');
+                    console.log(this.personSent);
+                })
+                
+            }
+            );
+            console.log(this.application);
+
+        }
+
+        this.personsList.person = this.listFilter;        
         
-        this.personsList.person.push(this.person);         
-        console.log('macaco');
-        console.log(this.personsList);
-        this._amService.postPersonSent(data).subscribe();
-
-
+        this.personsList.person.push(this.person);     
 
     }
     setDocument(x: Documents) {
@@ -189,15 +210,35 @@ export class CardApplicationComponent {
         this.document = x;
 
     }
-    addDocToList() {
-        var data = { DocumentId: this.document.documentId, ApplicationId: this.application[0].applicationId };
-        this.application[0].documentSent.push(data);
-        this.documentsList.push(this.document);       
-         
+    addDocToList() {    
+        var a = this.document;
+        this.listFilter = this.documentsList.filter(function (e) {
+            return e != a;
+        });
+        if (this.listFilter.length == this.documentsList.length) {
+            var find = this.document.titleDocument;
+            if (this.documents.filter(function (z) {
+                return z.titleDocument == find
+            }).length > 0) {
+                return console.log("document déjà ajouté")
+            }
+            var data = { DocumentId: this.document.documentId, ApplicationId: this.application[0].applicationId };
+            this.application[0].documentSent.push(data);
+            this._amService.postDocSent(data).subscribe(x =>
+                this._amService.getApplicationDocSent(this.id).subscribe(data => {
+                this.documentSent = data;
+                
+            }));
+          
+        }
+        console.log(this.documents)
+
+        this.documentsList = this.listFilter;
+        this.documentsList.push(this.document);     
+
         console.log('aqui');
         console.log(this.application);
-        console.log(this.documentList);
-        this._amService.postDocSent(data).subscribe();
+        console.log(this.documentList);        
 
     }
     reloadComponent() {
@@ -217,17 +258,26 @@ export class CardApplicationComponent {
         }
         else { return }
     }
-    goDeleteDocSent(id: number) {
-        this._amService.deleteDocumentSent(id).subscribe(() => {
-            let link = ['/'];
-            this.router.navigate(link);
+    goDeleteDocSent(document: any) {
+        this._amService.deleteDocumentSent(document.id).subscribe(() => {
+            console.log(this.documents);
+            
+            this.listFilter = this.documents.filter(function (x) { return  x != document })
+          
+            this.documents = this.listFilter;
+            
         })
     }
-    goDeletePersonSent(id: number) {
+    goDeletePersonSent(person:any) {
+        console.log(person);
+        console.log("this", this.persons)
+        this.listFilter = this.persons.filter(x => { return x.id != person.id })
         
-        this._amService.deletePersonSent(id).subscribe(() => {
-            let link = ['/'];
-            this.router.navigate(link);
+        this.persons = this.listFilter;
+        this._amService.deletePersonSent(person.personSentId).subscribe(() => {            
+            
+            console.log("aqui")
+            
         })
     }
     updateApplication() {
@@ -244,25 +294,50 @@ export class CardApplicationComponent {
 
     }
     removeFromPersonList(id: number) {
+        
         for (var i = 0; i < this.personsList.person.length; i++) {
             if (this.personsList.person[i].id == id) {
                 console.log(this.personsList.person[i].id + " - " + id);
                 this.personsList.person.splice(i, 1);
-
-
             }
         }
+        this.listFilter = this.personSent.filter(function (a) {
+            return a.personId == id
+        })       
+
+       
+        this._amService.deletePersonSent(this.listFilter[0].id).subscribe(() => {
+            
+            console.log("aqui")
+
+        })
+
 
     }
 
-    removeFromDocList(id: number) {
+    removeFromDocList(doc: any) {
+        console.log(this.documentSent);
+        console.log("bana",this.documentSent.filter(function (a) {
+            return a.documentId == doc.documentId;
+        }))
+        this.listFilter = this.documentSent.filter(function (a) {
+            return a.documentId == doc.documentId;
+        });
+        debugger;
+        this._amService.deleteDocumentSent(this.listFilter[0].id).subscribe(() => {
+            console.log("oia", this.listFilter);
+            
+
+        })
+
         for (var i = 0; i < this.documentsList.length; i++) {
-            if (this.documentsList[i].documentId == id) {
-                console.log(this.documentsList[i].documentId + " - " + id);
+            if (this.documentsList[i].documentId == doc.documentId) {
+                console.log(this.documentsList[i].documentId + " - " + doc.documentId);
                 this.documentsList.splice(i, 1);
 
             }
         }
+        console.log("oi",doc)
 
     }
 

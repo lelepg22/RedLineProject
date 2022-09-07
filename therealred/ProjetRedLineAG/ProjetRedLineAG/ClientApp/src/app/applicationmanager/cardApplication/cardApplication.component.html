@@ -4,25 +4,25 @@
         <h2 class="pointer titleLink" *ngIf="application[0].externalLinkApplication" (click)="navigate(application[0].externalLinkApplication)"> {{application[0].titleApplication}}</h2>
 
         <h2 *ngIf="!application[0].externalLinkApplication"> {{application[0].titleApplication}}</h2>
-        <div *ngIf="saved[1]"><input [(ngModel)]="application[0].titleApplication" placeholder="nouveau titre" /> </div>
+        <div *ngIf="saved.length > 1"><input [(ngModel)]="application[0].titleApplication" placeholder="nouveau titre" /> </div>
 
 
     </div>
 
         <h4 *ngIf="application[0]"> {{application[0].statusApplication}}</h4>
-        <h4 *ngIf="saved[1]"><input [(ngModel)]="application[0].statusApplication" placeholder="nouveau statut" /> </h4>
+        <h4 *ngIf="saved.length > 1"><input [(ngModel)]="application[0].statusApplication" placeholder="nouveau statut" /> </h4>
         <div class="mainCandidature">
             <div class="docEnvoye">
                 <span class="docSent"> <i class="fa-solid fa-file-circle-check"></i></span>
-                <ul *ngIf="documents[1]">
+                <ul *ngIf="documents.length > 0">
 
                     <li class="clean" *ngFor="let document of documents">
                         {{document.titleDocument}}
-                        <button class="pointer" (click)=goDeleteDocSent(document.id) *ngIf="saved[1]"><i class="fas fa-trash-alt"></i></button>
+                        <button class="pointer" (click)="goDeleteDocSent(document)" *ngIf="saved[1]"><i class="fas fa-trash-alt"></i></button>
 
                     </li>
                 </ul>
-                <div *ngIf="saved[1]" class="docSelectFormCandidature">
+                <div *ngIf="saved.length > 1" class="docSelectFormCandidature">
                     <div class="buttonFormList listAndAdd">
                         <div class="btn-group">
                             <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -42,7 +42,7 @@
                     </div>
                     <div class="listAndAdd" *ngIf="application[0].documentSent[0]">
                         <ul class="wrapper">
-                            <li (click)="removeFromDocList(docs.documentId)" *ngFor="let docs of documentsList" class="docAdded remove icon clean addDoc">
+                            <li (click)="removeFromDocList(docs)" *ngFor="let docs of documentsList" class="docAdded remove icon clean addDoc">
                                 <span class="tooltip">{{docs.titleDocument}}</span>
                                 <span>{{docs.titleDocument}}</span>
                             </li>
@@ -62,7 +62,7 @@
                         {{application[0].commentsApplication}}
                     </p>
                 
-                <div *ngIf="saved[1]">
+                <div *ngIf="saved.length > 1">
                     <div style="z-index:-2">
 
                         <textarea placeholder="Nouveau commentaire" [(ngModel)]="application[0].commentsApplication">{{application[0].commentsApplication}} 
@@ -72,10 +72,10 @@
             </div>
             <div *ngIf="personSent" id="contactEntreprise">
                 <ul>
-                    <li *ngFor="let person of persons" class="pointer" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardPerson', person.id)">
-                        <span>{{person.firstNamePerson}} {{person.lastNamePerson}}</span> <strong>  {{person.statutId}} <i class="fas fa-user-tie"></i></strong><span class="removePerson">
+                    <li *ngFor="let person of persons" class="pointer" [routerLinkActive]="['link-active']">
+                        <span class="pointer" (click)="navigateWithId('cardPerson', person.id)">{{person.firstNamePerson}} {{person.lastNamePerson}}</span> <strong>  {{person.statutId}} <i class="fas fa-user-tie"></i></strong><span class="removePerson">
 
-                            <button class="pointer" (click)=goDeletePersonSent(person.personSentId) *ngIf="saved[1]"><i class="fas fa-trash-alt"></i></button>
+                            <button class="pointer" (click)="goDeletePersonSent(person)" *ngIf="saved[1]"><i class="fas fa-trash-alt"></i></button>
                         </span>
                     </li>
                 </ul>
@@ -85,7 +85,7 @@
                 <h5 *ngIf="entreprise" class="nav-item pointer" [routerLinkActive]="['link-active']" (click)="navigateWithId('cardEntreprise', entreprise[0].entrepriseId) ">
                     <i class="fas fa-industry"></i> <span>{{entreprise[0].titleEntreprise}}</span>
                 </h5>
-                <div class="listAndAdd personEditCardApplication" *ngIf="saved[1]">
+                <div class="listAndAdd personEditCardApplication" *ngIf="saved.length > 1">
 
                     <div class="inputButton btn-group">
                         <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -129,5 +129,6 @@
 
 
         </div>
+    </div>
     </div>
     
