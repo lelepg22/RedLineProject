@@ -22,7 +22,9 @@ namespace ProjetRedLineAG.Controllers
         }
 
 
+#pragma warning disable CS0169 // Le champ 'ContactsController._logger' n'est jamais utilisé
         private readonly ILogger<ContactsController> _logger;
+#pragma warning restore CS0169 // Le champ 'ContactsController._logger' n'est jamais utilisé
 
 
         [HttpPost]

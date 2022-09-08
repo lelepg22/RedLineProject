@@ -24,7 +24,9 @@ namespace ProjetRedLineAG.Controllers
         }
 
 
+#pragma warning disable CS0169 // Le champ 'HomeController._logger' n'est jamais utilisé
         private readonly ILogger<HomeController> _logger;
+#pragma warning restore CS0169 // Le champ 'HomeController._logger' n'est jamais utilisé
 
         /* public HomeController(ILogger<HomeController> logger)
          {

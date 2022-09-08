@@ -15,6 +15,7 @@ import { PersonSent } from '../models/PersonSent';
 
 })
 export class FormEntrepriseComponent implements OnInit {
+
     @Input() application: ApplicationEntreprisePerson;
     @Input() entreprise: Entreprises;
     @Input() formInfo: [any, any, any, any];

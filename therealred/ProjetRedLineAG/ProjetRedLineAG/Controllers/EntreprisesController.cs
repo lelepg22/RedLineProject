@@ -21,7 +21,9 @@ namespace ProjetRedLineAG.Controllers
         }
 
 
+#pragma warning disable CS0169 // Le champ 'EntreprisesController._logger' n'est jamais utilisé
         private readonly ILogger<EntreprisesController> _logger;
+#pragma warning restore CS0169 // Le champ 'EntreprisesController._logger' n'est jamais utilisé
 
         /*public EntreprisesController(ILogger<EntreprisesController> logger)
         {

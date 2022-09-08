@@ -4,46 +4,7 @@
                 <form (ngSubmit)="onSubmit()" #entrepriseForm="ngForm">
                     <div class="inputEntreprise"><i class="fa-solid fa-industry"></i> <input [(ngModel)]="entreprise.TitleEntreprise" class="inputGde" name="entrepriseTitle" type="url" placeholder="Nom Entreprise"></div>
                     <div class="inputEntreprise"><i class="fas fa-link"></i><input [(ngModel)]="entreprise.LinkEntreprise" class="inputGde" name="entrepriseSite" placeholder="Site Web Entreprise"></div>
-
-                    <!--  If i Decide to Add Person that works on entreprise in the form entreprise
-
-                       <div class="contactFormCandidature">
-
-                            <div class="listAndAdd">
-
-            <div class="inputButton btn-group">
-                <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-
-                    {{inputPerson}}
-                </button>
-
-                <ul class="wrapper">
-                    <li (click)="addContactToList()" class="icon addDoc">
-                        <span class="tooltip">Ajouter</span>
-                        <span><i class="fas fa-plus"></i></span>
-                    </li>
-                </ul>
-                <ul *ngIf="formInfo" class="dropdown-menu">
-                    <li *ngFor="let person of formInfo[1]" (click)="setPerson(person)">{{person.lastNamePerson}} {{person.firstNamePerson}} </li>
-                </ul>
-            </div>
-
-            <button (click)="navigate('formPerson')" role="button" class="button-13 nav-item" [routerLinkActive]="['link-active']">
-                <i class="fas fa-user-plus"></i>
-            </button>
-
-        </div>
-
-        <div class="listAndAdd" *ngIf="personList.person[1]">
-            <ul class="wrapper">
-                <li (click)="removeFromPersonList(added.id)" *ngFor="let added of personList.person" class="icon remove icon2 clean addDoc">
-                    <span class="tooltip">Retirer</span>
-                    <span>{{added.firstNamePerson}} {{ "  " }} {{added.lastNamePerson}} </span>
-                </li>
-            </ul>
-        </div>
-
-    </div>   -->
+                                     
                     <div class="comment">
                         <h3>Commentaires</h3>
                         <textarea [(ngModel)]="entreprise.CommentsEntreprise" name="comment"></textarea>
