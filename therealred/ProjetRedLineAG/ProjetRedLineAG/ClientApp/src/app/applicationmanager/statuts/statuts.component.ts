@@ -22,19 +22,15 @@ export class StatutsComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit() {
-        this._amService.goStatuts().subscribe(result => {
-            console.log(result);
+        this._amService.goStatuts().subscribe(result => {            
             this.statuts = result;
             this.statuts.shift();
         }, error => console.error(error));
         this.newStatut = new Statut;
 
-        this._amService.goContact().subscribe(result => {
-            console.log('BELEZA');
+        this._amService.goContact().subscribe(result => {            
             this.contacts = result;
-            this.contacts.shift();
-            //this.contacts.forEach(x=> 
-            console.log(this.contacts);
+            this.contacts.shift();            
         }, error => console.error(error));
     }
 
@@ -47,8 +43,7 @@ export class StatutsComponent implements OnInit {
                 if (x.statutId == id) {
                     x.statutId = 1;
                     this._amService.updatePerson(x).subscribe(result => {
-                        console.log('resu');
-                        console.log(result);
+                        console.log('updated');                        
                     })
                 }
             }

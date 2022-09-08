@@ -21,7 +21,7 @@ export class EntreprisesComponent implements OnInit {
     }
     ngOnInit(): void {
         this._amService.goEntreprise().subscribe(result => {
-            console.log(result);
+            
             this.entreprises = result;
             this.entreprises.shift();
             this.do();

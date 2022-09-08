@@ -41,8 +41,7 @@ export class FilterPipe implements PipeTransform {
 
         return items.filter(it => {
           // * type 1 : TitleApplicatio-- type 2 : Entreprise-- type 3 : Status;
-            if (type == 1) {
-                console.log(type)
+            if (type == 1) {                
                 return it.titleApplication.toLocaleLowerCase().includes(searchText);
             }
             if (type == 2) {

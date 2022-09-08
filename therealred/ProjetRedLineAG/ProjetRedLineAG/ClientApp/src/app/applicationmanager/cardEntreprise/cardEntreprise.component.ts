@@ -35,13 +35,10 @@ export class CardEntrepriseComponent implements OnInit {
         
         this._amService.getEntreprisePerson(this.id).subscribe(result => {
             
-            console.log('batato');
-            console.log(result);
             this.persons = result;            
             
             if (this.persons.length > 0) {
-                this._amService.goStatuts().subscribe(result => {
-                    console.log('statuts');
+                this._amService.goStatuts().subscribe(result => {                    
                     this.statutList = result;
 
                     this.persons.forEach(x => {
@@ -51,14 +48,11 @@ export class CardEntrepriseComponent implements OnInit {
                             }
                         })
                     })
-                    console.log(this.statutList);
-                    console.log('new');
-                    console.log(this.persons);
-                    
+                                       
 
                 }, error => console.error(error));
             }
-            console.log(this.persons);
+            
         })
         this._amService.getEntreprise(this.id).subscribe(result => {
           
@@ -66,21 +60,17 @@ export class CardEntrepriseComponent implements OnInit {
             if (result.length < 1) {
                  this._amService.getEntrepriseNoApplication(this.id).subscribe(result => {
                   
-                     this.entreprise = result;
-                   
-                     console.log('biito');
-                    console.log(this.entreprise);
+                     this.entreprise = result;                   
+                    
                  });
                 return 
-
             }
-            console.log("oxi");
-            
+                        
             this.entreprises = result;
             if (this.entreprises[0].entreprise.entrepriseId == 1) {
                 
             }
-            console.log(this.entreprises)
+            
 
 
         }, error => console.error(error));

@@ -30,13 +30,13 @@ export class ContactsComponent implements OnInit {
        
 
         this._amService.goContact().subscribe(result => {
-            console.log('BELEZA');
+           
             this.contacts = result;
-            this.contacts.shift();
-            //this.contacts.forEach(x=> 
-            console.log(this.contacts);
+
+            this.contacts.shift(); 
+            
             this._amService.goStatuts().subscribe(result => {
-                console.log('statuts');
+               
                 this.statutList = result;
 
                 this.contacts.forEach(x => {
@@ -45,10 +45,7 @@ export class ContactsComponent implements OnInit {
                             x.statutId = y.titleStatut                           
                         }
                         })
-                    })
-                console.log(this.statutList);
-                console.log('new');
-                console.log(this.contacts);
+                    })              
 
             }, error => console.error(error));
         }, error => console.error(error));

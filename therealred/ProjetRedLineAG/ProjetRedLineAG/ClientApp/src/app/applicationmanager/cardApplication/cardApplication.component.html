@@ -72,8 +72,8 @@
             </div>
             <div *ngIf="personSent" id="contactEntreprise">
                 <ul>
-                    <li *ngFor="let person of persons" class="pointer" [routerLinkActive]="['link-active']">
-                        <span class="pointer" (click)="navigateWithId('cardPerson', person.id)">{{person.firstNamePerson}} {{person.lastNamePerson}}</span> <strong>  {{person.statutId}} <i class="fas fa-user-tie"></i></strong><span class="removePerson">
+                    <li *ngFor="let person of persons" class="pointer" (click)="navigateWithId('cardPerson', person.id)" [routerLinkActive]="['link-active']">
+                        <span class="pointer">{{person.firstNamePerson}} {{person.lastNamePerson}}</span> <strong>  {{person.statutId}} <i class="fas fa-user-tie"></i></strong><span class="removePerson">
 
                             <button class="pointer" (click)="goDeletePersonSent(person)" *ngIf="saved.length > 1"><i class="fas fa-trash-alt"></i></button>
                         </span>

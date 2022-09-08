@@ -12,7 +12,7 @@
                     <span><i class="fas fa-user-tie"></i><strong>{{ contact.statutId }}</strong></span>
                     <span>{{ contact.firstNamePerson }} {{ contact.lastNamePerson }}</span>
                 </div>
-                <span (click)="navigateWithId('cardEntreprise', contact.entreprise.entrepriseId)">
+                <span class="pointer" (click)="navigateWithId('cardEntreprise', contact.entreprise.entrepriseId)">
                     <i class="fa-solid fa-industry"></i>  {{ contact.entreprise.titleEntreprise }}</span>
 
                 <span> <i class="fas fa-envelope"></i> <span>{{ contact.emailPerson }}</span></span>

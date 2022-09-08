@@ -37,40 +37,32 @@ export class FormEntrepriseComponent implements OnInit {
         this.personSent = new PersonSent();
 
         this._amService.goEntreprise().subscribe(data => {
-            console.log("debuga");
-            console.log(data);
+           
             this.entrepriId = data[data.length - 1].entrepriseId;
-
 
         })
 
         this._amService.goHome().subscribe(data => {
-            console.log("debuga");
-            console.log(data);
+            
             this.applicId = data[data.length - 1].applicationId;
 
         })
 
         this._amService.getPersonDocEntreprise().subscribe(data => {
-            this.formInfo = data;
-            console.log('etaMenino');
-            console.log(this.formInfo);
+            this.formInfo = data;          
         })
     }
     constructor(
         private _amService: ApplicationManagerService,
         private router: Router) { }
     onSubmit(): void {
-
-        console.log(this.entreprise);
+        
         if (!this.entreprise.TelEntreprise) {
             this.entreprise.TelEntreprise = "Non informé";
         }
         if (!this.entreprise.EmailEntreprise) {
             this.entreprise.EmailEntreprise = "Non informé";
-
-        }
-        
+        }        
         this._amService.postEntreprise(this.entreprise).subscribe(() => {
             let link = ['/entreprise'];
             this.router.navigate(link);
@@ -79,8 +71,7 @@ export class FormEntrepriseComponent implements OnInit {
     setPerson(x: any) {
 
         this.person = x;
-        this.inputPerson = x.firstNamePerson + " " + x.lastNamePerson;
-        console.log(this.person);
+        this.inputPerson = x.firstNamePerson + " " + x.lastNamePerson;        
     }
 
     navigate(link: string) {

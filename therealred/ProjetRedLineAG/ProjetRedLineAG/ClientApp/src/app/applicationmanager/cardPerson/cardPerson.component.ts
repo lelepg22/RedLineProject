@@ -19,7 +19,7 @@ export class CardPersonComponent implements OnInit {
     public person: [Persons];
     public edit: boolean = false;
     public comment: string;
-    public statut: [any]; 
+    public statut: any; 
 
     @Input() id: number;
 
@@ -30,52 +30,37 @@ export class CardPersonComponent implements OnInit {
 
     }
     ngOnInit(): void {
-        
+      
         this._amService.getPerson(this.id).subscribe(result => {
-
-            console.log('person');
-            console.log(result);
+           
             this.person = result;
-            console.log(this.person);
+           
             this._amService.getEntreprise(this.person[0].entrepriseId).subscribe(result => {
 
                 if (result.length < 1) {
                     this._amService.getEntrepriseNoApplication(this.person[0].entrepriseId).subscribe(result => {
-
-                        console.log('fefe');
-                        console.log(result);
-
-                        this.entreprise = result;                        
-
-                        console.log(this.entreprise);
+                        
+                        this.entreprise = result;   
+                        
                     });
                     return
 
-                }
-                console.log("linda");
+                }                
                 
-                this.entreprises = result;
-                console.log(this.entreprises);
+                this.entreprises = result[0];          
               
-               
-
-
             }, error => console.error(error));
             this._amService.getStatut(this.person[0].statutId).subscribe(result => {
-
-                console.log('statut');
-                console.log(result);
-                this.statut = result;
-                console.log(this.persons);
+                                
+                this.statut = result[0];
+               
             })
             
         })
         this._amService.getEntreprisePerson(this.id).subscribe(result => {
             
-            console.log('batato');
-            console.log(result);
             this.persons = result;
-            console.log(this.persons);
+           
         })
        
 

@@ -140,9 +140,7 @@ export class ApplicationManagerService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
        
-        this.url = '/home';
-        console.log(data);
-        console.log('dapplic');
+        this.url = '/home';        
         
         return this.http.put<ApplicationEntreprisePerson>(this.url, data[0], httpOptions);
     }
@@ -153,8 +151,7 @@ export class ApplicationManagerService {
         }
 
         this.url = '/entreprises/comment';
-        console.log(data);
-        console.log('dapplic');        
+            
 
         return this.http.put<Entreprises>(this.url, data, httpOptions);
     }
@@ -163,8 +160,7 @@ export class ApplicationManagerService {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
         this.url = '/entreprises/persons?id=' + id; 
-        console.log(id);
-        console.log('dapplic');
+        
 
         return this.http.put<number>(this.url, id, httpOptions);
     }
@@ -174,8 +170,7 @@ export class ApplicationManagerService {
         }        
         
         this.url = '/contacts/update';
-        console.log(data);
-        console.log('dapplic');
+       
 
         return this.http.put<Persons>(this.url, data, httpOptions);
 
@@ -185,8 +180,7 @@ export class ApplicationManagerService {
     postApplication(data: ApplicationEntreprisePerson) {
         this.url = 'home/';
        //this.url2 = 'contacts/personSent';
-        console.log(data);
-        console.log('dada submit');
+        
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
@@ -197,8 +191,7 @@ export class ApplicationManagerService {
     }
     postEntreprise(data: Entreprises): Observable<ApplicationEntreprisePerson> {
         this.url = 'entreprises';
-        console.log(data);
-        console.log('dada submit');
+        
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
@@ -208,8 +201,7 @@ export class ApplicationManagerService {
     }
     postPerson(data: Persons): Observable<ApplicationEntreprisePerson> {
         this.url = '/contacts';
-        console.log(data);
-        console.log('dada submit');
+    
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
@@ -220,8 +212,7 @@ export class ApplicationManagerService {
     postPersonSent(data: PersonSent): Observable<PersonSent> {      
         
         this.url = '/Contacts/sent';
-        console.log(data);
-        console.log('dada submit');
+        
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
@@ -231,8 +222,7 @@ export class ApplicationManagerService {
     postStatut(data: Statut): Observable<Statut> {
 
         this.url = '/Contacts/statut';
-        console.log(data);
-        console.log('dada submit');
+    
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
@@ -242,8 +232,7 @@ export class ApplicationManagerService {
     postDocSent(data: DocumentSent): Observable<DocumentSent> {
 
         this.url = '/documents/sent';
-        console.log(data);
-        console.log('dada submit');
+       
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }
@@ -253,8 +242,7 @@ export class ApplicationManagerService {
     postDocument(data: Document): Observable<Document> {
 
         this.url = '/documents';
-        console.log(data);
-        console.log('dada submit');
+       
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }

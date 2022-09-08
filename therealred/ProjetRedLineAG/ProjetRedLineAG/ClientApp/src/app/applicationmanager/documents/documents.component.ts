@@ -22,8 +22,7 @@ export class DocumentsComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit() {
-        this._amService.goDocuments().subscribe(result => {
-            console.log(result);
+        this._amService.goDocuments().subscribe(result => {            
             this.documents = result;            
         }, error => console.error(error));
         this.newDoc = new Documents;

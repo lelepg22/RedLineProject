@@ -38,9 +38,7 @@ export class FormPersonComponent implements OnInit {
         this._amService.getPersonDocEntreprise().subscribe(data => {
             this.formInfo = data;
             this.formInfo[3].shift();
-            this.formInfo[0].shift();
-            console.log('etaMenino');
-            console.log(this.formInfo);
+            this.formInfo[0].shift();           
         })
     }
 
@@ -49,8 +47,7 @@ export class FormPersonComponent implements OnInit {
         private router: Router) { }
 
     onSubmit(): void {
-        
-        console.log(this.person);
+                
         this._amService.postPerson(this.person).subscribe(() => {
             
             this.navigate('contacts'); 
@@ -85,11 +82,8 @@ export class FormPersonComponent implements OnInit {
             this._amService.getPersonDocEntreprise().subscribe(data => {
                 this.formInfo = data;
                 this.formInfo[3].shift();
-                this.formInfo[0].shift();
-                console.log('etaMenino');
-                console.log(this.formInfo);
+                this.formInfo[0].shift();               
             })
-        
 
             this.addNewStatut = false;
         })
