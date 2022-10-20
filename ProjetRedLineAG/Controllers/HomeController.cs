@@ -139,7 +139,7 @@ namespace ProjetRedLineAG.Controllers
         public async Task<ActionResult<ApplicationModel>> UpdateApplication(ApplicationModel data)
 
         {
-
+          
             _context.Entry(data).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();

@@ -272,7 +272,7 @@ namespace ProjetRedLineAG.Migrations
                         {
                             ApplicationId = 1,
                             EntrepriseId = 1,
-                            TimeApplication = new DateTime(2022, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TimeApplication = new DateTime(2022, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             TitleApplication = "Non renseigné"
                         });
                 });
@@ -574,7 +574,7 @@ namespace ProjetRedLineAG.Migrations
                     b.HasOne("ProjetRedLineAG.Models.EntrepriseModel", "Entreprise")
                         .WithMany()
                         .HasForeignKey("EntrepriseId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 

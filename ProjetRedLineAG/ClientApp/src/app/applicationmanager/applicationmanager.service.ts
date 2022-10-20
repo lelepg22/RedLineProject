@@ -143,8 +143,12 @@ export class ApplicationManagerService {
         this.url = '/home';
         console.log(data);
         console.log('dapplic');
-        
-        return this.http.put<ApplicationEntreprisePerson>(this.url, data[0], httpOptions);
+        if (data[0]) {
+            return this.http.put<ApplicationEntreprisePerson>(this.url, data[0], httpOptions);
+        }
+        else {
+            return this.http.put<ApplicationEntreprisePerson>(this.url, data, httpOptions);
+        }
     }
 
     updateCommentEntreprise(data: Entreprises) {

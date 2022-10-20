@@ -1,0 +1,72 @@
+To install Swagger - 
+
+
+Install-Package Swashbuckle.AspNetCore /console gestionaire nu get
+
+
+Startup.cs
+
+--- 
+
+ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FilLive Rouge V1");
+
+                // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
+                //c.RoutePrefix = string.Empty;
+            });
+			
+			
+---
+
+ public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddDbContext<ApplicationsContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("ApplicationsContext")));
+
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationsContext>();
+
+            services.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, ApplicationsContext>();
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "FilLive Rouge API",
+                    Version = "v1",
+                    Description = "Description for the API goes here.",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Ankush Jain",
+                        Email = string.Empty,
+                        Url = new Uri("https://mydns.com"),
+                    },
+                });
+            });
+
+-----

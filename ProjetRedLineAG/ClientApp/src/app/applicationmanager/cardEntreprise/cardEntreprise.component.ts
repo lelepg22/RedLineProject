@@ -96,6 +96,17 @@ export class CardEntrepriseComponent implements OnInit {
         
         if (confirm(text) == true) {
             if (this.persons.length > 0) {
+                
+                if (this.entreprises.length > 0) {
+                   
+                    this.entreprises.forEach(data => {
+                        data.entrepriseId = 1;
+                        this._amService.updateApplication(data).subscribe(() => {
+                            console.log('updated entreprise')
+                            alert('aqusi')
+                        })
+                    })
+                }
                 this.persons.forEach(x => {
                     this.statutList.forEach(y => {
                         if (y.titleStatut == x.statutId) {
@@ -119,6 +130,17 @@ export class CardEntrepriseComponent implements OnInit {
                 })
             } 
             if (this.persons.length < 1) {
+                
+                if (this.entreprises.length > 0) {
+                    
+                    this.entreprises.forEach(data => {
+                        data.entrepriseId = 1;
+                        this._amService.updateApplication(data).subscribe(() => {
+                            console.log('updated entreprise')
+                        })
+                    })                   
+                }
+
                 this._amService.deleteEntreprise(id).subscribe(() => {
                     let link = ['/applications'];
                     this.router.navigate(link);

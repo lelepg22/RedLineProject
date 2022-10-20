@@ -49,8 +49,9 @@ namespace ProjetRedLineAG.Controllers
         [HttpDelete("delete/")]
 
         public async Task<ActionResult<EntrepriseModel>> DeleteEntreprise(int id)
-        {            
-
+        {         
+           
+            
 
             var entreprise = await _context.Entreprise.FindAsync(id);
             if (entreprise == null)
