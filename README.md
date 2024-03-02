@@ -1,8 +1,10 @@
 # Gestionnaire de Candidatures
 
-- [Version Française 🇫🇷 🧀 🥖 🥐](#version-française)
-- [English Version 🇬🇧  💂🫖 👑](#english-version)
-- [Versão Portuguesa 🇧🇷 ⚽ ☀️ 🥸](#versão-portuguesa)
+- [🇫🇷 Version Française 🧀 🥖 🥐](#version-française)
+
+- [🇬🇧 English Version 💂 🫖 👑](#english-version)
+
+- [🇧🇷-PT Versão Portuguesa ⚽ ☀️ 🥸](#versão-portuguesa)
 
 
 ## Version Française
