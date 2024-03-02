@@ -58,8 +58,9 @@ Exécutez `Get-Package` dans votre console pour lister les paquets installés :
 - Exécutez IIS Express dans Visual Studio
 
 - PS :🚨 Une erreur de proxy 4200 se produira si IIS est exécuté avant Angular.
-
-
+<br>
+<br>
+<br>
 
 
 ## English Version
@@ -112,6 +113,9 @@ Run `Get-Package` in your console to list installed packages:
 - Run IIS Express in Visual Studio
 
 - PS:🚨 A proxy error 4200 will occur if IIS is run before Angular.
+<br>
+<br>
+<br>
 
 
 ## Versão Portuguesa
