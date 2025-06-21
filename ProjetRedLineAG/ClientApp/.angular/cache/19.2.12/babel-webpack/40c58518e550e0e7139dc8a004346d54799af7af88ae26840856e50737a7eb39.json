@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Persons {\n  id;\n  LastNamePerson;\n  FirstNamePerson;\n  TelPerson;\n  EmailPerson;\n  CommentsPerson;\n  entrepriseId = 1;\n  statutId = 1;\n  ApplicationId = 1;\n  Statut = [{}];\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

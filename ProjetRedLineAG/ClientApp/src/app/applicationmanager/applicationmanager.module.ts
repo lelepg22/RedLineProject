@@ -7,9 +7,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { NavMenuComponent } from '../nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
-import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { EntreprisesComponent } from './entreprises/entreprises.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { DocumentsComponent } from './documents/documents.component';
@@ -30,9 +27,17 @@ import { ApplicationsComponent } from './applications/applications.component';
 import { StatutsComponent } from './statuts/statuts.component';
 
 @NgModule({
-  declarations: [    
-   
-    HomeComponent,  
+  declarations: [       
+ 
+  ],
+    imports: [
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    RouterModule,
+    HomeComponent,
+    BrowserModule,
     EntreprisesComponent,
     ContactsComponent,
     DocumentsComponent,
@@ -43,22 +48,16 @@ import { StatutsComponent } from './statuts/statuts.component';
     ProfileComponent,
     CardEntrepriseComponent,
     CardPersonComponent,
-    CardApplicationComponent,
-    SearchBarComponent,
+    CardApplicationComponent,  
     FilterPipe,
     ApplicationsComponent,
-    StatutsComponent
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ApiAuthorizationModule,
-    AppRoutingModule,
+    StatutsComponent,
+    AppComponent,
+    NavMenuComponent,
+    SearchBarComponent
   
   ],
-  providers: [
-      { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+  providers: [      
       ApplicationManagerService
   ],
  

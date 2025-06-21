@@ -1,22 +1,25 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { Application } from '../models/Application';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
 
 
 
 @Component({
+    standalone: true,
     selector: 'app-home',
     templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    styleUrls: ['./home.component.css'],
+    imports: [SearchBarComponent, RouterModule]
 })
 export class HomeComponent implements OnInit {
 
-    public applications : [any];
-    public application: Application;
+    public applications! : [any];
+    public application!: Application;
     public link: string = "applications";
-    public id: number;
+    public id!: number;
 
     public applicationsList: boolean = true;
    

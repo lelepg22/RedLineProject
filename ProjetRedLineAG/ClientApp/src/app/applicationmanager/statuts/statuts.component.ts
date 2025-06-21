@@ -1,19 +1,21 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
 import { Statut } from '../models/Statut';
 
 @Component({
+  standalone: true,
   selector: 'app-statuts',
   templateUrl: './statuts.component.html',
-  styleUrls: ['../home/home.component.css']
+  styleUrls: ['../home/home.component.css'],
+  imports: [RouterModule]
 })
 export class StatutsComponent implements OnInit {
 
     public statuts: any;
     public newStatut: any;
     public add: boolean = false;
-    public contacts: [any];
+    public contacts!: [any];
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
@@ -46,7 +48,7 @@ export class StatutsComponent implements OnInit {
             this.contacts.forEach(x => {
                 if (x.statutId == id) {
                     x.statutId = 1;
-                    this._amService.updatePerson(x).subscribe(result => {
+                    this._amService.updatePerson(x).subscribe((result :any) => {
                         console.log('resu');
                         console.log(result);
                     })

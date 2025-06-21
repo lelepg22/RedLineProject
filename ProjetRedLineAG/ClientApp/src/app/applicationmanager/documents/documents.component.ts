@@ -1,17 +1,18 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Documents } from '../models/Documents';
 
 @Component({
+    standalone: true, 
     selector: 'app-documents-component',
     templateUrl: './documents.component.html',
-    styleUrls: ['../home/home.component.css']
-
+    styleUrls: ['../home/home.component.css'],
+    imports: [RouterModule]
 })
 export class DocumentsComponent implements OnInit {
-    public documents: Document[];
+    public documents!: Document[];
     public newDoc: any;
     public add: boolean = false;
 

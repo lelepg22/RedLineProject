@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Entreprises {\n  EntrepriseId;\n  TitleEntreprise;\n  CommentsEntreprise;\n  LinkEntreprise;\n  StatusApplication;\n  TelEntreprise;\n  EmailEntreprise;\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

@@ -135,7 +135,7 @@ export class ApplicationManagerService {
 
     //put
 
-    updateApplication(data: ApplicationEntreprisePerson) {     
+    updateApplication(data: ApplicationEntreprisePerson[]) {     
         const httpOptions = {
             headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         }

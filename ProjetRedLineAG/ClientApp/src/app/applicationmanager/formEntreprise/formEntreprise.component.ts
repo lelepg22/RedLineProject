@@ -1,27 +1,30 @@
 ﻿import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePerson';
 import { Entreprises } from '../models/Entreprises';
 import { Persons } from '../models/Persons';
 import { PersonsList } from '../models/PersonsList';
 import { PersonSent } from '../models/PersonSent';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+    standalone: true, 
     selector: 'app-formEntreprise-component',
     templateUrl: './formEntreprise.component.html',
-    styleUrls: ['../home/home.component.css']
+    styleUrls: ['../home/home.component.css'],
+    imports: [FormsModule]
 
 })
 export class FormEntrepriseComponent implements OnInit {
 
-    @Input() application: ApplicationEntreprisePerson;
-    @Input() entreprise: Entreprises;
-    @Input() formInfo: [any, any, any, any];
-    @Input() person: Persons;
-    @Input() personList: PersonsList;
-    @Input() personSent: PersonSent;
+    @Input() application!: ApplicationEntreprisePerson;
+    @Input() entreprise!: Entreprises;
+    @Input() formInfo!: [any, any, any, any];
+    @Input() person!: Persons;
+    @Input() personList!: PersonsList;
+    @Input() personSent!: PersonSent;
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
@@ -36,7 +39,7 @@ export class FormEntrepriseComponent implements OnInit {
         this.personList = new PersonsList();
         this.personSent = new PersonSent();
 
-        this._amService.goEntreprise().subscribe(data => {
+        this._amService.goEntreprise().subscribe((data: string | any[]) => {
             console.log("debuga");
             console.log(data);
             this.entrepriId = data[data.length - 1].entrepriseId;
@@ -44,14 +47,14 @@ export class FormEntrepriseComponent implements OnInit {
 
         })
 
-        this._amService.goHome().subscribe(data => {
+        this._amService.goHome().subscribe((data: string | any[]) => {
             console.log("debuga");
             console.log(data);
             this.applicId = data[data.length - 1].applicationId;
 
         })
 
-        this._amService.getPersonDocEntreprise().subscribe(data => {
+        this._amService.getPersonDocEntreprise().subscribe((data: [any, any, any, any]) => {
             this.formInfo = data;
             console.log('etaMenino');
             console.log(this.formInfo);

@@ -1,16 +1,18 @@
 ﻿import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ApplicationManagerService } from '../applicationmanager.service';
 
 @Component({
+    standalone: true, 
     selector: 'app-entreprises-component',
     templateUrl: './entreprises.component.html',
-    styleUrls: ['../home/home.component.css']
+    styleUrls: ['../home/home.component.css'],
+    imports: [RouterModule]
 
 })
 export class EntreprisesComponent implements OnInit {
-    public entreprises: [any];
+    public entreprises!: [any];
 
     @Output() manipulatingLink = new EventEmitter<string>();
 

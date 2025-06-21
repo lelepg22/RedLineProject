@@ -4,24 +4,27 @@ import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePers
 import { Entreprises } from '../models/Entreprises';
 import { Persons } from '../models/Persons';
 import { ApplicationManagerService } from '../applicationmanager.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Statut } from '../models/Statut';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+    standalone: true,
     selector: 'app-formPerson-component',
     templateUrl: './formPerson.component.html',
-    styleUrls: ['../home/home.component.css']
+    styleUrls: ['../home/home.component.css'],
+    imports: [FormsModule, RouterModule]
 
 })
 export class FormPersonComponent implements OnInit {
-    @Input() application: ApplicationEntreprisePerson;
-    @Input() entreprise: Entreprises;
-    @Input() person: Persons;
-    @Input() formInfo: [any,any, any, any];
+    @Input() application!: ApplicationEntreprisePerson;
+    @Input() entreprise!: Entreprises;
+    @Input() person!: Persons;
+    @Input() formInfo!: [any,any, any, any];
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
-    statut: Statut;
+    statut!: Statut;
     inputPerson: string = "prenom, nom";
     statutTitle: string = "Statuts";
     entrepriseTitle: string = "Entreprises";
@@ -35,7 +38,7 @@ export class FormPersonComponent implements OnInit {
         this.statut = new Statut;
      
 
-        this._amService.getPersonDocEntreprise().subscribe(data => {
+        this._amService.getPersonDocEntreprise().subscribe((data :any) => {
             this.formInfo = data;
             this.formInfo[3].shift();
             this.formInfo[0].shift();
@@ -82,7 +85,7 @@ export class FormPersonComponent implements OnInit {
         this._amService.postStatut(this.statut).subscribe(() => {
             //this.ngOnInit();
             this.formInfo[3] = null;
-            this._amService.getPersonDocEntreprise().subscribe(data => {
+            this._amService.getPersonDocEntreprise().subscribe((data :any) => {
                 this.formInfo = data;
                 this.formInfo[3].shift();
                 this.formInfo[0].shift();

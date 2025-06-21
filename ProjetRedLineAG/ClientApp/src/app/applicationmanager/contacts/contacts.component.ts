@@ -1,26 +1,28 @@
 import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApplicationManagerService } from '../applicationmanager.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Persons } from '../models/Persons';
 import { Statut } from '../models/Statut';
 
 @Component({
+  standalone: true, 
   selector: 'app-contacts-component',
-    templateUrl: './contacts.component.html',
-    styleUrls: ['../home/home.component.css']
+  templateUrl: './contacts.component.html',
+  styleUrls: ['../home/home.component.css'],
+  imports:[ RouterModule ]
 
 })
 export class ContactsComponent implements OnInit {
-    @Input() formInfo: [any];
-    @Input() person: Persons;
+    @Input() formInfo!: [any];
+    @Input() person!: Persons;
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
     @Output() manipulateWithId = new EventEmitter<{ id: number, link: string }>();
 
-    public contacts: [any];
-    public statutList: [any];
+    public contacts!: [any];
+    public statutList!: [any];
 
     constructor(private router: Router, private _amService: ApplicationManagerService) {
       

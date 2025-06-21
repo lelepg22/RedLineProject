@@ -2,26 +2,29 @@ import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular
 import { HttpClient } from '@angular/common/http';
 import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePerson';
 import { ApplicationManagerService } from '../applicationmanager.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Persons } from '../models/Persons';
 import { PersonSent } from '../models/PersonSent';
 import { PersonsList } from '../models/PersonsList';
 import { Documents } from '../models/Documents';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
+    standalone: true,
     selector: 'app-formApplication-component',
     templateUrl: './formApplication.component.html',
-    styleUrls: ['../home/home.component.css']
+    styleUrls: ['../home/home.component.css'],
+    imports: [FormsModule, RouterModule]
 
 })
 export class FormApplicationComponent implements OnInit {
-    @Input() application: ApplicationEntreprisePerson;
-    @Input() formInfo: [any,any,any,any];
-    @Input() person: Persons;
-    @Input() personList: PersonsList;
-    @Input() document: Documents;
-    @Input() personSent: PersonSent; 
+    @Input() application!: ApplicationEntreprisePerson;
+    @Input() formInfo!: [any,any,any,any];
+    @Input() person!: Persons;
+    @Input() personList!: PersonsList;
+    @Input() document!: Documents;
+    @Input() personSent!: PersonSent; 
 
     @Output() manipulatingLink = new EventEmitter<string>();
 
@@ -45,14 +48,14 @@ export class FormApplicationComponent implements OnInit {
         this.person = new Persons();
         this.document = new Documents();
 
-        this._amService.goHome().subscribe(data => {
+        this._amService.goHome().subscribe((data :any) => {
             console.log("debuga");
             console.log(data);
             this.applicId = data[data.length - 1].applicationId;
 
     } )
 
-        this._amService.getPersonDocEntreprise().subscribe(data => {
+        this._amService.getPersonDocEntreprise().subscribe((data :any) => {
             this.formInfo = data;
             this.formInfo[1].shift();
             this.formInfo[0].shift();
@@ -191,7 +194,7 @@ export class FormApplicationComponent implements OnInit {
     goDoc() {
         this._amService.postDocument(this.newDoc).subscribe(() => {            
             this.add = false;
-            this._amService.getPersonDocEntreprise().subscribe(data => {
+            this._amService.getPersonDocEntreprise().subscribe((data :any) => {
                 this.formInfo = data;
                 this.formInfo[1].shift();
                 this.formInfo[0].shift();

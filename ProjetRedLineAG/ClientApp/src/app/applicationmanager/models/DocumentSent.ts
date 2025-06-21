@@ -1,6 +1,6 @@
 export class DocumentSent {
-    DocumentId: number;
-    ApplicationId: number;
+    DocumentId!: number;
+    ApplicationId!: number;
 
    /* person: [{
         ApplicationId: number,

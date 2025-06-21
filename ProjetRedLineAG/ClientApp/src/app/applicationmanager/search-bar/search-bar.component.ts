@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true, 
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-    styleUrls: ['../home/home.component.css']
+    styleUrls: ['../home/home.component.css'],
+    imports: [RouterModule]
 })
 export class SearchBarComponent implements OnInit {
     @Input() applications: any;
@@ -56,7 +58,7 @@ export class SearchBarComponent implements OnInit {
         this.searchEntrepriseApplication = false;
         this.searchTitleApplication = false;
     }
-    public navigate(x) {
+    public navigate(x : any) {
 
         this.router.navigateByUrl(x);
 

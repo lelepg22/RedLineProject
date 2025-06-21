@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 
 namespace ProjetRedLineAG.Models
 {
@@ -9,7 +10,11 @@ namespace ProjetRedLineAG.Models
         public ApplicationModel()
         {
 
-            TimeApplication = Convert.ToDateTime(DateTime.Now.ToString("dd/MM/yyyy"));
+            TimeApplication = DateTime.ParseExact(
+                DateTime.Now.ToString("dd/MM/yyyy"),
+                "dd/MM/yyyy",
+                CultureInfo.InvariantCulture
+            );
             EntrepriseId = 1;
 
         }

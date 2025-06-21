@@ -12,15 +12,15 @@ import { ApplicationManagerService } from '../applicationmanager.service';
 })
 export class CardEntrepriseComponent implements OnInit {
 
-    public entreprises: [any];
+    public entreprises!: [any];
     public entreprise: [any] = [{}];
-    public persons: [any];
+    public persons!: [any];
     public edit: boolean = false;
-    public comment: string;
-    public statutList: [any];
-    public personsList: [any];
+    public comment!: string;
+    public statutList!: [any];
+    public personsList!: [any];
 
-    @Input() id: number;
+    @Input() id!: number;
 
     @Output() manipulatingLink = new EventEmitter<{ id: number, link: string }>();
     
@@ -33,7 +33,7 @@ export class CardEntrepriseComponent implements OnInit {
     }
     ngOnInit(): void {
         
-        this._amService.getEntreprisePerson(this.id).subscribe(result => {
+        this._amService.getEntreprisePerson(this.id).subscribe((result :any) => {
             
             console.log('batato');
             console.log(result);
@@ -64,7 +64,7 @@ export class CardEntrepriseComponent implements OnInit {
           
 
             if (result.length < 1) {
-                 this._amService.getEntrepriseNoApplication(this.id).subscribe(result => {
+                 this._amService.getEntrepriseNoApplication(this.id).subscribe((result :any) => {
                   
                      this.entreprise = result;
                    

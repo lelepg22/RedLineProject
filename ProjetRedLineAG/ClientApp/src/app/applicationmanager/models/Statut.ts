@@ -1,5 +1,5 @@
 export class Statut {
-    titleStatut: string;
+    titleStatut!: string;
     
 
    /* person: [{

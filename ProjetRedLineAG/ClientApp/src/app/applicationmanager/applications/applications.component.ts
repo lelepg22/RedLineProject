@@ -12,7 +12,7 @@ export class ApplicationsComponent implements OnInit {
 
     @Output() manipulatingLink = new EventEmitter<{ id: number, link:string }>();
 
-    public application: Application;
+    public application!: Application;
 
     constructor(private router: Router) { }
 

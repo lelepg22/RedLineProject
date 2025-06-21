@@ -4,9 +4,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './applicationmanager/home/home.component';
-import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
-import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { EntreprisesComponent } from './applicationmanager/entreprises/entreprises.component';
 import { ContactsComponent } from './applicationmanager/contacts/contacts.component';
 import { DocumentsComponent } from './applicationmanager/documents/documents.component';
@@ -21,7 +18,7 @@ import { CardPersonComponent } from './applicationmanager/cardPerson/cardPerson.
 import { ApplicationsComponent } from './applicationmanager/applications/applications.component';
 
 
-const routes: Routes = [
+export const routes: Routes = [
 
     { path: '', component: HomeComponent, pathMatch: 'full'} ,    
     //, canActivate: [AuthorizeGuard] 

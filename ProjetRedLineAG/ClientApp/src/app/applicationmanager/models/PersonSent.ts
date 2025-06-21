@@ -1,6 +1,6 @@
 export class PersonSent {
-    ApplicationId: number;
-    PersonId: number;
+    ApplicationId!: number;
+    PersonId!: number;
 
    /* person: [{
         ApplicationId: number,

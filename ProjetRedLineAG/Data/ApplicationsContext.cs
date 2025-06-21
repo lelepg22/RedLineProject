@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using ProjetRedLineAG.Models;
+using System.Data.Entity;
 
 namespace ProjetRedLineAG.Data
 {
@@ -79,17 +80,17 @@ namespace ProjetRedLineAG.Data
               ) ;
         }
 
-        public DbSet<ApplicationModel> Application { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<ApplicationModel> Application { get; set; }
 
-        public DbSet<DocumentModel> Document { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<DocumentModel> Document { get; set; }
 
-        public DbSet<DocumentSentModel> DocumentsSent { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<DocumentSentModel> DocumentsSent { get; set; }
 
-        public DbSet<PersonSentModel> PersonSent { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<PersonSentModel> PersonSent { get; set; }
 
-        public DbSet<EntrepriseModel> Entreprise { get; set; }
-        public DbSet<StatutModel> Statut { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<EntrepriseModel> Entreprise { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<StatutModel> Statut { get; set; }
 
-        public DbSet<PersonModel> Person { get; set; }
+        public Microsoft.EntityFrameworkCore.DbSet<PersonModel> Person { get; set; }
     }
 }

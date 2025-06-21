@@ -13,15 +13,15 @@ import { Persons } from '../models/Persons';
 })
 export class CardPersonComponent implements OnInit {
 
-    public entreprises: [any];
+    public entreprises!: [any];
     public entreprise: [any] = [{}];
-    public persons: [any];
-    public person: [Persons];
+    public persons!: [any];
+    public person!: [Persons];
     public edit: boolean = false;
-    public comment: string;
-    public statut: [any]; 
+    public comment!: string;
+    public statut!: [any]; 
 
-    @Input() id: number;
+    @Input() id!: number;
 
     @Output() manipulatingLink = new EventEmitter<string>();
     
@@ -31,7 +31,7 @@ export class CardPersonComponent implements OnInit {
     }
     ngOnInit(): void {
         
-        this._amService.getPerson(this.id).subscribe(result => {
+        this._amService.getPerson(this.id).subscribe((result :any) => {
 
             console.log('person');
             console.log(result);
@@ -40,7 +40,7 @@ export class CardPersonComponent implements OnInit {
             this._amService.getEntreprise(this.person[0].entrepriseId).subscribe(result => {
 
                 if (result.length < 1) {
-                    this._amService.getEntrepriseNoApplication(this.person[0].entrepriseId).subscribe(result => {
+                    this._amService.getEntrepriseNoApplication(this.person[0].entrepriseId).subscribe((result :any) => {
 
                         console.log('fefe');
                         console.log(result);
@@ -61,7 +61,7 @@ export class CardPersonComponent implements OnInit {
 
 
             }, error => console.error(error));
-            this._amService.getStatut(this.person[0].statutId).subscribe(result => {
+            this._amService.getStatut(this.person[0].statutId).subscribe((result: any) => {
 
                 console.log('statut');
                 console.log(result);
@@ -70,7 +70,7 @@ export class CardPersonComponent implements OnInit {
             })
             
         })
-        this._amService.getEntreprisePerson(this.id).subscribe(result => {
+        this._amService.getEntreprisePerson(this.id).subscribe((result: any) => {
             
             console.log('batato');
             console.log(result);

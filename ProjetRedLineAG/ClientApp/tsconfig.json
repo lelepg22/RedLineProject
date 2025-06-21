@@ -2,19 +2,24 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
-    "module": "esnext",
+    "module": "es2022", // ✅ Use modern ES module format
+    "target": "es2022", // ✅ Target ES2022 for async/await, etc.
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
+    "resolveJsonModule": true, // ✅ Helps with i18n or JSON imports
+    "esModuleInterop": true, // ✅ Fixes default import issues
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2015",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true, // ✅ Highly recommended in Angular 15+
+    "skipLibCheck": true, // ✅ Avoid issues with typings
     "typeRoots": [
       "node_modules/@types"
     ],
     "lib": [
-      "es2017",
+      "es2022",
       "dom"
     ]
   }

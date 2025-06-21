@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cacara\\Desktop\\testingheroku\\ProjetRedLineAG\\ProjetRedLineAG.csproj": {}
+    "C:\\Users\\lelep\\OneDrive\\Área de Trabalho\\gestionnaire candidatures\\RedLineProject\\ProjetRedLineAG\\ProjetRedLineAG.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cacara\\Desktop\\testingheroku\\ProjetRedLineAG\\ProjetRedLineAG.csproj": {
+    "C:\\Users\\lelep\\OneDrive\\Área de Trabalho\\gestionnaire candidatures\\RedLineProject\\ProjetRedLineAG\\ProjetRedLineAG.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cacara\\Desktop\\testingheroku\\ProjetRedLineAG\\ProjetRedLineAG.csproj",
+        "projectUniqueName": "C:\\Users\\lelep\\OneDrive\\Área de Trabalho\\gestionnaire candidatures\\RedLineProject\\ProjetRedLineAG\\ProjetRedLineAG.csproj",
         "projectName": "ProjetRedLineAG",
-        "projectPath": "C:\\Users\\Cacara\\Desktop\\testingheroku\\ProjetRedLineAG\\ProjetRedLineAG.csproj",
-        "packagesPath": "C:\\Users\\Cacara\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cacara\\Desktop\\testingheroku\\ProjetRedLineAG\\obj\\",
+        "projectPath": "C:\\Users\\lelep\\OneDrive\\Área de Trabalho\\gestionnaire candidatures\\RedLineProject\\ProjetRedLineAG\\ProjetRedLineAG.csproj",
+        "packagesPath": "C:\\Users\\lelep\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\lelep\\OneDrive\\Área de Trabalho\\gestionnaire candidatures\\RedLineProject\\ProjetRedLineAG\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Cacara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\lelep\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +44,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.5.1, )"
+            },
             "Microsoft.AspNetCore.ApiAuthorization.IdentityServer": {
               "target": "Package",
               "version": "[3.1.25, )"
@@ -87,7 +95,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -99,7 +108,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

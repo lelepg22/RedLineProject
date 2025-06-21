@@ -1,20 +1,29 @@
-import { enableProdMode } from '@angular/core';
+
+
+import { HttpClientModule } from '@angular/common/http'
+import { enableProdMode, importProvidersFrom } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app-routing.module';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-export function getBaseUrl() {
-  return document.getElementsByTagName('base')[0].href;
-}
-
-const providers = [
-  { provide: 'BASE_URL', useFactory: getBaseUrl, deps: [] }
-];
-
 if (environment.production) {
-  enableProdMode();
+    enableProdMode();
 }
-
-platformBrowserDynamic(providers).bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+/*
+platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch((err :any) => console.error(err));
+*/
+bootstrapApplication(AppComponent, {
+    providers: [
+        importProvidersFrom(HttpClientModule), 
+        provideRouter(routes, withEnabledBlockingInitialNavigation()),
+        provideAnimations() 
+    ]
+}).catch(err => console.error(err));

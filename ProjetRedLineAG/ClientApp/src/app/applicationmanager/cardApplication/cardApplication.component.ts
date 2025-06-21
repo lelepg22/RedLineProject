@@ -17,27 +17,27 @@ import { ApplicationEntreprisePerson } from '../models/ApplicationEntreprisePers
 })
 export class CardApplicationComponent {
 
-    @Input() formInfo: [any,any,any,any];
-    @Input() person: Persons;
-    @Input() personsList: PersonsList;
-    @Input() document: Documents;
-    @Input() application: ApplicationEntreprisePerson;
+    @Input() formInfo!: [any,any,any,any];
+    @Input() person!: Persons;
+    @Input() personsList!: PersonsList;
+    @Input() document!: Documents;
+    @Input() application: ApplicationEntreprisePerson[] = [];;
 
-    @Input() id: number;
+    @Input() id!: number;
 
     @Output() manipulatingLink = new EventEmitter<{ id: number, link: string }>();
 
     documentsList: [{ documentId: number, titleDocument: string }] = [{ documentId: 0, titleDocument: "" }];
     public documentSent: [any] = [{}];
-    public documentList: [any];
+    public documentList!: [any];
     public documents: [any] = [{}];
-    public entreprise: [any];
+    public entreprise!: [any];
     public personSent: [any] = [{}];
-    public personList: [any];
+    public personList!: [any];
     public persons: [any] = [{}];
     public saved: [any] = [{}];
-    public statutList: [any];
-    public update: ApplicationUp;
+    public statutList!: [any];
+    public update!: ApplicationUp;
     public listFilter: any;
     inputPerson: string = "Personne";
     documentTitle: string = "Documents";
@@ -52,16 +52,15 @@ export class CardApplicationComponent {
         this.person = new Persons();
         this.personsList = new PersonsList();
         this.document = new Documents();
-        this.application = new ApplicationEntreprisePerson()
+        this.application = [new ApplicationEntreprisePerson()]
 
         //let id = +this.route.snapshot.params['id'];
 
         this._amService.getApplication(this.id).subscribe(result => {
             console.log("oxi");
-            this.application = result;
-            console.log(this.application);
-
-            this._amService.getEntrepriseNoApplication(this.application[0].entrepriseId).subscribe(response => {
+            this.application.push(result);
+            console.log(this.application);            
+            this._amService.getEntrepriseNoApplication(this.application[0].EntrepriseId).subscribe((response: [any]) => {
                 this.entreprise = response;
                 console.log('etaentreprise');
                 console.log(this.entreprise);
@@ -71,20 +70,20 @@ export class CardApplicationComponent {
         }, error => console.error(error));
 
 
-        this._amService.getPersonDocEntreprise().subscribe(data => {
+        this._amService.getPersonDocEntreprise().subscribe((data: [any, any, any, any]) => {
             this.formInfo = data;
             this.formInfo[1].shift();
             console.log('etaMenino');
             console.log(this.formInfo);
         });
 
-        this._amService.getApplicationPersonSent(this.id).subscribe(data => {
+        this._amService.getApplicationPersonSent(this.id).subscribe((data: [any]) => {
             this.personSent = data;
             console.log('xitaaas');
             console.log(this.personSent);
 
             // ASSOCIATING persons with persons sentList for the application
-            this._amService.getContacts().subscribe(data => {
+            this._amService.getContacts().subscribe((data: [any]) => {
 
                 this.personList = data;
                 console.log("blog");
@@ -101,7 +100,7 @@ export class CardApplicationComponent {
                     });
                 })
                 this.persons.shift();
-                this._amService.goStatuts().subscribe(result => {
+                this._amService.goStatuts().subscribe((result: [any]) => {
                     console.log('statuts');
                     this.statutList = result;
 
@@ -122,13 +121,13 @@ export class CardApplicationComponent {
 
         })
 
-        this._amService.getApplicationDocSent(this.id).subscribe(data => {
+        this._amService.getApplicationDocSent(this.id).subscribe((data: [any]) => {
             this.documentSent = data;
             console.log('xitos');
             console.log(this.documentSent);
 
             // ASSOCIATING docs with doc sentList for the application
-            this._amService.getDocs().subscribe(data => {
+            this._amService.getDocs().subscribe((data: [any]) => {
                 this.documentList = data;
                 console.log("banane");
                 console.log(this.documentList);
@@ -158,7 +157,7 @@ export class CardApplicationComponent {
         console.log(this.saved);
 
     }
-    public navigate(x) {
+    public navigate(x: string | URL | undefined) {
         
         window.open(x, "_blank")
 
@@ -184,10 +183,10 @@ export class CardApplicationComponent {
             return e != x
         })
         if (this.listFilter.length == this.personsList.person.length) {
-            var data = { ApplicationId: this.application[0].applicationId, PersonId: this.person.id }
+            var data = { ApplicationId: this.application[0].Id, PersonId: this.person.id }
             this.application[0].personSent.push(data);
-            this._amService.postPersonSent(data).subscribe(x => {
-                this._amService.getApplicationPersonSent(this.id).subscribe(data => {
+            this._amService.postPersonSent(data).subscribe((x: any) => {
+                this._amService.getApplicationPersonSent(this.id).subscribe((data: [any]) => {
                     
                     this.personSent = data;
                     console.log('xitaaas');
@@ -222,10 +221,10 @@ export class CardApplicationComponent {
             }).length > 0) {
                 return console.log("document déjà ajouté")
             }
-            var data = { DocumentId: this.document.documentId, ApplicationId: this.application[0].applicationId };
+            var data = { DocumentId: this.document.documentId, ApplicationId: this.application[0].Id };
             this.application[0].documentSent.push(data);
-            this._amService.postDocSent(data).subscribe(x =>
-                this._amService.getApplicationDocSent(this.id).subscribe(data => {
+            this._amService.postDocSent(data).subscribe((x :any) =>
+                this._amService.getApplicationDocSent(this.id).subscribe((data :any) => {
                 this.documentSent = data;
                 
             }));
